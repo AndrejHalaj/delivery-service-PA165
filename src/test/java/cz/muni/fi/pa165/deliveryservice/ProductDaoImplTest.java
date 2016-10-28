@@ -10,8 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
-import cz.muni.fi.pa165.deliveryservice.Product;
-import cz.muni.fi.pa165.deliveryservice.ProductDao;
+import cz.muni.fi.pa165.deliveryservice.model.Product;
+import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 
 /**
  *

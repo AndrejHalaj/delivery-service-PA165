@@ -1,5 +1,7 @@
-package cz.muni.fi.pa165.deliveryservice;
+package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
+import cz.muni.fi.pa165.deliveryservice.model.Product;
+import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
