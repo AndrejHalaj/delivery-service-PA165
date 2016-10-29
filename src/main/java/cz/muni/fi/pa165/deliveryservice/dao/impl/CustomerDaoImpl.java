@@ -12,10 +12,15 @@ import javassist.NotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  *
  * @author Kristian Mateka
  */
+@Repository
+@Transactional
 public class CustomerDaoImpl implements CustomerDao{
     
     @PersistenceContext

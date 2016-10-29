@@ -142,7 +142,7 @@ public class Customer implements Serializable {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (! (obj instanceof Customer)) {
             return false;
         }
         final Customer other = (Customer) obj;
