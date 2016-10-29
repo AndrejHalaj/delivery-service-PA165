@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
-import cz.muni.fi.pa165.deliveryservice.model.Product;
 import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
+import cz.muni.fi.pa165.deliveryservice.model.Product;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,7 +33,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public Product findById(Long id) {
         return em.createQuery("select p from Product p where p.id = :id", Product.class)
-                .setParameter(":id", id).getSingleResult();
+                .setParameter("id", id).getSingleResult();
     }
 
     @Override

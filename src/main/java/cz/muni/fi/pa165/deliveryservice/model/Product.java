@@ -21,18 +21,18 @@ public class Product {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    long id;
+    private long id;
     
     @Column(nullable=false, unique=true)
-    String name;
+    private String name;
 
-    String description;
+    private String description;
     
     @Column(nullable=false)
-    String producer;
+    private String producer;
     
     @Column(nullable=false)
-    double weight;
+    private double weight;
     
     public Product() {}
 

@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.deliveryservice;
+package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import java.util.List;
 
@@ -6,6 +6,10 @@ import javax.persistence.NoResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -18,7 +22,9 @@ import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
  * @author Andrej Halaj
  */
 @ContextConfiguration(classes = PersistenceApplicationContext.class)
-public class ProductDaoImplTest {
+@TestExecutionListeners(TransactionalTestExecutionListener.class)
+@Transactional
+public class ProductDaoImplTest extends AbstractTestNGSpringContextTests {
 	
     @Autowired
     private ProductDao productDao;

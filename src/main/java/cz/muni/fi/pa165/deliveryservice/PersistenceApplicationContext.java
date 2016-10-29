@@ -16,6 +16,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
+
 /**
  *
  * @author Andrej Halaj
@@ -23,7 +25,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackages={"cz.muni.fi.pv165.deliveryservice"})
+@ComponentScan(basePackageClasses={ProductDao.class})
 public class PersistenceApplicationContext {
 	
 	@Bean 
@@ -44,6 +46,7 @@ public class PersistenceApplicationContext {
 	public LocalValidatorFactoryBean localValidatorFactoryBean(){
 		return new LocalValidatorFactoryBean();
 	}
+	
 	@Bean
 	public LoadTimeWeaver instrumentationLoadTimeWeaver() {
 		return new InstrumentationLoadTimeWeaver();
