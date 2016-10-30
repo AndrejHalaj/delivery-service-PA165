@@ -1,10 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /** 
  * @author Viktor Bako
@@ -21,6 +20,9 @@ public class Courier {
 	
 	@Column(nullable=false)
     private String lastName;
+
+	@OneToMany (mappedBy = "courier")
+	private Set<Shipment> shipmentsList = new HashSet<Shipment>();
 
 	public Long getId() {
 		return id;
@@ -44,6 +46,18 @@ public class Courier {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Set<Shipment> getShipmentsList() {
+		return Collections.unmodifiableSet(shipmentsList);
+	}
+
+	public void addShipment(Shipment s) {
+		shipmentsList.add(s);
+	}
+
+	public void removeShipment(Shipment s) {
+		shipmentsList.remove(s);
 	}
 
 	@Override

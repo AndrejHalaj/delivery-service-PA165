@@ -1,6 +1,10 @@
 package cz.muni.fi.pa165.deliveryservice;
 
 import javax.sql.DataSource;
+
+import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
+import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
+import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,7 +29,7 @@ import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses={ProductDao.class})
+@ComponentScan(basePackageClasses={ProductDao.class, CourierDao.class, ShipmentDao.class, CustomerDao.class})
 public class PersistenceApplicationContext {
 	
 	@Bean 

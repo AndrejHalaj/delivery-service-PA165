@@ -6,13 +6,11 @@
 package cz.muni.fi.pa165.deliveryservice.model;
 
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Set;
+import javax.persistence.*;
 
 /**
  *
@@ -49,6 +47,12 @@ public class Customer implements Serializable {
     
     @Column(nullable = false, unique = true)
     private String emailAddress;
+
+    @OneToMany(mappedBy = "sender")
+    private Set<Shipment> shipmentSenderList = new HashSet<Shipment>();
+
+    @OneToMany(mappedBy = "receiver")
+    private Set<Shipment> shipmentReceiverList = new HashSet<Shipment>();
 
     public Customer() {
     }
@@ -124,6 +128,31 @@ public class Customer implements Serializable {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
+    public Set<Shipment> getShipmentSenderList() {
+        return Collections.unmodifiableSet(shipmentSenderList);
+    }
+
+    public void addShipmentSender(Shipment s) {
+        shipmentSenderList.add(s);
+    }
+
+    public void removeShipment(Shipment s) {
+        shipmentSenderList.remove(s);
+    }
+
+    public void addShipmentReceiver(Shipment s) {
+        shipmentReceiverList.add(s);
+    }
+
+    public void removeShipmentReceiver(Shipment s) {
+        shipmentReceiverList.remove(s);
+    }
+
+    public Set<Shipment> getShipmentReceiverList() {
+        return Collections.unmodifiableSet(shipmentReceiverList);
+    }
+
 
     @Override
     public int hashCode() {
