@@ -178,10 +178,10 @@ public class Customer implements Serializable {
         if (!Objects.equals(this.phoneNumber, other.phoneNumber)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.emailAddress, other.emailAddress)) {
             return false;
         }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
     
     
