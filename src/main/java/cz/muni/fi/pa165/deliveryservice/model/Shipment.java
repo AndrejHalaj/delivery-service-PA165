@@ -7,6 +7,7 @@ import java.util.*;
 /**
  * Created by Jamik on 29.10.2016.
  */
+
 @Entity
 public class Shipment {
 

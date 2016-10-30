@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.deliveryservice.dao;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 
 import java.util.List;
+import javassist.NotFoundException;
 
 /**
  * Created by Jamik on 29.10.2016.
@@ -29,7 +30,7 @@ public interface ShipmentDao {
      * @param shipment
      * @return Updated shipment
      */
-    public Shipment update(Shipment shipment);
+    public Shipment update(Shipment shipment) throws NotFoundException;
 
     /**
      * Find shipment by it´s ID
@@ -37,7 +38,7 @@ public interface ShipmentDao {
      * @param id
      * @return Shipment with given ID
      */
-    public Shipment findById(Long id);
+    public Shipment findById(Long id) throws NotFoundException;
 
     /**
      * Get list of all shipments
