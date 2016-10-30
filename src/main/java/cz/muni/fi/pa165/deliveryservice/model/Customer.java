@@ -157,7 +157,6 @@ public class Customer implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
         hash = 89 * hash + Objects.hashCode(this.phoneNumber);
         hash = 89 * hash + Objects.hashCode(this.emailAddress);
         return hash;
@@ -178,11 +177,6 @@ public class Customer implements Serializable {
         if (!Objects.equals(this.phoneNumber, other.phoneNumber)) {
             return false;
         }
-        if (!Objects.equals(this.emailAddress, other.emailAddress)) {
-            return false;
-        }
-        return Objects.equals(this.id, other.id);
+        return Objects.equals(this.emailAddress, other.emailAddress);
     }
-    
-    
 }
