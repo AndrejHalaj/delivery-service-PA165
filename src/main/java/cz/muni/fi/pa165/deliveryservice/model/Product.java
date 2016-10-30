@@ -6,11 +6,7 @@
 package cz.muni.fi.pa165.deliveryservice.model;
 
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -33,7 +29,10 @@ public class Product {
     
     @Column(nullable=false)
     private double weight;
-    
+
+    @ManyToOne
+    private Shipment shipment;
+
     public Product() {}
 
     public long getId() {
@@ -70,6 +69,14 @@ public class Product {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public Shipment getShipment() {
+        return shipment;
+    }
+
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;
     }
 
     @Override

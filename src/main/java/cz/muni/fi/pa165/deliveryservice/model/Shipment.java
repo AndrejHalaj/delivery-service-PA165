@@ -2,9 +2,7 @@ package cz.muni.fi.pa165.deliveryservice.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Objects;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by Jamik on 29.10.2016.
@@ -13,7 +11,7 @@ import java.util.Date;
 public class Shipment {
 
     // state of the shipment
-    public enum ShipmentState {OVERTAKEN, PREPARED, TRANSFERED, DELIVERED};
+    public enum ShipmentState {NEW, TRANSFERED, DELIVERED};
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,13 +25,15 @@ public class Shipment {
     @ManyToOne
     private Customer receiver;
 
-    // TODO: missing product
-
-    // courier
+    // courier handling the delivery
     @ManyToOne
     private Courier courier;
 
-    @Column(nullable = false)
+    // list of products
+    @OneToMany(mappedBy = "shipment")
+    private Set<Product> productsList = new HashSet<Product>();
+
+    @Column(nullable = false, unique = true)
     private String trackingId;
 
     @Column(nullable = false)
@@ -53,6 +53,7 @@ public class Shipment {
     private Date shipmentCreated;
 
     // this can be a null since we don´t know when will the shipment be delivered
+    @Column
     private Date shipmentDelivered;
 
     public Long getId() {
@@ -139,10 +140,21 @@ public class Shipment {
         this.shipmentDelivered = shipmentDelivered;
     }
 
+    public Set<Product> getProductsList() {
+        return Collections.unmodifiableSet(productsList);
+    }
+
+    private void addProduct(Product p) {
+        productsList.add(p);
+    }
+
+    private void removeProduct(Product p) {
+        productsList.remove(p);
+    }
+
     @Override
     public int hashCode() {
         int hash = 37;
-        // TODO: kinda not sure whether or not it is sufficient
         hash = 67 * hash + (trackingId == null ? 0 : trackingId.hashCode());
         hash = 67 * hash + (shipmentCreated == null ? 0 : shipmentCreated.hashCode());
         return hash;

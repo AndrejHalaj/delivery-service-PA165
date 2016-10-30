@@ -27,7 +27,7 @@ public interface ShipmentDao {
      * Updates given shipment
      *
      * @param shipment
-     * @return
+     * @return Updated shipment
      */
     public Shipment update(Shipment shipment);
 
@@ -35,14 +35,14 @@ public interface ShipmentDao {
      * Find shipment by it´s ID
      *
      * @param id
-     * @return
+     * @return Shipment with given ID
      */
     public Shipment findById(Long id);
 
     /**
      * Get list of all shipments
      *
-     * @return
+     * @return List of all Shipments
      */
     public List<Shipment> findAll();
 }
