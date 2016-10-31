@@ -92,11 +92,4 @@ public class ProductDaoImplTest extends AbstractTestNGSpringContextTests {
 
         productDao.findById(product.getId());
     }
-
-    @Test
-    public void testFindAllZeroEntities() {
-      	List<Product> products = productDao.findAll();
-      	
-      	Assert.assertEquals(products.size(), 0);
-    }
 }
