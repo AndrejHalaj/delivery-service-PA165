@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 import cz.muni.fi.pa165.deliveryservice.model.Product;
+import java.util.Collections;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -38,6 +39,6 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> findAll() {
-        return em.createQuery("select p from Product p", Product.class).getResultList();
+        return Collections.unmodifiableList(em.createQuery("select p from Product p", Product.class).getResultList());
     }
 }

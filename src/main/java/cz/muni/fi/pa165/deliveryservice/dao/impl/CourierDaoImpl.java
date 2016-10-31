@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
+import java.util.Collections;
 
 /**
  * @author Viktor Bako
@@ -44,7 +45,7 @@ public class CourierDaoImpl implements CourierDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Courier> findAll() {
-		return em.createQuery("SELECT c FROM Courier c").getResultList();
+		return Collections.unmodifiableList(em.createQuery("SELECT c FROM Courier c").getResultList());
 	}
 
 }

@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
+import java.util.Collections;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,7 +60,7 @@ public class ShipmentDaoImpl implements ShipmentDao {
 
     @Override
     public List<Shipment> findAll() {
-        return entityManager.createQuery("SELECT s FROM Shipment s", Shipment.class).getResultList();
+        return Collections.unmodifiableList(entityManager.createQuery("SELECT s FROM Shipment s", Shipment.class).getResultList());
     }
 
     // TODO: date filters

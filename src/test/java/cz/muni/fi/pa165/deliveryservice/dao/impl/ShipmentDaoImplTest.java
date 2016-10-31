@@ -41,15 +41,11 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private CourierDao courierDao;
     
-    @Autowired
-    private ProductDao productDao;
-    
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Customer sender;
     private Customer reciever;
     private Courier courier;
     private Shipment ship;
-    private Product product;
 
     @BeforeMethod
     public void init() throws ParseException {
@@ -77,13 +73,6 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         courier.setFirstName("Sylvester");
         courier.setLastName("Stallone");
         
-        
-        product = new Product();
-        product.setName("Product1");
-        product.setDescription("A product");
-        product.setProducer("Producer1");
-        product.setWeight(23);
-        
         ship = new Shipment();
         ship.setCourier(courier);
         ship.setReceiver(reciever);
@@ -96,14 +85,10 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         ship.setShipmentCreated(sdf.parse("2009-11-20"));
         ship.setShipmentDelivered(sdf.parse("2012-12-20"));
 
-        productDao.create(product);
         courierDao.create(courier);
         customerDao.create(sender);
         customerDao.create(reciever);
         shipDao.create(ship);
-//        
-//        courierDao.findById(courier.getId()).addShipment(ship);
-//        productDao.findById(product.getId()).setShipment(ship);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)

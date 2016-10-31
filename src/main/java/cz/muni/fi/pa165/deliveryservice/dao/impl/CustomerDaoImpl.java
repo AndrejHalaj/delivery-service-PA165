@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
 import java.util.Collection;
+import java.util.Collections;
 import javassist.NotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -72,6 +73,6 @@ public class CustomerDaoImpl implements CustomerDao{
 
     @Override
     public Collection<Customer> findAll() {
-        return em.createQuery("SELECT c FROM Customer c").getResultList();
+        return Collections.unmodifiableList(em.createQuery("SELECT c FROM Customer c").getResultList());
     }
 }
