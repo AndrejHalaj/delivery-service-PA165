@@ -18,7 +18,14 @@ public interface ProductDao {
 	public void create(Product product);
 	
 	/**
-	 * Persists {@link Product} object.
+	 * Updates {@link Product} entity.
+	 * 
+	 * @param product product that is to be updated
+	 */
+	void update(Product product);
+	
+	/**
+	 * Deletes {@link Product} object.
 	 *
 	 * @param product product that is to be deleted, shall not be null, otherwise throws IllegalArgumentException
 	 */

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import org.hibernate.ObjectDeletedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -16,6 +17,7 @@ import org.testng.annotations.Test;
 
 import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
 import cz.muni.fi.pa165.deliveryservice.model.Product;
+import javassist.NotFoundException;
 import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 
 /**
@@ -85,6 +87,27 @@ public class ProductDaoImplTest extends AbstractTestNGSpringContextTests {
       	Assert.assertTrue(products.contains(product));
       	Assert.assertTrue(products.contains(product2));
     }
+    
+    @Test
+	public void testUpdate() throws NotFoundException {	
+		product.setProducer("New Producer");
+		productDao.update(product);
+		Assert.assertEquals(productDao.findById(product.getId()), product);
+		Assert.assertNotEquals(productDao.findById(product.getId()), product2);
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void testUpdate_nullEntity() {
+		productDao.update(null);
+		Assert.fail("IllegalArgumentException should have been thrown");
+	}
+	
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void testUpdate_entityNotFound() {
+		productDao.delete(product);
+		productDao.update(product);
+		Assert.fail("IllegalArgumentException should have been thrown");
+	}
 
     @Test(expectedExceptions=NoResultException.class)
     public void testDelete() {

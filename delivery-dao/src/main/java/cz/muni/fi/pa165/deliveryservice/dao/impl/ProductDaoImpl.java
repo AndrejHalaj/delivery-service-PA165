@@ -25,6 +25,11 @@ public class ProductDaoImpl implements ProductDao {
     public void create(Product product) {
         em.persist(product);
     }
+    
+    @Override
+	public void update(Product product) {
+		em.merge(product);
+	}
 
     @Override
     public void delete(Product product) {
@@ -41,4 +46,5 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> findAll() {
         return Collections.unmodifiableList(em.createQuery("select p from Product p", Product.class).getResultList());
     }
+
 }
