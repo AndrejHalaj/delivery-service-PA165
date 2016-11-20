@@ -3,12 +3,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>cz.muni.fi.pa165</groupId>
-  <artifactId>delivery-service</artifactId>
+  <artifactId>delivery</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
-  <name>delivery-service</name>
+  <name>delivery</name>
 
+  <modules>
+	  <module>delivery-dao</module>
+	  <module>delivery-api</module>
+	  <module>delivery-service</module>
+  </modules>
+  
   <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven.compiler.source>1.8</maven.compiler.source>
@@ -16,55 +22,5 @@
       <springframework.version>4.3.3.RELEASE</springframework.version>
       <hibernate.version>5.2.2.Final</hibernate.version>
   </properties>
-    
-  <dependencies>    
-      <dependency>
-          <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-entitymanager</artifactId>
-          <version>${hibernate.version}</version>
-      </dependency>
-      
-      <dependency>
-          <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-validator</artifactId>
-          <version>${hibernate.version}</version>
-      </dependency>
-        
-      <dependency>
-          <groupId>org.apache.derby</groupId>
-          <artifactId>derby</artifactId>
-          <version>10.10.2.0</version>
-      </dependency>
-        
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-context</artifactId>
-          <version>${springframework.version}</version>
-      </dependency>
-        
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-core</artifactId>
-          <version>${springframework.version}</version>
-      </dependency>
-            
-      <dependency>
-          <groupId>org.springframework.data</groupId>
-          <artifactId>spring-data-jpa</artifactId>
-          <version>1.10.4.RELEASE</version>
-      </dependency>
-      
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-test</artifactId>
-          <version>${springframework.version}</version>
-      </dependency>
-        
-      <dependency>
-          <groupId>org.testng</groupId>
-          <artifactId>testng</artifactId>
-          <version>6.9.10</version>
-      </dependency>
-
-  </dependencies>
+  
 </project>
