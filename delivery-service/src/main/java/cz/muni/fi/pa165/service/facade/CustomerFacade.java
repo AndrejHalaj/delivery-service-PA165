@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.service.facade;
 
 import dto.customer.CreateCustomerDTO;
+import dto.customer.CustomerDetailDTO;
 import dto.customer.CustomerDisplayDTO;
 import java.util.Collection;
 
@@ -14,11 +15,9 @@ import java.util.Collection;
  * @author Kristian Mateka
  */
 public interface CustomerFacade {
-    CustomerDisplayDTO findUserById(Long l);
+    CustomerDetailDTO findUserById(Long l);
 
-    CustomerDisplayDTO findCustomerByEmail(String string);
-
-    void updateCustomer(CustomerDisplayDTO customerDto);
+    void updateCustomer(CustomerDetailDTO customerDto);
 
     Long registerCustomer(CreateCustomerDTO customerDto);
 

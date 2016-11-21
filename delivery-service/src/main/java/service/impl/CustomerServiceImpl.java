@@ -1,7 +1,12 @@
 package service.impl;
 
+import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javassist.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import service.CustomerService;
 
 /**
@@ -9,6 +14,9 @@ import service.CustomerService;
  * @author Kristian Mateka
  */
 public class CustomerServiceImpl implements CustomerService {
+    
+    @Autowired
+    private CustomerDao customerDao;
     
     @Override
     public void register(Customer customer, String password) {
@@ -22,7 +30,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            customerDao.delete(customerDao.findById(id));
+        } catch (NotFoundException ex) {
+            Logger.getLogger(CustomerServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

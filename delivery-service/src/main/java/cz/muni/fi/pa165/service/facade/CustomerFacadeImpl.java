@@ -23,26 +23,27 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
     
     @Override
-    public Long registerCustomer(CreateCustomerDTO customerDto) {
+    public Long registerCustomer(CreateCustomerDTO CreateCustomerDTO) {
         Customer customer = new Customer();
         
-        customer.setCity(customerDto.getCity());
-        customer.setCountry(customerDto.getCountry());
-        customer.setEmailAddress(customerDto.getEmailAddress());
-        customer.setFirstName(customerDto.getFirstName());
-        customer.setLastName(customerDto.getLastName());
-        customer.setHouseNumber(customerDto.getHouseNumber());
-        customer.setPhoneNumber(customerDto.getPhoneNumber());
-        customer.setPostalCode(customerDto.getPostalCode());
+        mapper.mapTo(customer, CreateCustomerDTO.class);
+        service.register(customer, CreateCustomerDTO.getPassword());
         
-        
+//        customer.setCity(customerDto.getCity());
+//        customer.setCountry(customerDto.getCountry());
+//        customer.setEmailAddress(customerDto.getEmailAddress());
+//        customer.setFirstName(customerDto.getFirstName());
+//        customer.setLastName(customerDto.getLastName());
+//        customer.setHouseNumber(customerDto.getHouseNumber());
+//        customer.setPhoneNumber(customerDto.getPhoneNumber());
+//        customer.setPostalCode(customerDto.getPostalCode());
         
         return customer.getId();
     }
 
     @Override
     public Collection<CustomerDisplayDTO> getAllCustomers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return mapper.mapTo(service.getAllCustomers(), CustomerDisplayDTO.class);
     }
 
     @Override
@@ -54,10 +55,4 @@ public class CustomerFacadeImpl implements CustomerFacade {
     public CustomerDetailDTO findUserById(Long l) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public CustomerDetailDTO findCustomerByEmail(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
