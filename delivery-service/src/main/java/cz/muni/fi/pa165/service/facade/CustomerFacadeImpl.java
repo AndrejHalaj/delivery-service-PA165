@@ -2,8 +2,11 @@ package cz.muni.fi.pa165.service.facade;
 
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
 import dto.customer.CreateCustomerDTO;
+import dto.customer.CustomerDetailDTO;
 import dto.customer.CustomerDisplayDTO;
 import java.util.Collection;
+import service.CustomerService;
+import service.MappingService;
 
 /**
  *
@@ -11,22 +14,14 @@ import java.util.Collection;
  */
 public class CustomerFacadeImpl implements CustomerFacade {
     
+    private final CustomerService service;
+    private final MappingService mapper;
+
+    public CustomerFacadeImpl(CustomerService service, MappingService mapper) {
+        this.service = service;
+        this.mapper = mapper;
+    }
     
-    @Override
-    public CustomerDisplayDTO findUserById(Long l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public CustomerDisplayDTO findCustomerByEmail(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateCustomer(CustomerDisplayDTO customerDto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public Long registerCustomer(CreateCustomerDTO customerDto) {
         Customer customer = new Customer();
@@ -47,6 +42,21 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public Collection<CustomerDisplayDTO> getAllCustomers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateCustomer(CustomerDetailDTO customerDto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CustomerDetailDTO findUserById(Long l) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public CustomerDetailDTO findCustomerByEmail(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
