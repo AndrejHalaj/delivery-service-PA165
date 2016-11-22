@@ -1,30 +1,24 @@
-package cz.muni.fi.pa165.deliveryservice.model;
+package dto.courier;
 
-import javax.persistence.*;
-import java.util.Collections;
-import java.util.HashSet;
+import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 import java.util.Set;
 
 /**
- * @author Viktor Bako
+ * Created by Jamik on 22.11.2016.
  */
-@Entity
-public class Courier {
+public class CourierDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
     private String lastName;
 
-    @OneToMany(mappedBy = "courier")
-    private Set<Shipment> shipmentsList = new HashSet<Shipment>();
+    private Set<Shipment> shipmentsList;
 
-    public Courier() {};
+    /******************************
+     * GETTERS & SETTERS
+     *******************************/
 
     public Long getId() {
         return id;
@@ -51,15 +45,11 @@ public class Courier {
     }
 
     public Set<Shipment> getShipmentsList() {
-        return Collections.unmodifiableSet(shipmentsList);
+        return shipmentsList;
     }
 
-    public void addShipment(Shipment s) {
-        shipmentsList.add(s);
-    }
-
-    public void removeShipment(Shipment s) {
-        shipmentsList.remove(s);
+    public void setShipmentsList(Set<Shipment> shipmentsList) {
+        this.shipmentsList = shipmentsList;
     }
 
     @Override
@@ -72,17 +62,17 @@ public class Courier {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object toCompare) {
+        if (this == toCompare) {
             return true;
         }
-        if (obj == null) {
+        if (toCompare == null) {
             return false;
         }
-        if (!(obj instanceof Courier)) {
+        if (!(toCompare instanceof CourierCreateDTO)) {
             return false;
         }
-        Courier other = (Courier) obj;
+        CourierCreateDTO other = (CourierCreateDTO)toCompare;
         if (firstName == null) {
             if (other.getFirstName() != null) {
                 return false;
@@ -98,5 +88,14 @@ public class Courier {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CourierDTO{"
+                + "id= " + id
+                + "; firstName= " + firstName
+                + "; lastName= " + lastName
+                +'}';
     }
 }
