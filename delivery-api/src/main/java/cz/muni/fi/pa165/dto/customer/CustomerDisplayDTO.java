@@ -1,4 +1,4 @@
-package dto.customer;
+package cz.muni.fi.pa165.dto.customer;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

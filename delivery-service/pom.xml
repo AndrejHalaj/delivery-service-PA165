@@ -25,6 +25,11 @@
             <version>5.5.1</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>cz.muni.fi.pa165</groupId>
+            <artifactId>delivery-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

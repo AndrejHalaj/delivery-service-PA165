@@ -1,12 +1,14 @@
 package cz.muni.fi.pa165.service.facade;
 
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
-import dto.customer.CreateCustomerDTO;
-import dto.customer.CustomerDetailDTO;
-import dto.customer.CustomerDisplayDTO;
+import cz.muni.fi.pa165.dto.customer.CreateCustomerDTO;
+import cz.muni.fi.pa165.dto.customer.CustomerDetailDTO;
+import cz.muni.fi.pa165.dto.customer.CustomerDisplayDTO;
 import java.util.Collection;
-import service.CustomerService;
-import service.MappingService;
+
+import cz.muni.fi.pa165.facade.CustomerFacade;
+import cz.muni.fi.pa165.service.CustomerService;
+import cz.muni.fi.pa165.service.MappingService;
 
 /**
  *

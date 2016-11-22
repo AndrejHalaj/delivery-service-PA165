@@ -1,9 +1,9 @@
-package service.impl;
+package cz.muni.fi.pa165.service.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import org.springframework.dao.DataAccessException;
-import service.CourierService;
+import cz.muni.fi.pa165.service.CourierService;
 
 import javax.inject.Inject;
 import java.util.Collection;

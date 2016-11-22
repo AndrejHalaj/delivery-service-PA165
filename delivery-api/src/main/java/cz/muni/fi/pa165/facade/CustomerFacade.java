@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.service.facade;
+package cz.muni.fi.pa165.facade;
 
-import dto.customer.CreateCustomerDTO;
-import dto.customer.CustomerDetailDTO;
-import dto.customer.CustomerDisplayDTO;
+import cz.muni.fi.pa165.dto.customer.CreateCustomerDTO;
+import cz.muni.fi.pa165.dto.customer.CustomerDetailDTO;
+import cz.muni.fi.pa165.dto.customer.CustomerDisplayDTO;
 import java.util.Collection;
 
 /**

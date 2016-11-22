@@ -1,32 +1,28 @@
-package dto.courier;
+package cz.muni.fi.pa165.dto.courier;
 
-import cz.muni.fi.pa165.deliveryservice.model.Shipment;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 /**
  * Created by Jamik on 22.11.2016.
  */
-public class CourierDTO {
+public class CourierCreateDTO {
 
-    private Long id;
-
+    // TODO: some meaningful restrictions
+    @NotNull
+    @Size(min = 3, max = 20)
     private String firstName;
 
+    @NotNull
+    @Size(min = 3, max = 20)
     private String lastName;
 
-    private Set<Shipment> shipmentsList;
+    //private Set<ShipmentDTO> shipmentsList;
 
     /******************************
-     * GETTERS & SETTERS
-     *******************************/
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    * GETTERS & SETTERS
+    *******************************/
 
     public String getFirstName() {
         return firstName;
@@ -44,13 +40,15 @@ public class CourierDTO {
         this.lastName = lastName;
     }
 
-    public Set<Shipment> getShipmentsList() {
+    /*
+    public Set<ShipmentDTO> getShipmentsList() {
         return shipmentsList;
     }
 
-    public void setShipmentsList(Set<Shipment> shipmentsList) {
+    public void setShipmentsList(Set<ShipmentDTO> shipmentsList) {
         this.shipmentsList = shipmentsList;
     }
+    */
 
     @Override
     public int hashCode() {
@@ -93,8 +91,7 @@ public class CourierDTO {
     @Override
     public String toString() {
         return "CourierDTO{"
-                + "id= " + id
-                + "; firstName= " + firstName
+                + "firstName= " + firstName
                 + "; lastName= " + lastName
                 +'}';
     }

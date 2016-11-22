@@ -1,4 +1,4 @@
-package dto.customer;
+package cz.muni.fi.pa165.dto.customer;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,8 +7,7 @@ import javax.validation.constraints.Size;
  *
  * @author Kristian Mateka
  */
-public class CreateCustomerDTO {
-
+public class CustomerDetailDTO {
     private Long id;
     
     @NotNull
@@ -36,10 +35,6 @@ public class CreateCustomerDTO {
     
     @NotNull
     private String emailAddress;
-    
-    @NotNull
-    @Size(min = 5, max = 20)
-    private String password;
 
     public Long getId() {
         return id;
@@ -112,12 +107,6 @@ public class CreateCustomerDTO {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    
+    
 }

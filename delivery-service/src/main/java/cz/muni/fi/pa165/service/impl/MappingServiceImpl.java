@@ -1,11 +1,11 @@
-package service.impl;
+package cz.muni.fi.pa165.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import service.MappingService;
+import cz.muni.fi.pa165.service.MappingService;
 
 /**
  *

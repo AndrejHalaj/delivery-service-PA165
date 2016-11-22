@@ -1,4 +1,4 @@
-package service.impl;
+package cz.muni.fi.pa165.service.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import service.CustomerService;
+import cz.muni.fi.pa165.service.CustomerService;
 
 /**
  *

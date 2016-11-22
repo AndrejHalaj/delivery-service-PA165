@@ -1,30 +1,32 @@
-package dto.courier;
+package cz.muni.fi.pa165.dto.courier;
 
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Set;
 
 /**
  * Created by Jamik on 22.11.2016.
  */
-public class CourierCreateDTO {
+public class CourierDTO {
 
-    // TODO: some meaningful restrictions
-    @NotNull
-    @Size(min = 3, max = 20)
+    private Long id;
+
     private String firstName;
 
-    @NotNull
-    @Size(min = 3, max = 20)
     private String lastName;
 
     private Set<Shipment> shipmentsList;
 
     /******************************
-    * GETTERS & SETTERS
-    *******************************/
+     * GETTERS & SETTERS
+     *******************************/
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -91,7 +93,8 @@ public class CourierCreateDTO {
     @Override
     public String toString() {
         return "CourierDTO{"
-                + "firstName= " + firstName
+                + "id= " + id
+                + "; firstName= " + firstName
                 + "; lastName= " + lastName
                 +'}';
     }
