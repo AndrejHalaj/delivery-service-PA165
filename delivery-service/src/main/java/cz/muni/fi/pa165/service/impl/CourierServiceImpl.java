@@ -16,8 +16,12 @@ public class CourierServiceImpl implements CourierService {
     @Inject
     private CourierDao courierDao;
 
+    // TODO: handle passwd encryption
     @Override
-    public void create(Courier courier) {
+    public void create(Courier courier, String unencryptedPasswd) {
+        // encrypt password that we get in plain form
+        courier.setPassword(encryptPassword(unencryptedPasswd));
+
         try {
             courierDao.create(courier);
         } catch (Exception ex) {
@@ -53,11 +57,26 @@ public class CourierServiceImpl implements CourierService {
     }
 
     @Override
+    public Courier findByEmail(String email) {
+        return null;
+    }
+
+    @Override
     public Collection<Courier> getAll() {
         try {
             return courierDao.findAll();
         } catch (Exception ex) {
             throw new DataAccessException("Cant get list of couriers. Reason:" + ex.getMessage()) {};
         }
+    }
+
+    // TODO
+    private String encryptPassword(String unecryptedPasswd) {
+        return unecryptedPasswd;
+    }
+
+    @Override
+    public boolean authenticate(Courier courier, String unencryptedPasswd) {
+        return false;
     }
 }

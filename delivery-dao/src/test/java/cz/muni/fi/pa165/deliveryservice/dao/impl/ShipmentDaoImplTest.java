@@ -72,6 +72,8 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         courier = new Courier();
         courier.setFirstName("Sylvester");
         courier.setLastName("Stallone");
+        courier.setEmail("Rocky@gmail.com");
+        courier.setPassword("goForward");
         
         ship = new Shipment();
         ship.setCourier(courier);

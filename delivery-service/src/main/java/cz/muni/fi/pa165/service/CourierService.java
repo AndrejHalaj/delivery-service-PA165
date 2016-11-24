@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 public interface CourierService {
 
-    void create(Courier courier);
+    void create(Courier courier, String unencryptedPasswd);
 
     void delete(Courier courier);
 
@@ -17,5 +17,9 @@ public interface CourierService {
 
     Courier findById(Long id);
 
+    Courier findByEmail(String email);
+
     Collection<Courier> getAll();
+
+    boolean authenticate(Courier courier, String unencryptedPasswd);
 }

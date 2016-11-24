@@ -14,6 +14,8 @@ public class CourierDTO {
 
     private String lastName;
 
+    private String email;
+
     private Set<Shipment> shipmentsList;
 
     /******************************
@@ -44,6 +46,14 @@ public class CourierDTO {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Set<Shipment> getShipmentsList() {
         return shipmentsList;
     }
@@ -58,6 +68,7 @@ public class CourierDTO {
         int result = 1;
         result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
         return result;
     }
 
@@ -69,10 +80,10 @@ public class CourierDTO {
         if (toCompare == null) {
             return false;
         }
-        if (!(toCompare instanceof CourierCreateDTO)) {
+        if (!(toCompare instanceof CourierDTO)) {
             return false;
         }
-        CourierCreateDTO other = (CourierCreateDTO)toCompare;
+        CourierDTO other = (CourierDTO)toCompare;
         if (firstName == null) {
             if (other.getFirstName() != null) {
                 return false;
@@ -87,6 +98,14 @@ public class CourierDTO {
         } else if (!lastName.equals(other.getLastName())) {
             return false;
         }
+        if(email == null) {
+            if (other.getEmail() != null){
+                return false;
+            }
+        } else if(!email.equals(other.getEmail())) {
+            return false;
+        }
+
         return true;
     }
 
@@ -96,6 +115,7 @@ public class CourierDTO {
                 + "id= " + id
                 + "; firstName= " + firstName
                 + "; lastName= " + lastName
+                + "; email= " + email
                 +'}';
     }
 }

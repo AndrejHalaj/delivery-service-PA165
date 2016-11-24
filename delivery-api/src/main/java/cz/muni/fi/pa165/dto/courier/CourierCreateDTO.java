@@ -11,12 +11,20 @@ public class CourierCreateDTO {
 
     // TODO: some meaningful restrictions
     @NotNull
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 30)
     private String firstName;
 
     @NotNull
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 30)
     private String lastName;
+
+    @NotNull
+    private String email;
+
+    // plain text
+    @NotNull
+    @Size(min=6, max=25)
+    private String password;
 
     //private Set<ShipmentDTO> shipmentsList;
 
@@ -40,6 +48,22 @@ public class CourierCreateDTO {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /*
     public Set<ShipmentDTO> getShipmentsList() {
         return shipmentsList;
@@ -56,6 +80,7 @@ public class CourierCreateDTO {
         int result = 1;
         result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
         return result;
     }
 
@@ -85,6 +110,14 @@ public class CourierCreateDTO {
         } else if (!lastName.equals(other.getLastName())) {
             return false;
         }
+        if(email == null) {
+            if (other.getEmail() != null){
+                return false;
+            }
+        } else if(!email.equals(other.getEmail())) {
+            return false;
+        }
+
         return true;
     }
 
@@ -93,6 +126,7 @@ public class CourierCreateDTO {
         return "CourierDTO{"
                 + "firstName= " + firstName
                 + "; lastName= " + lastName
+                + "; email= " + email
                 +'}';
     }
 }
