@@ -1,38 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package cz.muni.fi.pa165.deliveryservice.model;
+package cz.muni.fi.pa165.dto.product;
 
 import java.util.Objects;
-import javax.persistence.*;
 
 /**
  * @author Andrej Halaj
  */
-@Entity
-public class Product {
+public class ProductDTO {
+    private long id;
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable=false, unique=true)
     private String name;
 
     private String description;
 
-    @Column(nullable=false)
     private String producer;
 
-    @Column(nullable=false)
     private double weight;
 
-    @ManyToOne
-    private Shipment shipment;
-
-    public Product() {}
+    //private ShipmentDTO shipment;
 
     public void setId(Long id) {
         this.id = id;
@@ -74,13 +58,13 @@ public class Product {
         this.weight = weight;
     }
 
-    public Shipment getShipment() {
-        return shipment;
-    }
-
-    public void setShipment(Shipment shipment) {
-        this.shipment = shipment;
-    }
+//    public ShipmentDTO getShipment() {
+//        return shipment;
+//    }
+//
+//    public void setShipment(ShipmentDTO shipment) {
+//        this.shipment = shipment;
+//    }
 
     @Override
     public int hashCode() {
@@ -95,12 +79,12 @@ public class Product {
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
-                return true;
+            return true;
         if (obj == null)
-                return false;
-        if (! (obj instanceof Product))
-                return false;
-        Product other = (Product) obj;
+            return false;
+        if (! (obj instanceof ProductDTO))
+            return false;
+        ProductDTO other = (ProductDTO) obj;
         if (name == null) {
             if (other.getName() != null)
                 return false;
@@ -115,7 +99,7 @@ public class Product {
 
         if (producer == null) {
             if (other.getProducer()!= null)
-                    return false;
+                return false;
         } else if (!producer.equals(other.getProducer()))
             return false;
 
@@ -124,5 +108,4 @@ public class Product {
 
         return true;
     }
-    
 }

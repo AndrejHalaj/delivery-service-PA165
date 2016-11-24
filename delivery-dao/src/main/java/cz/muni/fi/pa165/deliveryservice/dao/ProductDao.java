@@ -5,9 +5,7 @@ import java.util.List;
 
 
 /**
- *
  * @author Andrej Halaj
- *
  */
 public interface ProductDao {
 	/**
@@ -15,7 +13,7 @@ public interface ProductDao {
 	 *
 	 * @param product product that is to be persisted, shall not be null, otherwise throws IllegalArgumentException
 	 */
-	public void create(Product product);
+	void create(Product product);
 	
 	/**
 	 * Updates {@link Product} entity.
@@ -29,7 +27,7 @@ public interface ProductDao {
 	 *
 	 * @param product product that is to be deleted, shall not be null, otherwise throws IllegalArgumentException
 	 */
-	public void delete(Product product);
+	void delete(Product product);
 	
 	/**
 	 * Finds product by it's id.
@@ -37,12 +35,12 @@ public interface ProductDao {
 	 * @param id id of the product we want to retrieve
 	 * @return Product with specified id, throws NoResultException if there is no such product
 	 */
-	public Product findById(Long id);
+	Product findById(Long id);
 	
 	/**
 	 * Get all products.
 	 *
 	 * @return List of all products
 	 */
-	public List<Product> findAll();
+	List<Product> findAll();
 }
