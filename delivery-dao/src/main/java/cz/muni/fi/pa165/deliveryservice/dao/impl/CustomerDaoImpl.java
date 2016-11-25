@@ -29,46 +29,22 @@ public class CustomerDaoImpl implements CustomerDao{
     
     @Override
     public void create(Customer customer) {
-        if(customer == null){
-            throw new IllegalArgumentException("Argument is null while creating");
-        }
-        
         em.persist(customer);
     }
 
     @Override
     public void delete(Customer customer) {
-        if(customer == null){
-            throw new IllegalArgumentException("Argument is null while deleting");
-        }
-        
         em.remove(customer);
     }
 
     @Override
-    public void update(Customer customer) throws NotFoundException {
-        if(customer == null){
-            throw new IllegalArgumentException("Argument is null while updating");
-        }
-        
-        Customer c = em.find(Customer.class, customer.getId());
-        
-        if(c == null){
-            throw new NotFoundException("Customer not found while updating");
-        }
-        
+    public void update(Customer customer) throws NotFoundException {        
         em.merge(customer);
     }
 
     @Override
     public Customer findById(Long id) throws NotFoundException{
-        Customer c = em.find(Customer.class, id);
-        
-        if(c == null){
-            throw new NotFoundException("Customer not found while retrieving");
-        }
-        
-        return c;
+        return em.find(Customer.class, id);
     }
 
     @Override

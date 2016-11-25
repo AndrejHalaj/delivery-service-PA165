@@ -8,7 +8,8 @@ import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,36 +19,54 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerServiceImpl implements CustomerService {
     
-    @Autowired
+    @Inject
     private CustomerDao customerDao;
     
     @Override
     public void register(Customer customer, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            customerDao.create(customer);
+        } catch (Exception ex) {
+            throw new DataAccessException("Exception while creating: " + ex.getMessage()){};
+        }
     }
 
     @Override
     public void update(Customer customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            customerDao.update(customer);
+        } catch (Exception ex) {
+            throw new DataAccessException("Exception while updating: " + ex.getMessage()){};
+        }
     }
 
     @Override
     public void delete(Long id) {
         try {
             customerDao.delete(customerDao.findById(id));
-        } catch (NotFoundException ex) {
-            Logger.getLogger(CustomerServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            throw new DataAccessException("Exception while deleting: " + ex.getMessage()){};
         }
     }
 
     @Override
     public Collection<Customer> getAllCustomers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            return customerDao.findAll();
+        } catch (Exception ex) {
+            throw new DataAccessException("Exception while geting: " + ex.getMessage()){};
+        }
     }
 
     @Override
     public Customer getCustomerById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            return customerDao.findById(id);
+        } catch (Exception ex) {
+            throw new DataAccessException("Exception while geting: " + ex.getMessage()){};
+        }
     }
 
 }
