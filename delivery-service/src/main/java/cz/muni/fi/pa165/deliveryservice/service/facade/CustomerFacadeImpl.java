@@ -58,10 +58,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public CustomerDetailDTO findCustomerById(Long l) {
-        Customer customer = service.getCustomerById(l);
-        
-        return mapper.mapTo(customer, CustomerDetailDTO.class);
+    public CustomerDetailDTO findCustomerById(Long id) {
+        Customer customer = service.getCustomerById(id);
+        System.err.println("");
+        return (customer == null) ? null : mapper.mapTo(customer, CustomerDetailDTO.class);
     }
 
     @Override
