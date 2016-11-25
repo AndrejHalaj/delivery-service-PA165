@@ -27,7 +27,7 @@ public class Product {
     private String producer;
 
     @Column(nullable=false)
-    private double weight;
+    private Double weight;
 
     @ManyToOne
     private Shipment shipment;
@@ -66,11 +66,11 @@ public class Product {
         this.producer = producer;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

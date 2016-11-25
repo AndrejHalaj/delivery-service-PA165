@@ -8,7 +8,7 @@ import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
  * @author Andrej Halaj
  */
 public class ProductDTO {
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -16,7 +16,7 @@ public class ProductDTO {
 
     private String producer;
 
-    private double weight;
+    private Double weight;
 
     private ShipmentDTO shipment;
 
@@ -52,11 +52,11 @@ public class ProductDTO {
         this.producer = producer;
     }
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 

@@ -2,10 +2,9 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
-import org.hibernate.ObjectDeletedException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -29,7 +28,7 @@ import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 @Transactional
 public class ProductDaoImplTest extends AbstractTestNGSpringContextTests {
 	
-    @Autowired
+    @Inject
     private ProductDao productDao;
 
     private Product product;
@@ -42,14 +41,14 @@ public class ProductDaoImplTest extends AbstractTestNGSpringContextTests {
         product.setName("Product1");
         product.setDescription("A product");
         product.setProducer("Producer1");
-        product.setWeight(23);
+        product.setWeight(23.0);
 
         // second product
         product2 = new Product();
         product2.setName("Product2");
         product2.setDescription("A second product");
         product2.setProducer("Producer2");
-        product2.setWeight(13);
+        product2.setWeight(13.0);
 
         productDao.create(product);
         productDao.create(product2);
@@ -99,14 +98,12 @@ public class ProductDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testUpdate_nullEntity() {
 		productDao.update(null);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testUpdate_entityNotFound() {
 		productDao.delete(product);
 		productDao.update(product);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 
     @Test(expectedExceptions=NoResultException.class)

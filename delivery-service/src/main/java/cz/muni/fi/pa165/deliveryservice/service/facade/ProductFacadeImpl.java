@@ -1,15 +1,17 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade;
 
+import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Product;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import cz.muni.fi.pa165.deliveryservice.service.ProductService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -19,15 +21,18 @@ import java.util.List;
 @Transactional
 public class ProductFacadeImpl implements ProductFacade {
 
-    @Autowired
+    @Inject
     private ProductService productService;
 
-    @Autowired
+    @Inject
+    private ShipmentService shipmentService;
+
+    @Inject
     private MappingService mapper;
 
     @Override
-    public void create(ProductDTO productDTO) {
-        productService.create(mapper.mapTo(productDTO, Product.class));
+    public void create(ProductManipulationDTO productManipulationDTO) {
+        productService.create(mapManiulationDTOToEntity(productManipulationDTO));
     }
 
     @Override
@@ -37,10 +42,8 @@ public class ProductFacadeImpl implements ProductFacade {
     }
 
     @Override
-    public void update(ProductDTO productDTO) {
-        Product product = mapper.mapTo(productDTO, Product.class);
-        productService.update(product);
-        productDTO.setId(product.getId());
+    public void update(ProductManipulationDTO productManipulationDTO) {
+        productService.update(mapManiulationDTOToEntity(productManipulationDTO));
     }
 
     @Override
@@ -53,5 +56,15 @@ public class ProductFacadeImpl implements ProductFacade {
     @Override
     public List<ProductDTO> findAll() {
         return mapper.mapTo(productService.getAllProducts(), ProductDTO.class);
+    }
+
+    private Product mapManiulationDTOToEntity(ProductManipulationDTO productManipulationDTO) {
+        Product product = new Product();
+        product.setName(productManipulationDTO.getName());
+        product.setDescription(productManipulationDTO.getDescription());
+        product.setProducer(productManipulationDTO.getProducer());
+        product.setWeight(productManipulationDTO.getWeight());
+        product.setShipment(shipmentService.findById(productManipulationDTO.getShipmentId()));
+        return product;
     }
 }
