@@ -44,15 +44,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void delete(Long id) {
-<<<<<<< HEAD
         try {
             customerDao.delete(customerDao.findById(id));
         } catch (Exception ex) {
             throw new DataAccessException("Exception while deleting: " + ex.getMessage()){};
         }
-=======
         customerDao.delete(customerDao.findById(id));
->>>>>>> origin/master
     }
 
     @Override
