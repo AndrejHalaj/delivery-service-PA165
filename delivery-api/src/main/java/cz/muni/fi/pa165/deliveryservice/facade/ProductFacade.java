@@ -11,8 +11,6 @@ import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 public interface ProductFacade {
     void create(ProductManipulationDTO productManipulationDTO);
 
-    void delete(ProductDTO productDTO);
-
     void update(ProductManipulationDTO productManipulationDTO);
 
     ProductDTO findById(Long id);

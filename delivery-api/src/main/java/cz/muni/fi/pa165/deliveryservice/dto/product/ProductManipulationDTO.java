@@ -8,6 +8,8 @@ import javax.validation.constraints.Size;
  */
 public class ProductManipulationDTO {
 
+    Long id;
+
     @NotNull
     @Size(min=5, max=50)
     private String name;
@@ -25,6 +27,14 @@ public class ProductManipulationDTO {
 
     @NotNull
     private Long shipmentId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

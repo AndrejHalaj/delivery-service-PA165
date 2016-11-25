@@ -32,18 +32,12 @@ public class ProductFacadeImpl implements ProductFacade {
 
     @Override
     public void create(ProductManipulationDTO productManipulationDTO) {
-        productService.create(mapManiulationDTOToEntity(productManipulationDTO));
-    }
-
-    @Override
-    public void delete(ProductDTO productDTO)
-    {
-        productService.delete(mapper.mapTo(productDTO, Product.class));
+        productService.create(mapper.mapTo(productManipulationDTO, Product.class));
     }
 
     @Override
     public void update(ProductManipulationDTO productManipulationDTO) {
-        productService.update(mapManiulationDTOToEntity(productManipulationDTO));
+        productService.update(mapper.mapTo(productManipulationDTO, Product.class));
     }
 
     @Override
@@ -56,15 +50,5 @@ public class ProductFacadeImpl implements ProductFacade {
     @Override
     public List<ProductDTO> findAll() {
         return mapper.mapTo(productService.getAllProducts(), ProductDTO.class);
-    }
-
-    private Product mapManiulationDTOToEntity(ProductManipulationDTO productManipulationDTO) {
-        Product product = new Product();
-        product.setName(productManipulationDTO.getName());
-        product.setDescription(productManipulationDTO.getDescription());
-        product.setProducer(productManipulationDTO.getProducer());
-        product.setWeight(productManipulationDTO.getWeight());
-        product.setShipment(shipmentService.findById(productManipulationDTO.getShipmentId()));
-        return product;
     }
 }
