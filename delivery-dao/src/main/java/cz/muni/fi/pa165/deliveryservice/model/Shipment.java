@@ -34,7 +34,7 @@ public class Shipment {
     @OneToMany(mappedBy = "shipment")
     private Set<Product> productsList = new HashSet<Product>();
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String trackingId;
 
     @Column(nullable = false)

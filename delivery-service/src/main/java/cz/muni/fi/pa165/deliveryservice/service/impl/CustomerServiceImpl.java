@@ -33,11 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void delete(Long id) {
-        try {
-            customerDao.delete(customerDao.findById(id));
-        } catch (NotFoundException ex) {
-            Logger.getLogger(CustomerServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        customerDao.delete(customerDao.findById(id));
     }
 
     @Override

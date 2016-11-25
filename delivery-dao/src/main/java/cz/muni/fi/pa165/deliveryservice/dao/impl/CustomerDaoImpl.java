@@ -61,14 +61,8 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
-    public Customer findById(Long id) throws NotFoundException{
-        Customer c = em.find(Customer.class, id);
-        
-        if(c == null){
-            throw new NotFoundException("Customer not found while retrieving");
-        }
-        
-        return c;
+    public Customer findById(Long id) {
+        return em.find(Customer.class, id);
     }
 
     @Override

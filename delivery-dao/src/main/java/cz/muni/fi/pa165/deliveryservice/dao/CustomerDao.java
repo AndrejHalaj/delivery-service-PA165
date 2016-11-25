@@ -38,9 +38,8 @@ public interface CustomerDao {
      *
      * @param id id of customer to find
      * @return customer by id returns customer by given id if exists exception is thrown otherwise
-     * @throws NotFoundException when customer is not found
      */
-    Customer findById(Long id) throws NotFoundException;
+    Customer findById(Long id);
 
     /**
      *

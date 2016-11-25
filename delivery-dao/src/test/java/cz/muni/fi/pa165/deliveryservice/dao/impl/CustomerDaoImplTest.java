@@ -71,16 +71,15 @@ public class CustomerDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
-	@Test(expectedExceptions = NotFoundException.class)
-	public void testFindById_entityNotFound() throws NotFoundException {
-		customerDao.findById(customer2.getId() + 1);
-		Assert.fail("NotFoundException should have been thrown");
+	@Test
+	public void testFindById_entityNotFound() {
+		Assert.assertNull(customerDao.findById(customer2.getId() + 1));
 	}
 	
-	@Test(expectedExceptions = NotFoundException.class)
-	public void testDelete() throws NotFoundException {
+	@Test
+	public void testDelete() {
 		customerDao.delete(customer);
-		customerDao.findById(customer.getId());
+		Assert.assertNull(customerDao.findById(customer.getId()));
 	}
 	
 	@Test(expectedExceptions = IllegalArgumentException.class)

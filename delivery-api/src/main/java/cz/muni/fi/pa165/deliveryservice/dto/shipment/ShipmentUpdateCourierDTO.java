@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 public class ShipmentUpdateCourierDTO {
 	
 	@NotNull
-	private Long id;
+	private Long shipmentId;
     
 	@NotNull
     private Long courierId;
@@ -18,12 +18,12 @@ public class ShipmentUpdateCourierDTO {
 	@Size(min = 10)
     private String trackingId;
     
-    public Long getId() {
-		return id;
+    public Long getShipmentId() {
+		return shipmentId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setShipmentId(Long shipmentId) {
+		this.shipmentId = shipmentId;
 	}
 	
 	public Long getCourierId() {
