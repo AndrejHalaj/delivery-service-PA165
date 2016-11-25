@@ -30,7 +30,7 @@ public interface ShipmentDao {
      * @param shipment
      * @return Updated shipment
      */
-    public Shipment update(Shipment shipment) throws NotFoundException;
+    public Shipment update(Shipment shipment);
 
     /**
      * Find shipment by it´s ID
@@ -38,7 +38,7 @@ public interface ShipmentDao {
      * @param id
      * @return Shipment with given ID
      */
-    public Shipment findById(Long id) throws NotFoundException;
+    public Shipment findById(Long id);
 
     /**
      * Get list of all shipments

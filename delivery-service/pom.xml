@@ -5,31 +5,34 @@
     <parent>
         <groupId>cz.muni.fi.pa165</groupId>
         <artifactId>delivery</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${global.version}</version>
     </parent>
 
-    <groupId>cz.muni.fi.pa165</groupId>
     <artifactId>delivery-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
   
     <dependencies>
         <dependency>
             <groupId>cz.muni.fi.pa165</groupId>
             <artifactId>delivery-dao</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${global.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.muni.fi.pa165</groupId>
+            <artifactId>delivery-api</artifactId>
+            <version>${global.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
             <version>5.5.1</version>
             <type>jar</type>
-        </dependency>
+        </dependency>        
         <dependency>
-            <groupId>cz.muni.fi.pa165</groupId>
-            <artifactId>delivery-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+   			<groupId>org.mockito</groupId>
+   			<artifactId>mockito-all</artifactId>
+    		<version>${mockito.version}</version>
+		</dependency>
     </dependencies>
 
 </project>

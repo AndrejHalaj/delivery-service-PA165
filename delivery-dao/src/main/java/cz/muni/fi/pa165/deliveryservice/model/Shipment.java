@@ -12,7 +12,7 @@ import java.util.*;
 public class Shipment {
 
     // state of the shipment
-    public enum ShipmentState {NEW, TRANSFERED, DELIVERED};
+    public enum ShipmentState {NEW, TRANSFERED, DELIVERED, CANCELED};
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,9 +36,6 @@ public class Shipment {
 
     @Column(nullable = false, unique = true)
     private String trackingId;
-
-    @Column(nullable = false)
-    private Double weight;
 
     @Column(nullable = false)
     private Double distance;
@@ -93,14 +90,6 @@ public class Shipment {
         this.trackingId = trackingId;
     }
 
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
     public Double getDistance() {
         return distance;
     }
@@ -145,11 +134,11 @@ public class Shipment {
         return Collections.unmodifiableSet(productsList);
     }
 
-    private void addProduct(Product p) {
+    public void addProduct(Product p) {
         productsList.add(p);
     }
 
-    private void removeProduct(Product p) {
+    public void removeProduct(Product p) {
         productsList.remove(p);
     }
 

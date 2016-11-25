@@ -4,23 +4,25 @@
 
   <groupId>cz.muni.fi.pa165</groupId>
   <artifactId>delivery</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>${global.version}</version>
   <packaging>pom</packaging>
 
   <name>delivery</name>
 
   <modules>
-	  <module>delivery-dao</module>
-	  <module>delivery-api</module>
+  	  <module>delivery-api</module>
+	  <module>delivery-dao</module>	  
 	  <module>delivery-service</module>
   </modules>
   
   <properties>
+  	  <global.version>0.0.1-SNAPSHOT</global.version>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven.compiler.source>1.8</maven.compiler.source>
       <maven.compiler.target>1.8</maven.compiler.target>
       <springframework.version>4.3.3.RELEASE</springframework.version>
       <hibernate.version>5.2.2.Final</hibernate.version>
+      <mockito.version>1.9.5</mockito.version>
   </properties>
   
 </project>

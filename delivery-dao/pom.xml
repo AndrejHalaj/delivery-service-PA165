@@ -5,12 +5,10 @@
   <parent>
       <groupId>cz.muni.fi.pa165</groupId>
       <artifactId>delivery</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>${global.version}</version>
    </parent>
   
-  <groupId>cz.muni.fi.pa165</groupId>
   <artifactId>delivery-dao</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>delivery-dao</name>

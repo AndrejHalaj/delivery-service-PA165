@@ -83,7 +83,6 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         ship.setPrice(BigDecimal.ONE);
         ship.setShipmentState(Shipment.ShipmentState.NEW);
         ship.setTrackingId("52");
-        ship.setWeight(5.3);
         ship.setShipmentCreated(sdf.parse("2009-11-20"));
         ship.setShipmentDelivered(sdf.parse("2012-12-20"));
 
@@ -110,16 +109,15 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.fail("IllegalArgumentException should have been thrown");
     }
 
-    @Test(expectedExceptions = NotFoundException.class)
-    public void testFindById_entityNotFound() throws NotFoundException {
-        shipDao.findById(ship.getId() + 5);
-        Assert.fail("NotFoundException should have been thrown");
+    @Test
+    public void testFindById_entityNotFound() {
+        Assert.assertNull(shipDao.findById(ship.getId() + 5));
     }
 
-    @Test(expectedExceptions = NotFoundException.class)
-    public void testDelete() throws NotFoundException {
+    @Test
+    public void testDelete() {
         shipDao.delete(ship);
-        shipDao.findById(ship.getId());
+        Assert.assertNull(shipDao.findById(ship.getId()));
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
@@ -128,12 +126,12 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         Assert.fail("IllegalArgumentException should have been thrown");
     }
     
-    	@Test
+    @Test
 	public void testUpdate() throws NotFoundException {	
-		ship.setWeight(56.8);
+		ship.setDistance(10.0);
 		shipDao.update(ship);
 		Assert.assertEquals(shipDao.findById(ship.getId()), ship);
-		Assert.assertEquals(shipDao.findById(ship.getId()).getWeight(), 56.8);
+		Assert.assertEquals(shipDao.findById(ship.getId()).getDistance(), 10.0);
 	}
 	
 	@Test(expectedExceptions = IllegalArgumentException.class)
@@ -142,11 +140,11 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
 		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
-	@Test(expectedExceptions = NotFoundException.class)
-	public void testUpdate_entityNotFound() throws NotFoundException {
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void testUpdate_entityNotFound() {
 		shipDao.delete(ship);
 		shipDao.update(ship);
-		Assert.fail("NotFoundException should have been thrown");
+		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test

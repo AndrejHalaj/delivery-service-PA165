@@ -1,7 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-    <dependencies>
+
+    <parent>
+    	<groupId>cz.muni.fi.pa165</groupId>
+      	<artifactId>delivery</artifactId>
+      	<version>${global.version}</version>
+   	</parent>
+
+  	<artifactId>delivery-api</artifactId>
+  	<packaging>jar</packaging>
+
+  	<name>delivery-api</name>
+  
+  	<dependencies>
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -10,21 +22,8 @@
         <dependency>
             <groupId>cz.muni.fi.pa165</groupId>
             <artifactId>delivery-dao</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${global.version}</version>
         </dependency>
     </dependencies>
-
-    <parent>
-      <groupId>cz.muni.fi.pa165</groupId>
-      <artifactId>delivery</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-   </parent>
-
-  <groupId>cz.muni.fi.pa165</groupId>
-  <artifactId>delivery-api</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
-  <name>delivery-api</name>
   
 </project>

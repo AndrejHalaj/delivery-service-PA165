@@ -33,35 +33,18 @@ public class ShipmentDaoImpl implements ShipmentDao {
     }
 
     @Override
-    public Shipment update(Shipment shipment) throws NotFoundException {
-        if(shipment == null){
-            throw new IllegalArgumentException("shipment is null");
-        }
-        
-        Shipment ship = entityManager.find(Shipment.class, shipment.getId());
-        
-        if(ship == null){
-            throw new NotFoundException("ship not found while updating");
-        }
-        
+    public Shipment update(Shipment shipment) {       
         return entityManager.merge(shipment);
     }
 
     @Override
-    public Shipment findById(Long id) throws NotFoundException{
-        Shipment ship = entityManager.find(Shipment.class, id);
-        
-        if(ship == null){
-            throw new NotFoundException("Shipment not found while finding by id");
-        }
-        
-        return ship;
+    public Shipment findById(Long id) {
+        return entityManager.find(Shipment.class, id);
     }
+        
 
     @Override
     public List<Shipment> findAll() {
         return Collections.unmodifiableList(entityManager.createQuery("SELECT s FROM Shipment s", Shipment.class).getResultList());
     }
-
-    // TODO: date filters
 }
