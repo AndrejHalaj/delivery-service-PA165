@@ -58,6 +58,11 @@ public class CourierDaoImplTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    public void testFindByEmail() throws ChangeSetPersister.NotFoundException {
+        Assert.assertEquals(courierDao.findByEmail(courier1.getEmail()), courier1);
+    }
+
+    @Test
     public void findAll() {
         Assert.assertEquals(courierDao.findAll().size(), 2);
     }

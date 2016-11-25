@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade;
 
+import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierAuthDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
@@ -63,6 +64,12 @@ public class CourierFacadeTest extends AbstractTransactionalTestNGSpringContextT
         courier2.setLastName("Seagal");
         courier2.setEmail("Steven@gmail.com");
         courier2.setPassword("donteventry");
+
+        cour1 = new Courier();
+        cour1.setFirstName("Chuck");
+        cour1.setLastName("Norris");
+        cour1.setEmail("Chuck@gmail.com");
+        cour1.setPassword("roundkick");
     }
 
     @Test
@@ -70,23 +77,58 @@ public class CourierFacadeTest extends AbstractTransactionalTestNGSpringContextT
         courierFacade.registerCourier(courier1);
         courierFacade.registerCourier(courier2);
 
-        //verify(courierService, times(2)).register(any(Courier.class), any(String.class));
+        Assert.assertEquals(courierFacade.getAllCouriers().size(), 2);
+    }
 
+    @Test
+    public void testFindById() {
 
     }
 
     @Test
     public void testFindByEmail() {
 
-        CourierDTO c1 = new CourierDTO();
-        c1.setFirstName("Chuck");
-        c1.setLastName("Norris");
-        c1.setEmail("Chuck@gmail.com");
+        courierFacade.registerCourier(courier1);
+        courierFacade.registerCourier(courier2);
 
-        when(mappingService.mapTo(cour1, CourierDTO.class)).thenReturn(c1);
-        when(courierService.findByEmail(c1.getEmail())).thenReturn(cour1);
+        when(courierService.findByEmail(cour1.getEmail())).thenReturn(cour1);
 
-        Assert.assertEquals(courierFacade.findByEmail(c1.getEmail()), c1);
+        CourierDTO found = courierFacade.findByEmail(cour1.getEmail());
+        Assert.assertEquals(found.getFirstName(), cour1.getFirstName());
+        Assert.assertEquals(found.getLastName(), cour1.getLastName());
+    }
+
+    @Test
+    public void testGetAllCouriers() {
+        courierFacade.registerCourier(courier1);
+        courierFacade.registerCourier(courier2);
+
+        Assert.assertEquals(courierFacade.getAllCouriers().size(), 2);
+    }
+
+
+    @Test
+    public void testAuthenticate() {
+        courierFacade.registerCourier(courier1);
+
+        CourierAuthDTO c = new CourierAuthDTO();
+        c.setEmail(courier1.getEmail());
+        c.setPassword(courier1.getPassword());
+
+        Assert.assertTrue(courierFacade.authenticate(c));
+    }
+
+    @Test
+    public void testRemoveCourier() {
+        // create 2 couriers
+        courierFacade.registerCourier(courier1);
+        courierFacade.registerCourier(courier2);
+
+        Assert.assertEquals(courierFacade.getAllCouriers().size(), 2);
+        // remove courier
+        courierFacade.removeCourier(courierFacade.getAllCouriers().get(1).getId());
+        // only 1 left
+        Assert.assertEquals(courierFacade.getAllCouriers().size(), 1);
 
     }
 }

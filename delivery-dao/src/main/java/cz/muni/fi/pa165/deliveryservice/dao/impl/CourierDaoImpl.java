@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
@@ -42,10 +43,13 @@ public class CourierDaoImpl implements CourierDao {
 		return em.find(Courier.class, id);
 	}
 
-	// TODO: exceptions
 	@Override
 	public Courier findByEmail(String email) {
-		return em.createQuery("SELECT c FROM Courier c WHERE c.email =  :email", Courier.class).setParameter("email", email).getSingleResult();
+		try {
+			return em.createQuery("SELECT c FROM Courier c WHERE c.email = :email", Courier.class).setParameter("email", email).getSingleResult();
+		} catch (NoResultException ex) {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

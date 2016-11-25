@@ -42,6 +42,7 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
 
     private Courier courier1;
     private Courier courier2;
+    private Courier courier3;
 
     @BeforeClass
     public void setup() throws ServiceException {
@@ -53,7 +54,7 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
         courier1 = new Courier();
         courier1.setFirstName("Chuck");
         courier1.setLastName("Norris");
-        courier1.setEmail("Chuck@gmail.com");
+        courier1.setEmail("ChucCk@gmail.com");
         courier1.setPassword("roundkick");
 
         courier2 = new Courier();
@@ -61,20 +62,27 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
         courier2.setLastName("Seagal");
         courier2.setEmail("Steven@gmail.com");
         courier2.setPassword("donteventry");
+
+        courier3 = new Courier();
+        courier3.setFirstName("Van");
+        courier3.setLastName("Damme");
+        courier3.setEmail("Damme@gmail.com");
+        courier3.setPassword("lbaaaaahhahaa");
     }
 
-
     @Test
-    public void shouldCreate() {
+    public void testCreate() {
+        courier1.setPassword("roundkick");
+        courier2.setPassword("donteventry");
         courierService.register(courier1, courier1.getPassword());
         courierService.register(courier2, courier2.getPassword());
-
         // verify that registration method was
-        verify(courierDAO, times(2)).create(any(Courier.class));
+        verify(courierDAO).create(courier1);
+        verify(courierDAO).create(courier2);
     }
 
     @Test(expectedExceptions = DataAccessException.class)
-    public void createShouldFail() {
+    public void testShouldFail() {
         Courier c = new Courier();
         c.setFirstName("Chuck");
         c.setLastName("Norris");
@@ -88,13 +96,13 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void shouldDelete() {
+    public void testDelete() {
         courierService.delete(courier2);
         verify(courierDAO).delete(courier2);
     }
 
     @Test
-    public void shouldUpdate() {
+    public void testUpdate() {
         Long id = 51L;
         courier1.setId(id);
         courier1.setLastName("NewName");
@@ -106,7 +114,7 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void shouldFindById() {
+    public void testFindById() {
         Long id = 2L;
         when(courierDAO.findById(id)).thenReturn(courier2);
 
@@ -114,7 +122,7 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void shouldFindByEmail() {
+    public void testFindByEmail() {
         String email = "Steven@gmail.com";
         when(courierDAO.findByEmail(email)).thenReturn(courier2);
 
@@ -132,8 +140,11 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(couriersList, courierService.getAll());
     }
 
+
     @Test
-    public void shouldAuthenticate() {
+    public void testAuthenticate() {
+        courierService.register(courier3, courier3.getPassword());
+        Assert.assertTrue(courierService.authenticate(courier3, "lbaaaaahhahaa"));
 
     }
 
