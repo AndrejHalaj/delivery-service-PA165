@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.dto.courier;
 
+import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
@@ -26,7 +28,7 @@ public class CourierCreateDTO {
     @Size(min=6, max=25)
     private String password;
 
-    //private Set<ShipmentDTO> shipmentsList;
+    private Set<ShipmentDTO> shipmentsList;
 
     /******************************
     * GETTERS & SETTERS
@@ -64,7 +66,7 @@ public class CourierCreateDTO {
         this.password = password;
     }
 
-    /*
+
     public Set<ShipmentDTO> getShipmentsList() {
         return shipmentsList;
     }
@@ -72,7 +74,7 @@ public class CourierCreateDTO {
     public void setShipmentsList(Set<ShipmentDTO> shipmentsList) {
         this.shipmentsList = shipmentsList;
     }
-    */
+
 
     @Override
     public int hashCode() {

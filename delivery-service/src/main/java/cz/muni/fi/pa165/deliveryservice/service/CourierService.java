@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CourierService {
 
-    void create(Courier courier, String unencryptedPasswd);
+    void register(Courier courier, String unencryptedPasswd);
 
     void delete(Courier courier);
 

@@ -15,14 +15,14 @@ public interface ShipmentDao {
      *
      * @param shipment
      */
-    public void create(Shipment shipment);
+    void create(Shipment shipment);
 
     /**
      * Deletes given shipment
      *
      * @param shipment
      */
-    public void delete(Shipment shipment);
+    void delete(Shipment shipment);
 
     /**
      * Updates given shipment
@@ -30,7 +30,7 @@ public interface ShipmentDao {
      * @param shipment
      * @return Updated shipment
      */
-    public Shipment update(Shipment shipment);
+    Shipment update(Shipment shipment);
 
     /**
      * Find shipment by it´s ID
@@ -38,12 +38,12 @@ public interface ShipmentDao {
      * @param id
      * @return Shipment with given ID
      */
-    public Shipment findById(Long id);
+    Shipment findById(Long id);
 
     /**
      * Get list of all shipments
      *
      * @return List of all Shipments
      */
-    public List<Shipment> findAll();
+    List<Shipment> findAll();
 }

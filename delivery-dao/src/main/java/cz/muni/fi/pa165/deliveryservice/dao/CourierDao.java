@@ -42,7 +42,7 @@ public interface CourierDao {
 	 * Find courier entity with given email
 	 *
 	 * @param email of the courier entity that want to be retrieved
-	 * @return courier entityt with given email
+	 * @return courier entity with given email
 	 */
 	Courier findByEmail(String email);
 

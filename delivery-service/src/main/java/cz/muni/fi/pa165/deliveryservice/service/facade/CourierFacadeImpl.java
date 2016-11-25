@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.deliveryservice.service.facade;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierAuthDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
@@ -11,6 +12,8 @@ import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Jamik on 22.11.2016.
@@ -35,17 +38,29 @@ public class CourierFacadeImpl implements CourierFacade {
     }
 
     @Override
-    public boolean authenticateCourier(CourierAuthDTO courier) {
-        Courier c = courierService.findByEmail(courier.getEmail());
-        return courierService.authenticate(c, courier.getPassword());
-    }
-
-    @Override
     public void registerCourier(CourierCreateDTO courier) {
         Courier c = new Courier();
         c.setFirstName(courier.getFirstName());
         c.setLastName(courier.getLastName());
-        courierService.create(c, courier.getPassword());
+        c.setEmail(courier.getEmail());
+        courierService.register(c, courier.getPassword());
+    }
+
+    @Override
+    public CourierDTO findByEmail(String email) {
+        Courier c = courierService.findByEmail(email);
+        return (c == null ? null : mappingService.mapTo(c, CourierDTO.class));
+    }
+
+    @Override
+    public List<CourierDTO> getAllCouriers() {
+        return mappingService.mapTo(courierService.getAll(), CourierDTO.class);
+    }
+
+    @Override
+    public boolean authenticate(CourierAuthDTO courier) {
+        Courier c = courierService.findByEmail(courier.getEmail());
+        return courierService.authenticate(c, courier.getPassword());
     }
 
     @Override
@@ -54,5 +69,10 @@ public class CourierFacadeImpl implements CourierFacade {
         c.setFirstName(courier.getFirstName());
         c.setLastName(courier.getLastName());
         courierService.update(c);
+    }
+
+    @Override
+    public void removeCourier(Long id) {
+        courierService.delete(courierService.findById(id));
     }
 }
