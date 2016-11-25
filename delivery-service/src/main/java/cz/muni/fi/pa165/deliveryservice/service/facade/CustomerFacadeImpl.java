@@ -9,6 +9,7 @@ import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 
 import java.util.Collection;
+import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,13 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CustomerFacadeImpl implements CustomerFacade {
     
-    private final CustomerService service;
-    private final MappingService mapper;
-
-    public CustomerFacadeImpl(CustomerService service, MappingService mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
+    @Inject
+    private MappingService mapper;
+    
+    @Inject
+    private CustomerService service;
     
     @Override
     public Long registerCustomer(CreateCustomerDTO CreateCustomerDTO) {
@@ -55,11 +54,26 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public void updateCustomer(CustomerDetailDTO customerDto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Customer customer = mapper.mapTo(CustomerDetailDTO.class, Customer.class);
+        service.update(customer);
     }
 
     @Override
-    public CustomerDetailDTO findUserById(Long l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CustomerDetailDTO findCustomerById(Long l) {
+        Customer customer = service.getCustomerById(l);
+        
+        return mapper.mapTo(customer, CustomerDetailDTO.class);
+    }
+
+    @Override
+    public CustomerDetailDTO findCustomerByEmail(String email) {
+        Customer customer = service.getCustomerByEmail(email);
+        
+        return mapper.mapTo(customer, CustomerDetailDTO.class);
+    }
+
+    @Override
+    public void deleteCustomer(Long id) {
+        service.delete(id);
     }
 }

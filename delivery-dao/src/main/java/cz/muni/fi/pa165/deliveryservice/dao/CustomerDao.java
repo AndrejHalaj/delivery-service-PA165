@@ -17,18 +17,21 @@ public interface CustomerDao {
 
     /**
      * creates given customer
+     *
      * @param customer
      */
     void create(Customer customer);
 
     /**
      * deletes given customer
+     *
      * @param customer
      */
     void delete(Customer customer);
 
     /**
      * updates given customer
+     *
      * @param customer customer with updated values
      * @throws NotFoundException when customer is not found
      */
@@ -37,7 +40,8 @@ public interface CustomerDao {
     /**
      *
      * @param id id of customer to find
-     * @return customer by id returns customer by given id if exists exception is thrown otherwise
+     * @return customer by id returns customer by given id if exists exception
+     * is thrown otherwise
      */
     Customer findById(Long id);
 
@@ -46,4 +50,12 @@ public interface CustomerDao {
      * @return collection of all customers
      */
     Collection<Customer> findAll();
+
+    /**
+     * Find customer with given email
+     *
+     * @param email of the customer
+     * @return customer with given email
+     */
+    Customer findByEmail(String email);
 }

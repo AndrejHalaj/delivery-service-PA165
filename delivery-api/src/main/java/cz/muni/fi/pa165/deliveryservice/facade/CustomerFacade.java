@@ -16,9 +16,13 @@ import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
  * @author Kristian Mateka
  */
 public interface CustomerFacade {
-    CustomerDetailDTO findUserById(Long l);
+    CustomerDetailDTO findCustomerById(Long id);
+    
+    CustomerDetailDTO findCustomerByEmail(String email);
 
     void updateCustomer(CustomerDetailDTO customerDto);
+    
+    void deleteCustomer(Long id);
 
     Long registerCustomer(CreateCustomerDTO customerDto);
 

@@ -26,4 +26,8 @@ public interface CustomerService {
     Collection<Customer> getAllCustomers();
     
     Customer getCustomerById(Long id);
+    
+    Customer getCustomerByEmail(String email);
+    
+    boolean authenticate(Customer customer, String password);
 }

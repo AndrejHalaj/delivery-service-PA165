@@ -51,4 +51,9 @@ public class CustomerDaoImpl implements CustomerDao{
     public Collection<Customer> findAll() {
         return Collections.unmodifiableList(em.createQuery("SELECT c FROM Customer c").getResultList());
     }
+
+    @Override
+    public Customer findByEmail(String email) {
+        return em.createQuery("SELECT c FROM Customer c WHERE c.emailAddress =  :email", Customer.class).setParameter("email", email).getSingleResult();
+    }
 }

@@ -49,11 +49,21 @@ public class Customer implements Serializable {
     private String emailAddress;
 
     @OneToMany(mappedBy = "sender")
-    private Set<Shipment> shipmentSenderList = new HashSet<Shipment>();
+    private final Set<Shipment> shipmentSenderList = new HashSet<>();
 
     @OneToMany(mappedBy = "receiver")
-    private Set<Shipment> shipmentReceiverList = new HashSet<Shipment>();
+    private final Set<Shipment> shipmentReceiverList = new HashSet<>();
+    
+    String passwordHash;
 
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+    
     public Customer() {
     }
 
@@ -152,8 +162,7 @@ public class Customer implements Serializable {
     public Set<Shipment> getShipmentReceiverList() {
         return Collections.unmodifiableSet(shipmentReceiverList);
     }
-
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
