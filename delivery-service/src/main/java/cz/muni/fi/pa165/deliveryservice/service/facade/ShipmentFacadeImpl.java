@@ -13,7 +13,9 @@ import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentUpdateCourierDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
+import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
+import cz.muni.fi.pa165.deliveryservice.service.ProductService;
 import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
 
 /**
@@ -30,17 +32,28 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
 	private CourierService courierService;
 	
 	@Inject
+	private CustomerService customerService;
+	
+	@Inject
+	private ProductService productService;
+	
+	@Inject
 	private MappingService mappingService;
 
 	@Override
 	public void createShipment(ShipmentCreateDTO shipmentDTO) {
-		Shipment shipment = mappingService.mapTo(shipmentDTO, Shipment.class);
+		Shipment shipment = new Shipment();
+		shipment.setSender(customerService.getCustomerById(shipmentDTO.getCustomerSenderId()));
+		shipment.setReceiver(customerService.getCustomerById(shipmentDTO.getCustomerReceiverId()));
+		shipment.setDistance(shipmentDTO.getDistance());
+		shipment.setPrice(shipmentDTO.getPrice());
+		shipmentDTO.getProductsList().forEach(p -> shipment.addProduct(productService.getProductById(p)));
 		shipmentService.createShipment(shipment);
 	}
 
 	@Override
 	public void updateShipmentCourier(ShipmentUpdateCourierDTO shipmentUpdateCourierDTO) {
-		shipmentService.updateShipmentCourier(shipmentService.findById(shipmentUpdateCourierDTO.getId()), courierService.findById(shipmentUpdateCourierDTO.getCourierId())
+		shipmentService.updateShipmentCourier(shipmentService.findById(shipmentUpdateCourierDTO.getShipmentId()), courierService.findById(shipmentUpdateCourierDTO.getCourierId())
 				, shipmentUpdateCourierDTO.getTrackingId());
 	}
 

@@ -43,7 +43,11 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
+<<<<<<< HEAD
     public Customer findById(Long id) throws NotFoundException{
+=======
+    public Customer findById(Long id) {
+>>>>>>> origin/master
         return em.find(Customer.class, id);
     }
 

@@ -6,50 +6,47 @@ import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
-import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
-import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
-
 /**
  * @author Viktor Bako
  */
 public class ShipmentCreateDTO {
 	
 	@NotNull
-	private CustomerDetailDTO sender;
+	private Long customerSenderId;
 
 	@NotNull
-    private CustomerDetailDTO receiver;
+    private Long customerReceiverId;
 
 	@NotNull
-    private Set<ProductDTO> productsList = new HashSet<ProductDTO>();
+    private Set<Long> productsList = new HashSet<Long>();
 
 	@NotNull
     private Double distance;
-
+	
 	@NotNull
-    private BigDecimal price;   
-    
-    public CustomerDetailDTO getSender() {
-		return sender;
+	private BigDecimal price;
+
+	public Long getCustomerSenderId() {
+		return customerSenderId;
 	}
 
-	public void setSender(CustomerDetailDTO sender) {
-		this.sender = sender;
+	public void setCustomerSenderId(Long customerSenderId) {
+		this.customerSenderId = customerSenderId;
 	}
 
-	public CustomerDetailDTO getReceiver() {
-		return receiver;
+	public Long getCustomerReceiverId() {
+		return customerReceiverId;
 	}
 
-	public void setReceiver(CustomerDetailDTO receiver) {
-		this.receiver = receiver;
+	public void setCustomerReceiverId(Long customerReceiverId) {
+		this.customerReceiverId = customerReceiverId;
 	}
 
-	public Set<ProductDTO> getProductsList() {
+	public Set<Long> getProductsList() {
 		return productsList;
 	}
 
-	public void setProductsList(Set<ProductDTO> productsList) {
+	public void setProductsList(Set<Long> productsList) {
 		this.productsList = productsList;
 	}
 
@@ -67,6 +64,6 @@ public class ShipmentCreateDTO {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
-	}
+	} 
 	
 }
