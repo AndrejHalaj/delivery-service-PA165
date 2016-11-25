@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.deliveryservice.facade;
 
 import java.util.Collection;
 
-import cz.muni.fi.pa165.deliveryservice.dto.customer.CreateCustomerDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
 
@@ -24,7 +24,7 @@ public interface CustomerFacade {
     
     void deleteCustomer(Long id);
 
-    Long registerCustomer(CreateCustomerDTO customerDto);
+    Long registerCustomer(CustomerCreateDTO customerDto);
 
     Collection<CustomerDisplayDTO> getAllCustomers();
 }

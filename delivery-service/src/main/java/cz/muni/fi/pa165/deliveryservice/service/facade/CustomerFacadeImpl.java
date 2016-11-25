@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade;
 
-import cz.muni.fi.pa165.deliveryservice.dto.customer.CreateCustomerDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
@@ -29,20 +29,19 @@ public class CustomerFacadeImpl implements CustomerFacade {
     private CustomerService service;
     
     @Override
-    public Long registerCustomer(CreateCustomerDTO CreateCustomerDTO) {
+    public Long registerCustomer(CustomerCreateDTO customerDto) {
         Customer customer = new Customer();
         
-        mapper.mapTo(customer, CreateCustomerDTO.class);
-        service.register(customer, CreateCustomerDTO.getPassword());
+        customer.setCity(customerDto.getCity());
+        customer.setCountry(customerDto.getCountry());
+        customer.setEmailAddress(customerDto.getEmailAddress());
+        customer.setFirstName(customerDto.getFirstName());
+        customer.setLastName(customerDto.getLastName());
+        customer.setHouseNumber(customerDto.getHouseNumber());
+        customer.setPhoneNumber(customerDto.getPhoneNumber());
+        customer.setPostalCode(customerDto.getPostalCode());
         
-//        customer.setCity(customerDto.getCity());
-//        customer.setCountry(customerDto.getCountry());
-//        customer.setEmailAddress(customerDto.getEmailAddress());
-//        customer.setFirstName(customerDto.getFirstName());
-//        customer.setLastName(customerDto.getLastName());
-//        customer.setHouseNumber(customerDto.getHouseNumber());
-//        customer.setPhoneNumber(customerDto.getPhoneNumber());
-//        customer.setPostalCode(customerDto.getPostalCode());
+        service.register(customer, customerDto.getPassword());
         
         return customer.getId();
     }
@@ -74,6 +73,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public void deleteCustomer(Long id) {
-        service.delete(id);
+        service.delete(service.getCustomerById(id));
     }
 }

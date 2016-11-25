@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
  *
  * @author Kristian Mateka
  */
-public class CreateCustomerDTO {
+public class CustomerCreateDTO {
 
     private Long id;
     

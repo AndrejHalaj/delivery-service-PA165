@@ -21,7 +21,7 @@ public interface CustomerService {
     
     void update(Customer customer);
     
-    void delete(Long id);
+    void delete(Customer customer);
     
     Collection<Customer> getAllCustomers();
     
