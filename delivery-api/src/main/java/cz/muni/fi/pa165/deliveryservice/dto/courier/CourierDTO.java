@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.deliveryservice.dto.courier;
 
-import cz.muni.fi.pa165.deliveryservice.model.Shipment;
+import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 import java.util.Set;
 
 /**
@@ -16,7 +16,7 @@ public class CourierDTO {
 
     private String email;
 
-    private Set<Shipment> shipmentsList;
+    private Set<ShipmentDTO> shipmentsList;
 
     /******************************
      * GETTERS & SETTERS
@@ -54,11 +54,11 @@ public class CourierDTO {
         this.email = email;
     }
 
-    public Set<Shipment> getShipmentsList() {
+    public Set<ShipmentDTO> getShipmentsList() {
         return shipmentsList;
     }
 
-    public void setShipmentsList(Set<Shipment> shipmentsList) {
+    public void setShipmentsList(Set<ShipmentDTO> shipmentsList) {
         this.shipmentsList = shipmentsList;
     }
 
