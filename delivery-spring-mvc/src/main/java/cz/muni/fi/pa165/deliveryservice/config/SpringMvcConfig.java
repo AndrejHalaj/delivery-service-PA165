@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.deliveryservice.config;
 
-import cz.muni.fi.pa165.deliveryservice.SampleDataConfiguration;
+import cz.muni.fi.pa165.deliveryservice.sampledata.SampleDataConfiguration;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ResourceBundleMessageSource;
