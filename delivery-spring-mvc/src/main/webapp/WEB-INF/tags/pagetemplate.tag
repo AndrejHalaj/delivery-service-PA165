@@ -47,7 +47,7 @@
                     </c:if>
                     <c:if test="${not empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="${pageContext.request.contextPath}/customer/detail/${authenticatedUser.id}"><span class="glyphicon glyphicon-user"></span>"${authenticatedUser.email}"</a></li>
+                            <li><a href="${pageContext.request.contextPath}/customer/detail/${authenticatedUser.id}"><span class="glyphicon glyphicon-user"></span>"${authenticatedUser.emailAddress}"</a></li>
                             <li><a href="${pageContext.request.contextPath}/customer/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
                         </ul>
                     </c:if>
