@@ -6,6 +6,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+
+/**
+ * @author Andrej Halaj
+ */
 public class CustomerValidator implements Validator {
 
     @Override

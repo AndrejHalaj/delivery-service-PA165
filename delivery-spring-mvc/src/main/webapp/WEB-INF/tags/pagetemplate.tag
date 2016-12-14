@@ -1,3 +1,7 @@
+<%--
+    Author : Andrej Ha;aj
+--%>
+
 <%@ tag pageEncoding="utf-8" dynamic-attributes="dynattrs" trimDirectiveWhitespaces="true" %>
 <%@ attribute name="title" required="false" %>
 <%@ attribute name="backgroundimg" required="false" %>
