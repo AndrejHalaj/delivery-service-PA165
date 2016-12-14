@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade;
 
+import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerAuthDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
@@ -55,6 +56,12 @@ public class CustomerFacadeImpl implements CustomerFacade {
     public void updateCustomer(CustomerDetailDTO customerDto) {
         Customer customer = mapper.mapTo(CustomerDetailDTO.class, Customer.class);
         service.update(customer);
+    }
+
+    @Override
+    public boolean authenticate(CustomerAuthDTO customerDto) {
+        Customer c = service.getCustomerByEmail(customerDto.getEmailAddress());
+        return service.authenticate(c, customerDto.getPassword());
     }
 
     @Override

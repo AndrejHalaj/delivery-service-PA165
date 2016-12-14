@@ -36,14 +36,14 @@
                     </ul>
                     <c:if test="${empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="${pageContext.request.contextPath}/user/new"><span class="glyphicon glyphicon-user"></span>Sign up</a></li>
-                            <li><a href="${pageContext.request.contextPath}/user/login_page"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                            <li><a href="${pageContext.request.contextPath}/customer/new"><span class="glyphicon glyphicon-user"></span>Customer Sign Up</a></li>
+                            <li><a href="${pageContext.request.contextPath}/customer/login_page"><span class="glyphicon glyphicon-log-in"></span>Customer Login</a></li>
                         </ul>
                     </c:if>
                     <c:if test="${not empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="${pageContext.request.contextPath}/user/detail/${authenticatedUser.id}"><span class="glyphicon glyphicon-user"></span>"${authenticatedUser.email}"</a></li>
-                            <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                            <li><a href="${pageContext.request.contextPath}/customer/detail/${authenticatedUser.id}"><span class="glyphicon glyphicon-user"></span>"${authenticatedUser.email}"</a></li>
+                            <li><a href="${pageContext.request.contextPath}/customer/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
                         </ul>
                     </c:if>
 

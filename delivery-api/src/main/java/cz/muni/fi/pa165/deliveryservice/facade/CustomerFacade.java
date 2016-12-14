@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.deliveryservice.facade;
 
 import java.util.Collection;
 
+import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerAuthDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
@@ -23,6 +24,8 @@ public interface CustomerFacade {
     void updateCustomer(CustomerDetailDTO customerDto);
     
     void deleteCustomer(Long id);
+
+    boolean authenticate(CustomerAuthDTO customerDto);
 
     Long registerCustomer(CustomerCreateDTO customerDto);
 

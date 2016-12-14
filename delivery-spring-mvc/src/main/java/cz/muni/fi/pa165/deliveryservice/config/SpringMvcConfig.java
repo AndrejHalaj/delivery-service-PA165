@@ -25,7 +25,7 @@ import javax.validation.Validator;
 @Import({SampleDataConfiguration.class})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
-    public static final String TEXTS = "Texts";
+    public static final String TEXTS = "texts";
 
     /**
      * Maps the main page to a specific view.
