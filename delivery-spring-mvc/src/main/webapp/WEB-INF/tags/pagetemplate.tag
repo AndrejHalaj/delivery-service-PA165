@@ -33,6 +33,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="${pageContext.request.contextPath}/event/list">Shipments</a></li>
                         <li><a href="${pageContext.request.contextPath}/customer/list">All customers</a></li>
+                        <li><a href="${pageContext.request.contextPath}/courier/list">Couriers</a></li>
                     </ul>
                     <c:if test="${empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">
