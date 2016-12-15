@@ -30,7 +30,7 @@ public class Courier {
     @OneToMany(mappedBy = "courier")
     private Set<Shipment> shipmentsList = new HashSet<Shipment>();
 
-    public Courier() {};
+    public Courier() {}
 
     public Long getId() {
         return id;

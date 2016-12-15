@@ -62,19 +62,19 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         c.setLastName("Lemokres");
         
         Courier c1 = new Courier();
-        c.setEmail("mail1@omg.com");
-        c.setFirstName("Palotan");
-        c.setLastName("Webatis");
+        c1.setEmail("mail1@omg.com");
+        c1.setFirstName("Palotan");
+        c1.setLastName("Webatis");
         
         Courier c2 = new Courier();
-        c.setEmail("mail2@omg.com");
-        c.setFirstName("Gurekod");
-        c.setLastName("Revarus");
+        c2.setEmail("mail2@omg.com");
+        c2.setFirstName("Gurekod");
+        c2.setLastName("Revarus");
         
         Courier c3 = new Courier();
-        c.setEmail("mail3@omg.com");
-        c.setFirstName("Mugoris");
-        c.setLastName("Fekotul");
+        c3.setEmail("mail3@omg.com");
+        c3.setFirstName("Mugoris");
+        c3.setLastName("Fekotul");
         
         courierService.register(c, "heslo123");
         courierService.register(c1, "heslo1234");
