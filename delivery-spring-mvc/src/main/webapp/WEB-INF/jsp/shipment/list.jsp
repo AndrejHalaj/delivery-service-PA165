@@ -14,30 +14,60 @@
 
 <my:pagetemplate title="Shipments">
     <jsp:attribute name="body">
-        <div class="shipments_container">
-            <c:forEach var="shipment" items="${shipments}">
-            <div class="shipment_item">
-                <h1 class="shipment_tracking_id">${shipment.trackingId} </h1>
-                <div class="shipment_base_info">
-                    <table>
-                        <tr>
-                            <td>Courier: </td>
-                            <td>${shipment.courier.firstName} ${shipment.courier.lastName}</td>
-                        </tr>
-                        <tr>
-                            <td>Sender: </td>
-                            <td>${shipment.sender.firstName} ${shipment.sender.lastName}</td>
-                        </tr>
-                        <tr>
-                            <td>Status: </td>
-                            <td>${shipment.shipmentState}</td>
-                        </tr>
-                    </table>
-                </div>
 
+            <%-- Add buttonm, ... --%>
+            <div class="shipment_control">
+                <form method="get" action="${pageContext.request.contextPath}/shipment/new">
+                    <button type="submit">Create</button>
+                </form>
             </div>
-            </c:forEach>
-        </div>
+
+            <%-- Shipments list. --%>
+            <div class="shipments_container">
+                <c:forEach var="shipment" items="${shipments}">
+                <div class="shipment_item">
+                    <h1 class="shipment_tracking_id">${shipment.trackingId} </h1>
+                    <div class="shipment_base_info">
+                        <table>
+                            <tr>
+                                <td>Courier: </td>
+                                <td>${shipment.courier.firstName} ${shipment.courier.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td>Sender: </td>
+                                <td>${shipment.sender.firstName} ${shipment.sender.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td>Status: </td>
+                                <td>${shipment.shipmentState}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <%-- Control buttons for each shipment --%>
+                    <c:choose>
+                        <%-- Deliver button only shows for TRANSFERED shipments --%>
+                        <c:when test="${shipment.shipmentState == 'TRANSFERED'}">
+                            <form method="post" action="${pageContext.request.contextPath}/shipment/deliver/${shipment.id}">
+                                <button type="submit">Deliver</button>
+                            </form>
+                        </c:when>
+
+                        <%-- Cancel button only shows for NEW shipmentst --%>
+                        <c:when test="${shipment.shipmentState == 'NEW'}">
+                            <form method="post" action="${pageContext.request.contextPath}/shipment/cancel/${shipment.id}">
+                                <button type="submit">Cancel</button>
+                            </form>
+                        </c:when>
+                    </c:choose>
+
+                    <form method="post" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
+                        <button type="submit">Detail</button>
+                    </form>
+
+                </div>
+                </c:forEach>
+            </div>
 
     </jsp:attribute>
 </my:pagetemplate>

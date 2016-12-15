@@ -14,10 +14,13 @@
 
 <my:pagetemplate title="Shipments">
     <jsp:attribute name="body">
-        <form:form method="post" action="${pageContext.request.contextPath}/new">
-            <%-- id has to be stored, otherwise it would get lost --%>
-            <form:hidden path="id" />
-            <%-- Tracking ID --%>
+        <form:form method="post" action="${pageContext.request.contextPath}/new" modelAttribute="shipmentForm">
+            <%-- id has to be stored, otherwise it would get lost
+
+            <form:hidden path="id"/>
+ --%>
+
+            <%-- Tracking ID
             <s:bind path="trackingId">
                 <label>Tracking ID:</label>
                 <div>
@@ -25,17 +28,19 @@
                     <form:errors path="trackingId" />
                 </div>
             </s:bind>
+            --%>
 
-            <%-- Courier --%>
+            <%-- Courier
             <s:bind path="courier">
                 <label>Courier:</label>
                 <div>
                     <form:input path="courier" id="courier" type="text" placeholder="name" />
                     <form:errors path="courier" />
                 </div>
-            </s:bind>
+             </s:bind>
+             --%>
 
-            <%-- Sender --%>
+            <%-- Sender
             <s:bind path="sender">
                 <label>Sender:</label>
                 <div>
@@ -43,8 +48,8 @@
                     <form:errors path="sender" />
                 </div>
             </s:bind>
-
-            <%-- Receiver --%>
+--%>
+            <%-- Receiver
             <s:bind path="receiver">
                 <label>Receiver:</label>
                 <div>
@@ -52,7 +57,7 @@
                     <form:errors path="receiver" />
                 </div>
             </s:bind>
-
+--%>
             <%-- price --%>
             <s:bind path="price">
                 <label>Price:</label>
@@ -71,7 +76,7 @@
                 </div>
             </s:bind>
 
-            <%-- Shipment state --%>
+            <%-- Shipment state
             <s:bind path="shipmentState">
                 <label>Shipment state:</label>
                 <div>
@@ -79,7 +84,7 @@
                     <form:errors path="shipmentState" />
                 </div>
             </s:bind>
-
+ --%>
             <%-- !!! TODO: create/deliver time, products  !!! --%>
 
             <%-- Create button --%>

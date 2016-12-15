@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
 
-import org.springframework.http.HttpRequest;
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +39,14 @@ public class ShipmentController {
         log.debug("ShipmentController::shipmentList() size:" + shipmentFacade.findAll().size());
         model.addAttribute("shipments", shipmentFacade.findAll());
         return "shipment/list";
+    }
+
+    @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.POST)
+    public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model){
+        log.debug("ShipmentController::shipmentDetail() id=" + shipmentId);
+        model.addAttribute("shipmentForm", shipmentFacade.findById(shipmentId));
+
+        return "shipment/detail";
     }
 
     @RequestMapping(value="/new", method = RequestMethod.GET)
@@ -85,15 +93,23 @@ public class ShipmentController {
         return "redirect:/shipment/list";
     }
 
-    @RequestMapping(value="/delete/{shipmentId}", method=RequestMethod.POST)
-    public String deleteShipment(@PathVariable("shipmentId") long shipmentId, RedirectAttributes redirAttributes) {
+    @RequestMapping(value="/deliver/{shipmentId}")
+    public String deliverShipment(@PathVariable("shipmentId") long shipmentId, RedirectAttributes redirectAttributes) {
 
-        shipmentFacade.cancelShipment(shipmentId);
+        log.debug("ShipmentController::completeShipment(): id=" + shipmentId);
 
-        log.debug("ShipmentController::deleteShipment()");
+        shipmentFacade.deliverShipment(shipmentId);
 
         return "redirect:/shipment/list";
     }
 
+    @RequestMapping(value="/cancel/{shipmentId}", method=RequestMethod.POST)
+    public String cancelShipment(@PathVariable("shipmentId") long shipmentId, RedirectAttributes redirAttributes) {
 
+        log.debug("ShipmentController::cancelShipment() " + shipmentId );
+
+        shipmentFacade.cancelShipment(shipmentId);
+
+        return "redirect:/shipment/list";
+    }
 }
