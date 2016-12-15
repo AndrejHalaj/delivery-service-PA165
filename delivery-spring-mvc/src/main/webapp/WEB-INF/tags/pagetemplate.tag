@@ -35,7 +35,7 @@
                 </div>
                 <div>
                     <ul class="nav navbar-nav">
-                        <li><a href="${pageContext.request.contextPath}/event/list">Shipments</a></li>
+                        <li><a href="${pageContext.request.contextPath}/shipment/list">Shipments</a></li>
                         <li><a href="${pageContext.request.contextPath}/customer/list">All customers</a></li>
                         <li><a href="${pageContext.request.contextPath}/courier/list">Couriers</a></li>
                     </ul>

@@ -162,4 +162,16 @@ public class Shipment {
         return (trackingId == null ? other.getTrackingId() == null : trackingId.equals(other.getTrackingId()) &&
                 shipmentCreated == null ? other.getShipmentCreated() == null : shipmentCreated.equals(other.getShipmentCreated()));
     }
+
+    @Override
+    public String toString() {
+        return "trackingId=" + trackingId
+                + " ,price=" + price
+                + " ,distance=" + distance
+                + " ,sender" + (sender == null ? "null" : sender.getFirstName())
+                + " ,receiver=" + (receiver == null ? "null" : receiver.getFirstName())
+                + " ,courier=" + (courier == null ? "null" : courier.getFirstName())
+                + " ,created=" + shipmentCreated.toString()
+                + " ,state=" + shipmentState ;
+    }
 }

@@ -1,15 +1,20 @@
 package cz.muni.fi.pa165.deliveryservice.sampledata;
 
+import cz.muni.fi.pa165.deliveryservice.model.Shipment.ShipmentState;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
+import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
+import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,12 +29,18 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     @Inject
     private CourierService courierService;
 
+    @Inject
+    private ShipmentService shipmentService;
+
     private List<Customer> users = new ArrayList<>();
+
+    private Courier c, c1, c2, c3;
 
     @Override
     public void loadData() throws IOException {
         createSomeCustomers();
         loadCouriers();
+        loadShipments();
     }
 
     private Customer addCustomer(String firstName, String lastName,  String houseNumber, String postalCode, String city,
@@ -56,22 +67,22 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     }
     
     private void loadCouriers(){
-        Courier c = new Courier();
+        c = new Courier();
         c.setEmail("mail@omg.com");
         c.setFirstName("Kolitan");
         c.setLastName("Lemokres");
         
-        Courier c1 = new Courier();
+        c1 = new Courier();
         c1.setEmail("mail1@omg.com");
         c1.setFirstName("Palotan");
         c1.setLastName("Webatis");
         
-        Courier c2 = new Courier();
+        c2 = new Courier();
         c2.setEmail("mail2@omg.com");
         c2.setFirstName("Gurekod");
         c2.setLastName("Revarus");
         
-        Courier c3 = new Courier();
+        c3 = new Courier();
         c3.setEmail("mail3@omg.com");
         c3.setFirstName("Mugoris");
         c3.setLastName("Fekotul");
@@ -80,5 +91,34 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         courierService.register(c1, "heslo1234");
         courierService.register(c2, "heslo1235");
         courierService.register(c3, "heslo1236");
+    }
+
+    private void loadShipments(){
+        Shipment s1 = createShipment("A12345", 6,
+                BigDecimal.valueOf(500),c, users.get(0), users.get(1), ShipmentState.NEW);
+        Shipment s2 = createShipment("B12345", 4,
+                BigDecimal.valueOf(4300), c1, users.get(1), users.get(2), ShipmentState.TRANSFERED);
+        Shipment s3 = createShipment("C12345", 15,
+                BigDecimal.valueOf(8850), c2, users.get(3), users.get(0), ShipmentState.NEW);
+
+        shipmentService.createShipment(s1);
+        shipmentService.createShipment(s2);
+        shipmentService.createShipment(s3);
+    }
+
+    private Shipment createShipment(String trackingId, double distance, BigDecimal price, Courier c,
+                                Customer sender, Customer receiver, ShipmentState state) {
+
+        Shipment s = new Shipment();
+        s.setTrackingId(trackingId);
+        s.setDistance(distance);
+        s.setPrice(price);
+        s.setCourier(c);
+        s.setSender(sender);
+        s.setReceiver(receiver);
+        s.setShipmentCreated(new Date());
+        s.setShipmentState(state);
+
+        return s;
     }
 }
