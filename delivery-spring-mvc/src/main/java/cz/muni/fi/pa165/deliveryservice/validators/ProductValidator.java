@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.validators;
 
+/**
+ * @author Viktor Bako
+ */
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
