@@ -40,14 +40,16 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
     private List<Customer> users = new ArrayList<>();
 
+    private List<Product> products = new ArrayList<>();
+
     private Courier c, c1, c2, c3;
 
     @Override
     public void loadData() throws IOException {
         createSomeCustomers();
         loadCouriers();
-        loadShipments();
         createProducts();
+        loadShipments();
     }
 
     private Customer addCustomer(String firstName, String lastName,  String houseNumber, String postalCode, String city,
@@ -108,6 +110,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Shipment s3 = createShipment("C12345", 15,
                 BigDecimal.valueOf(8850), c2, users.get(3), users.get(0), ShipmentState.NEW);
 
+        s1.addProduct(products.get(0));
+        s1.addProduct(products.get(1));
+
+        s2.addProduct(products.get(2));
+        s2.addProduct(products.get(3));
+
+        s3.addProduct(products.get(3));
+
         shipmentService.createShipment(s1);
         shipmentService.createShipment(s2);
         shipmentService.createShipment(s3);
@@ -130,10 +140,15 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     }
     
     private void createProducts() {
-    	productService.create(createProduct("Produktino", "Producerino", "Kratky popisino", new Double("0.2")));
-    	productService.create(createProduct("Lorem ipsum", "Dolor sit", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna turpis, pharetra quis massa ut, varius dignissim massa. Sed quis metus nec mauris efficitur posuere. Sed sagittis ornare sapien vel facilisis.", new Double("1.3")));
-    	productService.create(createProduct("Aloe vera drink", "Aloe vera corp", "Vyzivny aloe vera drink", new Double("0.5")));
-    	productService.create(createProduct("Ziletky", "Gillette", "Velmi ostre ziletky", new Double("0.25")));
+        products.add(createProduct("Produktino", "Producerino", "Kratky popisino", new Double("0.2")));
+        products.add(createProduct("Lorem ipsum", "Dolor sit", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna turpis, pharetra quis massa ut, varius dignissim massa. Sed quis metus nec mauris efficitur posuere. Sed sagittis ornare sapien vel facilisis.", new Double("1.3")));
+        products.add(createProduct("Aloe vera drink", "Aloe vera corp", "Vyzivny aloe vera drink", new Double("0.5")));
+        products.add(createProduct("Ziletky", "Gillette", "Velmi ostre ziletky", new Double("0.25")));
+
+    	productService.create(products.get(0));
+    	productService.create(products.get(1));
+    	productService.create(products.get(2));
+    	productService.create(products.get(3));
     }
     
     private Product createProduct(String name, String producer, String description, Double weight) {

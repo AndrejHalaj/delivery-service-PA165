@@ -135,10 +135,12 @@ public class Shipment {
     }
 
     public void addProduct(Product p) {
+        p.setShipment(this);
         productsList.add(p);
     }
 
     public void removeProduct(Product p) {
+        p.setShipment(null);
         productsList.remove(p);
     }
 

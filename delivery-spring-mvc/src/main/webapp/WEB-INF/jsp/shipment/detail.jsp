@@ -77,6 +77,21 @@
 
                     </table>
                 </div>
+                <div class="products_container">
+                    <h2>Producs:</h2>
+                    <c:forEach var="item" items="${shipmentForm.productsList}">
+                        <div class="product_row">
+                            <table>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.weight}</td>
+                                </tr>
+
+                            </table>
+                        <div>
+                    </c:forEach>
+                </div>
 
     </jsp:attribute>
 </my:pagetemplate>
