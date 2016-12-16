@@ -16,7 +16,6 @@ public class ProductDTOMapper {
 		productUpdate.setProducer(product.getProducer());
 		productUpdate.setDescription(product.getDescription());
 		productUpdate.setWeight(product.getWeight());
-		productUpdate.setShipmentId(product.getShipmentId());
 		return productUpdate;
     }
 	

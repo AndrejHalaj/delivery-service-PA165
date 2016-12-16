@@ -24,8 +24,6 @@ public class ProductManipulationDTO {
     @NotNull
     @DecimalMin(value="0.01")
     private Double weight;
-
-    private Long shipmentId;
     
     public ProductManipulationDTO() {
     	this.name = "";
@@ -73,11 +71,4 @@ public class ProductManipulationDTO {
         this.weight = weight;
     }
 
-    public Long getShipmentId() {
-        return shipmentId;
-    }
-
-    public void setShipmentId(Long shipmentId) {
-        this.shipmentId = shipmentId;
-    }
 }
