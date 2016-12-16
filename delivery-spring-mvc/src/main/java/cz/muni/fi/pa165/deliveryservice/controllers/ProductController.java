@@ -71,8 +71,7 @@ public class ProductController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String deleteProduct(@PathVariable long id, Model model) {
 		try {
-			ProductDTO product = productFacade.findById(id);
-        	productFacade.delete(product);
+        	productFacade.delete(id);
         	model.addAttribute("alert_success", "Product was successfully deleted");            
         } catch (Exception e) {
         	model.addAttribute("alert_danger", "System is currently unavailable"); 	

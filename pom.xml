@@ -59,6 +59,7 @@
         <module>delivery-service</module>
         <module>delivery-spring-mvc</module>
         <module>delivery-sampledata</module>
+		<module>delivery-rest</module>
     </modules>
   
 </project>

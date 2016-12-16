@@ -39,9 +39,8 @@ public class ProductFacadeImpl implements ProductFacade {
 
     @Override
     public ProductDTO findById(Long id) {
-        Product hotel = productService.getProductById(id);
-        if (hotel == null) return null;
-        return mapper.mapTo(hotel, ProductDTO.class);
+        Product product = productService.getProductById(id);
+        return mapper.mapTo(product, ProductDTO.class);
     }
 
     @Override
@@ -50,7 +49,8 @@ public class ProductFacadeImpl implements ProductFacade {
     }
 
 	@Override
-	public void delete(ProductDTO product) {
-		productService.delete(mapper.mapTo(product, Product.class));
+	public void delete(Long id) {
+		Product product = productService.getProductById(id);
+		productService.delete(product);
 	}
 }

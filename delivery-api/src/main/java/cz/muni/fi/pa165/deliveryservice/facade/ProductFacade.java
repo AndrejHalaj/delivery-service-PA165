@@ -13,7 +13,7 @@ public interface ProductFacade {
 
 	void update(ProductManipulationDTO productManipulationDTO);
 	
-	void delete(ProductDTO product);
+	void delete(Long id);
 
     ProductDTO findById(Long id);
 
