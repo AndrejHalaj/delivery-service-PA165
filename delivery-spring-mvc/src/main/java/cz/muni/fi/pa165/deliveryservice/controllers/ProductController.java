@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.deliveryservice.service.facade.mappers.ProductDTOMapper;
 import cz.muni.fi.pa165.deliveryservice.validators.ProductValidator;
 
 /**
@@ -42,7 +42,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detailProduct(@PathVariable long id, Model model) {		
-        model.addAttribute("product", productDTOtoProductManipulationDTO(productFacade.findById(id)));
+        model.addAttribute("product", ProductDTOMapper.productDTOtoProductManipulationDTO(productFacade.findById(id)));
         return "product/detail";
     }
 	
@@ -111,19 +111,6 @@ public class ProductController {
         	redirectAttributes.addFlashAttribute("alert_danger", "System is currently unavailable");
         	return "product/new";
         }
-    }
-    
-    private ProductManipulationDTO productDTOtoProductManipulationDTO(ProductDTO product) {
-		ProductManipulationDTO productUpdate = new ProductManipulationDTO();
-		productUpdate.setId(product.getId());
-		productUpdate.setName(product.getName());
-		productUpdate.setProducer(product.getProducer());
-		productUpdate.setDescription(product.getDescription());
-		productUpdate.setWeight(product.getWeight());
-		if (product.getShipment() != null) {
-			productUpdate.setShipmentId(product.getShipment().getId());
-		}
-		return productUpdate;
     }
 	
 }

@@ -144,11 +144,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         products.add(createProduct("Lorem ipsum", "Dolor sit", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna turpis, pharetra quis massa ut, varius dignissim massa. Sed quis metus nec mauris efficitur posuere. Sed sagittis ornare sapien vel facilisis.", new Double("1.3")));
         products.add(createProduct("Aloe vera drink", "Aloe vera corp", "Vyzivny aloe vera drink", new Double("0.5")));
         products.add(createProduct("Ziletky", "Gillette", "Velmi ostre ziletky", new Double("0.25")));
-
-    	productService.create(products.get(0));
-    	productService.create(products.get(1));
-    	productService.create(products.get(2));
-    	productService.create(products.get(3));
     }
     
     private Product createProduct(String name, String producer, String description, Double weight) {
@@ -157,6 +152,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
     	p.setProducer(producer);
     	p.setDescription(description);
     	p.setWeight(weight);
+    	productService.create(p);
     	return p;
     }
 }

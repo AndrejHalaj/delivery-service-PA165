@@ -3,8 +3,10 @@ package cz.muni.fi.pa165.deliveryservice.service.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import org.dozer.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
@@ -16,7 +18,7 @@ import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 @Service
 public class MappingServiceImpl implements MappingService {
 
-    @Autowired
+    @Inject
     private Mapper dozer;
 
     @Override

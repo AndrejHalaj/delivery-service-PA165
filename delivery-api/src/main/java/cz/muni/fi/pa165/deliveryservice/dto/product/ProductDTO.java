@@ -18,7 +18,7 @@ public class ProductDTO {
 
     private Double weight;
 
-    private ShipmentDTO shipment;
+    private Long shipmentId;
 
     public void setId(Long id) {
         this.id = id;
@@ -60,15 +60,15 @@ public class ProductDTO {
         this.weight = weight;
     }
 
-    public ShipmentDTO getShipment() {
-        return shipment;
-    }
+    public Long getShipmentId() {
+		return shipmentId;
+	}
 
-    public void setShipment(ShipmentDTO shipment) {
-        this.shipment = shipment;
-    }
+	public void setShipmentId(Long shipmentId) {
+		this.shipmentId = shipmentId;
+	}
 
-    @Override
+	@Override
     public int hashCode() {
         int hash = 7;
         hash = 43 * hash + Objects.hashCode(this.name);

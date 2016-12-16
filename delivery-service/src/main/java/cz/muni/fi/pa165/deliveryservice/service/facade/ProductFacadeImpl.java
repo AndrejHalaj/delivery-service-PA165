@@ -1,13 +1,13 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade;
 
-import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Product;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import cz.muni.fi.pa165.deliveryservice.service.ProductService;
+import cz.muni.fi.pa165.deliveryservice.service.facade.mappers.ProductDTOMapper;
 
-import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,13 +39,12 @@ public class ProductFacadeImpl implements ProductFacade {
 
     @Override
     public ProductDTO findById(Long id) {
-        Product product = productService.getProductById(id);
-        return mapper.mapTo(product, ProductDTO.class);
+        return ProductDTOMapper.productToProductDTO(productService.getProductById(id));
     }
 
     @Override
     public List<ProductDTO> findAll() {
-        return mapper.mapTo(productService.getAllProducts(), ProductDTO.class);
+        return ProductDTOMapper.productListToProductDTOList(productService.getAllProducts());
     }
 
 	@Override
@@ -53,4 +52,5 @@ public class ProductFacadeImpl implements ProductFacade {
 		Product product = productService.getProductById(id);
 		productService.delete(product);
 	}
+	
 }

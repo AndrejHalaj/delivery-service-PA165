@@ -49,10 +49,10 @@ public class Customer implements Serializable {
     private String emailAddress;
 
     @OneToMany(mappedBy = "sender")
-    private final Set<Shipment> shipmentSenderList = new HashSet<>();
+    private Set<Shipment> shipmentSenderList = new HashSet<>();
 
     @OneToMany(mappedBy = "receiver")
-    private final Set<Shipment> shipmentReceiverList = new HashSet<>();
+    private Set<Shipment> shipmentReceiverList = new HashSet<>();
     
     String passwordHash;
 
