@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.deliveryservice.rest.resources;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.MediaType;
@@ -18,6 +19,9 @@ import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
 import cz.muni.fi.pa165.deliveryservice.rest.exceptions.ResourceAlreadyExistsException;
 import cz.muni.fi.pa165.deliveryservice.rest.exceptions.ResourceNotFoundException;
 
+/**
+ * @author Viktor Bako
+ */
 @RestController
 @RequestMapping("/products")
 public class ProductResource {
@@ -58,9 +62,15 @@ public class ProductResource {
     	}
     }
     
-//    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public final ProductDTO updateProduct(@PathVariable("id") Long id, @RequestBody ProductManipulationDTO product) {
-//
-//    }
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public final ProductDTO updateProduct(@PathVariable("id") Long id, @Valid @RequestBody ProductManipulationDTO product) {
+    	product.setId(id);
+    	try {
+    		productFacade.update(product);
+    		return productFacade.findById(id);
+    	} catch (DataAccessException e) {
+    		throw new ResourceNotFoundException();
+    	}
+    }
 	
 }
