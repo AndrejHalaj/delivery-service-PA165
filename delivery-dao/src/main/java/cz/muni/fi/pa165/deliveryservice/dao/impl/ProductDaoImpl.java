@@ -33,7 +33,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public void delete(Product product) {
-        em.remove(product);
+        em.remove(em.contains(product) ? product : em.merge(product));
     }
 
     @Override

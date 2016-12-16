@@ -38,6 +38,7 @@
                         <li><a href="${pageContext.request.contextPath}/shipment/list">Shipments</a></li>
                         <li><a href="${pageContext.request.contextPath}/customer/list">All customers</a></li>
                         <li><a href="${pageContext.request.contextPath}/courier/list">Couriers</a></li>
+                        <li><a href="${pageContext.request.contextPath}/product/list">Products</a></li>
                     </ul>
                     <c:if test="${empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">

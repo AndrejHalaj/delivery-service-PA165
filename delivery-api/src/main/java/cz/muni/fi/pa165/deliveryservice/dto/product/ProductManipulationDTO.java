@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.deliveryservice.dto.product;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,8 +15,6 @@ public class ProductManipulationDTO {
     @Size(min=5, max=50)
     private String name;
 
-    @NotNull
-    @Size(min=3, max=300)
     private String description;
 
     @NotNull
@@ -23,10 +22,16 @@ public class ProductManipulationDTO {
     private String producer;
 
     @NotNull
+    @DecimalMin(value="0")
     private Double weight;
 
-    @NotNull
     private Long shipmentId;
+    
+    public ProductManipulationDTO() {
+    	this.name = "";
+    	this.producer = "";
+    	this.weight = new Double("0");
+    }
 
     public Long getId() {
         return id;

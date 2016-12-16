@@ -3,9 +3,11 @@ package cz.muni.fi.pa165.deliveryservice.sampledata;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment.ShipmentState;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
+import cz.muni.fi.pa165.deliveryservice.model.Product;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
+import cz.muni.fi.pa165.deliveryservice.service.ProductService;
 import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +28,15 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
     @Inject
     private CustomerService customerService;
+    
     @Inject
     private CourierService courierService;
 
     @Inject
     private ShipmentService shipmentService;
+    
+    @Inject
+    private ProductService productService;
 
     private List<Customer> users = new ArrayList<>();
 
@@ -41,6 +47,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         createSomeCustomers();
         loadCouriers();
         loadShipments();
+        createProducts();
     }
 
     private Customer addCustomer(String firstName, String lastName,  String houseNumber, String postalCode, String city,
@@ -120,5 +127,21 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         s.setShipmentState(state);
 
         return s;
+    }
+    
+    private void createProducts() {
+    	productService.create(createProduct("Produktino", "Producerino", "Kratky popisino", new Double("0.2")));
+    	productService.create(createProduct("Lorem ipsum", "Dolor sit", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum urna turpis, pharetra quis massa ut, varius dignissim massa. Sed quis metus nec mauris efficitur posuere. Sed sagittis ornare sapien vel facilisis.", new Double("1.3")));
+    	productService.create(createProduct("Aloe vera drink", "Aloe vera corp", "Vyzivny aloe vera drink", new Double("0.5")));
+    	productService.create(createProduct("Ziletky", "Gillette", "Velmi ostre ziletky", new Double("0.25")));
+    }
+    
+    private Product createProduct(String name, String producer, String description, Double weight) {
+    	Product p = new Product();
+    	p.setName(name);
+    	p.setProducer(producer);
+    	p.setDescription(description);
+    	p.setWeight(weight);
+    	return p;
     }
 }

@@ -9,9 +9,11 @@ import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
  * @author Andrej Halaj
  */
 public interface ProductFacade {
-    void create(ProductManipulationDTO productManipulationDTO);
+	Long create(ProductManipulationDTO productManipulationDTO);
 
-    void update(ProductManipulationDTO productManipulationDTO);
+	void update(ProductManipulationDTO productManipulationDTO);
+	
+	void delete(ProductDTO product);
 
     ProductDTO findById(Long id);
 

@@ -21,9 +21,10 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public void create(Product product) {
+    public Long create(Product product) {
         try {
             productDao.create(product);
+            return product.getId();
         } catch (Exception ex) {
             throw new DataAccessException("Can't create product. Reason: " + ex.getMessage()) {};
         }

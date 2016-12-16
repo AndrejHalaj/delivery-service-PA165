@@ -25,14 +25,11 @@ public class ProductFacadeImpl implements ProductFacade {
     private ProductService productService;
 
     @Inject
-    private ShipmentService shipmentService;
-
-    @Inject
     private MappingService mapper;
 
     @Override
-    public void create(ProductManipulationDTO productManipulationDTO) {
-        productService.create(mapper.mapTo(productManipulationDTO, Product.class));
+    public Long create(ProductManipulationDTO productManipulationDTO) {
+        return productService.create(mapper.mapTo(productManipulationDTO, Product.class));
     }
 
     @Override
@@ -51,4 +48,9 @@ public class ProductFacadeImpl implements ProductFacade {
     public List<ProductDTO> findAll() {
         return mapper.mapTo(productService.getAllProducts(), ProductDTO.class);
     }
+
+	@Override
+	public void delete(ProductDTO product) {
+		productService.delete(mapper.mapTo(product, Product.class));
+	}
 }

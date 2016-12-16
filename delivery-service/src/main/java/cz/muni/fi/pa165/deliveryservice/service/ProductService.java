@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ProductService {
-    void create(Product product);
+	Long create(Product product);
 
     void update(Product product);
 
