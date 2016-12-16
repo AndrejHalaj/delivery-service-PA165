@@ -37,12 +37,13 @@ public class CourierFacadeImpl implements CourierFacade {
     }
 
     @Override
-    public void registerCourier(CourierCreateDTO courier) {
+    public long registerCourier(CourierCreateDTO courier) {
         Courier c = new Courier();
         c.setFirstName(courier.getFirstName());
         c.setLastName(courier.getLastName());
         c.setEmail(courier.getEmail());
         courierService.register(c, courier.getPassword());
+        return c.getId();
     }
 
     @Override

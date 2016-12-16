@@ -18,7 +18,7 @@ public interface CourierFacade {
 
     List<CourierDTO> getAllCouriers();
 
-    void registerCourier(CourierCreateDTO courier);
+    long registerCourier(CourierCreateDTO courier);
 
     boolean authenticate(CourierAuthDTO courier);
 
