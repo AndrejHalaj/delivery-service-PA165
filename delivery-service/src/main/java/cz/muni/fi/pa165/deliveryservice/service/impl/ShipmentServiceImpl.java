@@ -18,12 +18,17 @@ import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
  */
 @Service
 public class ShipmentServiceImpl implements ShipmentService {
-	
+
 	@Inject
 	private ShipmentDao shipmentDao;
 
 	@Override
 	public void createShipment(Shipment shipment) {
+		if(shipment.getTrackingId() == null) {
+			shipment.setTrackingId(generateTrackingId(shipment));
+			System.out.println("ShipmentServiceImpl::createShipment(): generatedTrackingID=" + shipment.getTrackingId());
+		}
+		System.out.println("ShipmentServiceImpl::createShipment(): " + shipment.toString());
 		shipmentDao.create(shipment);
 	}
 
@@ -67,4 +72,11 @@ public class ShipmentServiceImpl implements ShipmentService {
 		return shipmentDao.findAll();
 	}
 
+	// TODO: think of something working
+	private String generateTrackingId(Shipment shipment) {
+		String trackingId = shipment.getReceiver().getCity().substring(0, 2) +
+							shipment.getReceiver().getCity().substring(0,2) +
+							shipment.getReceiver().getHouseNumber().substring(0,3);
+		return trackingId;
+	}
 }

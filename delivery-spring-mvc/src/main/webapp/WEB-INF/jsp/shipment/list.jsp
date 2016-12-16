@@ -18,7 +18,7 @@
             <%-- Add buttonm, ... --%>
             <div class="shipment_control">
                 <form method="get" action="${pageContext.request.contextPath}/shipment/new">
-                    <button type="submit">Create</button>
+                    <button class="btn btn-primary" type="submit">Create</button>
                 </form>
             </div>
 
@@ -45,26 +45,28 @@
                     </div>
 
                     <%-- Control buttons for each shipment --%>
-                    <c:choose>
-                        <%-- Deliver button only shows for TRANSFERED shipments --%>
-                        <c:when test="${shipment.shipmentState == 'TRANSFERED'}">
-                            <form method="post" action="${pageContext.request.contextPath}/shipment/deliver/${shipment.id}">
-                                <button type="submit">Deliver</button>
-                            </form>
-                        </c:when>
+                    <div class="shipment_control_buttons">
+                        <c:choose>
+                            <%-- Deliver button only shows for TRANSFERED shipments --%>
+                            <c:when test="${shipment.shipmentState == 'TRANSFERED'}">
+                                <form method="post" action="${pageContext.request.contextPath}/shipment/deliver/${shipment.id}">
+                                    <button class="btn btn-default" type="submit">Deliver</button>
+                                </form>
+                            </c:when>
 
-                        <%-- Cancel button only shows for NEW shipmentst --%>
-                        <c:when test="${shipment.shipmentState == 'NEW'}">
-                            <form method="post" action="${pageContext.request.contextPath}/shipment/cancel/${shipment.id}">
-                                <button type="submit">Cancel</button>
-                            </form>
-                        </c:when>
-                    </c:choose>
+                            <%-- Cancel button only shows for NEW shipmentst --%>
+                            <c:when test="${shipment.shipmentState == 'NEW'}">
+                                <form method="post" action="${pageContext.request.contextPath}/shipment/cancel/${shipment.id}">
+                                    <button class="btn btn-default" type="submit">Cancel</button>
+                                </form>
+                            </c:when>
+                        </c:choose>
 
-                    <form method="post" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
-                        <button type="submit">Detail</button>
-                    </form>
-
+                        <%-- Detail button --%>
+                        <form method="post" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
+                            <button class="btn btn-default" type="submit">Detail</button>
+                        </form>
+                    </div>
                 </div>
                 </c:forEach>
             </div>

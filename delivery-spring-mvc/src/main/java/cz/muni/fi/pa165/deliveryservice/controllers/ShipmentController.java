@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.controllers;
 
+import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
+import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
 
 import org.omg.CORBA.Request;
@@ -15,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Jamik on 14.12.2016.
@@ -27,7 +30,10 @@ public class ShipmentController {
     private static final Logger log = Logger.getLogger(ShipmentController.class);
 
     @Inject
-    ShipmentFacade shipmentFacade;
+    private ShipmentFacade shipmentFacade;
+
+    @Inject
+    private CustomerFacade customerFacade;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -50,8 +56,10 @@ public class ShipmentController {
     }
 
     @RequestMapping(value="/new", method = RequestMethod.GET)
-    public String newShipment(Model model) {
+    public String newShipment(Model model, HttpServletRequest request) {
         model.addAttribute("shipmentForm", new ShipmentCreateDTO());
+        //model.addAttribute("signedCustomer", request.getSession().getAttribute("authenticatedUser"));
+        model.addAttribute("customerList", customerFacade.getAllCustomers());
         log.debug("ShipmentController::newShipment()");
         return "shipment/new";
     }
@@ -64,12 +72,22 @@ public class ShipmentController {
     }
 
     @RequestMapping(value="/create", method= RequestMethod.POST)
-    public String create(@ModelAttribute("shipmentForm") ShipmentCreateDTO formBean, BindingResult bindRes) {
+    public String create(@ModelAttribute("shipmentForm") ShipmentCreateDTO formBean, BindingResult bindRes, HttpServletRequest request) {
+
+        CustomerDetailDTO loggedUsr = (CustomerDetailDTO) request.getSession().getAttribute("authenticatedUser");
+        if(loggedUsr == null) {
+            log.debug("ShipmentController::create() something is wrong, you dont seem to be signed!");
+            return "redirect:/shipment/create";
+        }
+        formBean.setCustomerSenderId(loggedUsr.getId());
+
+        log.debug("ShipmentController::create() senderId=" + formBean.getCustomerSenderId() + " ,receiver id=" + formBean.getCustomerReceiverId() + " , price = " + formBean.getPrice() + " , distance = " + formBean.getDistance());
 
         if(bindRes.hasErrors()) {
             log.debug("ShipmentController::create() has binding erros");
             return "shipment/new";
         }
+
 
         // create the shipment
         shipmentFacade.createShipment(formBean);

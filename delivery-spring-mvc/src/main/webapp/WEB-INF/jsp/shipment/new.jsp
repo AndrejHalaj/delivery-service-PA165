@@ -14,81 +14,44 @@
 
 <my:pagetemplate title="Shipments">
     <jsp:attribute name="body">
-        <form:form method="post" action="${pageContext.request.contextPath}/new" modelAttribute="shipmentForm">
-            <%-- id has to be stored, otherwise it would get lost
+        <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/create" modelAttribute="shipmentForm">
 
-            <form:hidden path="id"/>
- --%>
+             <div class="form-group ${status.error ? 'has-error' : ''}">
 
-            <%-- Tracking ID
-            <s:bind path="trackingId">
-                <label>Tracking ID:</label>
-                <div>
-                    <form:input path="trackingId" id="trackingId" type="text" placeholder="tracking ID" />
-                    <form:errors path="trackingId" />
-                </div>
-            </s:bind>
-            --%>
+                <label class="control-label col-sm-2">Receiver:</label>
+                <div class="col-sm-10">
+                    <form:select class="form-control" path="customerReceiverId">
+                        <c:forEach var="customer" items="${customerList}">
+                            <form:option value="${customer.id}" label="${customer.firstName} ${customer.lastName}" />
+                        </c:forEach>
+                    </form:select>
+               </div>
+             </div>
 
-            <%-- Courier
-            <s:bind path="courier">
-                <label>Courier:</label>
-                <div>
-                    <form:input path="courier" id="courier" type="text" placeholder="name" />
-                    <form:errors path="courier" />
-                </div>
-             </s:bind>
-             --%>
-
-            <%-- Sender
-            <s:bind path="sender">
-                <label>Sender:</label>
-                <div>
-                    <form:input path="sender" id="sender" type="text" placeholder="name" />
-                    <form:errors path="sender" />
-                </div>
-            </s:bind>
---%>
-            <%-- Receiver
-            <s:bind path="receiver">
-                <label>Receiver:</label>
-                <div>
-                    <form:input path="receiver" id="receiver" type="text" placeholder="name" />
-                    <form:errors path="receiver" />
-                </div>
-            </s:bind>
---%>
             <%-- price --%>
             <s:bind path="price">
-                <label>Price:</label>
-                <div>
-                    <form:input path="price" id="price" type="text" placeholder="0.00$" />
-                    <form:errors path="price" />
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Price:</label>
+                    <div class="col-sm-10">
+                        <form:input class="form-control" path="price" id="price" type="text" placeholder="0.00$" />
+                        <form:errors path="price" />
+                    </div>
                 </div>
             </s:bind>
 
             <%-- Distance --%>
             <s:bind path="distance">
-                <label>Distance:</label>
-                <div>
-                    <form:input path="distance" id="distance" type="text" placeholder="0.0 km" />
-                    <form:errors path="distance" />
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Distance:</label>
+                    <div class="col-sm-10">
+                        <form:input class="form-control" path="distance" id="distance" type="text" placeholder="0.0 km" />
+                        <form:errors path="distance" />
+                    </div>
                 </div>
             </s:bind>
-
-            <%-- Shipment state
-            <s:bind path="shipmentState">
-                <label>Shipment state:</label>
-                <div>
-                    <form:input path="shipmentState" id="shipmentState" type="text" placeholder="state" />
-                    <form:errors path="shipmentState" />
-                </div>
-            </s:bind>
- --%>
-            <%-- !!! TODO: create/deliver time, products  !!! --%>
 
             <%-- Create button --%>
-            <button type="submit">Create</button>
+            <button class="btn btn-default" type="submit">Create</button>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>
