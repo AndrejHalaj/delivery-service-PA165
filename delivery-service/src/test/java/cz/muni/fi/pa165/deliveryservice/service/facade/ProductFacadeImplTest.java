@@ -48,14 +48,12 @@ public class ProductFacadeImplTest extends AbstractTestNGSpringContextTests {
         productManipulationDTO.setDescription(PRODUCT_DESCRIPTION);
         productManipulationDTO.setProducer(PRODUCT_PRODUCER);
         productManipulationDTO.setWeight(PRODUCT_WEIGHT);
-        productManipulationDTO.setShipmentId(PRODUCT_SHIPMENT_ID);
 
         productManipulationDTO2 = new ProductManipulationDTO();
         productManipulationDTO2.setName(PRODUCT_NAME2);
         productManipulationDTO2.setDescription(PRODUCT_DESCRIPTION2);
         productManipulationDTO2.setProducer(PRODUCT_PRODUCER);
         productManipulationDTO2.setWeight(PRODUCT_WEIGHT2);
-        productManipulationDTO2.setShipmentId(PRODUCT_SHIPMENT_ID);
     }
 
     @Test
@@ -76,11 +74,9 @@ public class ProductFacadeImplTest extends AbstractTestNGSpringContextTests {
     public void testUpdate() {
         productFacade.create(productManipulationDTO);
 
-
         ProductManipulationDTO productUpdater = new ProductManipulationDTO();
         productUpdater.setName(PRODUCT_NAME);
         productUpdater.setId(productFacade.findAll().get(0).getId());
-        productUpdater.setShipmentId(PRODUCT_SHIPMENT_ID);
         productUpdater.setProducer(PRODUCT_PRODUCER);
         productUpdater.setWeight(PRODUCT_WEIGHT2);
         productUpdater.setDescription(PRODUCT_DESCRIPTION2);
