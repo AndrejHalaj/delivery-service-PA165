@@ -11,13 +11,13 @@ import javax.validation.constraints.NotNull;
  */
 public class ShipmentCreateDTO {
 	
-	@NotNull
+	//@NotNull
 	private Long customerSenderId;
 
-	@NotNull
+	//@NotNull
     private Long customerReceiverId;
 
-	@NotNull
+	//@NotNull
     private Set<Long> productsList = new HashSet<Long>();
 
 	@NotNull

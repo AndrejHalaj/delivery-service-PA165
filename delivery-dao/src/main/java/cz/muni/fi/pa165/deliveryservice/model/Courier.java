@@ -77,10 +77,12 @@ public class Courier {
     }
 
     public void addShipment(Shipment s) {
+        s.setCourier(this);
         shipmentsList.add(s);
     }
 
     public void removeShipment(Shipment s) {
+        s.setCourier(null);
         shipmentsList.remove(s);
     }
 

@@ -125,7 +125,7 @@ public class ShipmentDTO {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

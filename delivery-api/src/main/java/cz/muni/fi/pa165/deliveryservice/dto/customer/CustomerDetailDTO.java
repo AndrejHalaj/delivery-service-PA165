@@ -107,6 +107,9 @@ public class CustomerDetailDTO {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-    
+
+    public String getWholeName(){
+        return firstName + " " + lastName;
+    }
     
 }

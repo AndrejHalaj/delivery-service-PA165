@@ -50,6 +50,20 @@
                 </div>
             </s:bind>
 
+            <c:forEach var="item" items="${shipmentForm.productsList}">
+                <div class="product_row">
+                    <table>
+                        <tr>
+                            <td>Name:</td>
+                            <td>${item.name}</td>
+                            <td></td>
+                        </tr>
+
+                    </table>
+                <div>
+            </c:forEach>
+
+
             <%-- Create button --%>
             <button class="btn btn-default" type="submit">Create</button>
         </form:form>

@@ -14,84 +14,135 @@
 
 <my:pagetemplate title="Shipments">
     <jsp:attribute name="body">
+        <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/update/update/${shipmentForm.id}" modelAttribute="shipmentForm">
 
-                <h1 class="shipment_tracking_id">${shipmentForm.trackingId} </h1>
-                <div class="shipment_base_info">
-                    <table>
-                        <%-- courier name --%>
-                        <tr>
-                            <td>Courier: </td>
-                            <td>${shipmentForm.courier.firstName} ${shipmentForm.courier.lastName}</td>
-                        </tr>
-                        <%-- sender name --%>
-                        <tr>
-                            <td>Sender: </td>
-                            <td>${shipmentForm.sender.firstName} ${shipmentForm.sender.lastName}</td>
-                        </tr>
-                            <%-- receiver name --%>
-                        <tr>
-                            <td>Receiver: </td>
-                            <td>${shipmentForm.receiver.firstName} ${shipmentForm.receiver.lastName}</td>
-                        </tr>
-                        <%-- house number & city --%>
-                        <tr>
-                            <td>Address</td>
-                            <td>${shipmentForm.receiver.houseNumber} ${shipmentForm.receiver.city}</td>
-                        </tr>
-                        <%-- postal code & country --%>
-                        <tr>
-                            <td></td>
-                            <td>${shipmentForm.receiver.postalCode} ${shipmentForm.receiver.country}</td>
-                        </tr>
-                        <%-- shipment status --%>
-                        <tr>
-                            <td>Status: </td>
-                            <td>${shipmentForm.shipmentState}</td>
-                        </tr>
-                        <%-- price --%>
-                        <tr>
-                            <td>Price: </td>
-                            <td>${shipmentForm.price}</td>
-                        </tr>
-                        <%-- distance --%>
-                        <tr>
-                            <td>Distance: </td>
-                            <td>${shipmentForm.distance}</td>
-                        </tr>
-                        <%-- shipment created date --%>
-                        <tr>
-                            <fmt:formatDate value="${shipmentForm.shipmentCreated}" var="createDateFormated" pattern="yyyy/MM/dd HH:mm" type="both" />
-                            <td>Created: </td>
-                            <td>${createDateFormated}</td>
-                        </tr>
-                        <%-- delivery date only visible when state is DELIVERED --%>
-                        <c:choose>
-                            <c:when test="${shipmentForm.shipmentState == 'DELIVERED'}">
-                                <tr>
-                                    <fmt:formatDate value="${shipmentForm.shipmentDelivered}" var="deliveryDateFormated" pattern="yyyy/MM/dd HH:mm" type="both" />
-                                    <td>Delivered: </td>
-                                    <td>${deliveryDateFormated}</td>
-                                </tr>
-                            </c:when>
-                        </c:choose>
-
-                    </table>
+             <s:bind path="trackingId">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Tracking ID</label>
+                    <div class="col-sm-10">
+                        <form:input class="form-control" path="trackingId" id="trackingId" type="text"
+                                    placeholder="Tracking ID" readonly="true"/>
+                        <form:errors path="trackingId" />
+                    </div>
                 </div>
-                <div class="products_container">
-                    <h2>Producs:</h2>
-                    <c:forEach var="item" items="${shipmentForm.productsList}">
-                        <div class="product_row">
-                            <table>
-                                <tr>
-                                    <td>Name:</td>
-                                    <td>${item.name}</td>
-                                    <td>${item.weight}</td>
-                                </tr>
+             </s:bind>
 
-                            </table>
-                        <div>
-                    </c:forEach>
+            <%-- Shipment state --%>
+            <s:bind path="shipmentState">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">State</label>
+                    <div class="col-sm-10">
+                        <form:input class="form-control" path="shipmentState" id="shipmentState" type="text"
+                                    placeholder="Shipment state" readonly="true"/>
+                        <form:errors path="shipmentState" />
+                    </div>
                 </div>
+            </s:bind>
 
+            <%-- Sender --%>
+            <s:bind path="sender">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Receiver</label>
+                    <div class="col-sm-10">
+                        <form:input class="form-control" path="sender.wholeName" id="sender" type="text" placeholder="Name"
+                        readonly="true" />
+                        <form:errors path="sender" />
+                    </div>
+                </div>
+            </s:bind>
+
+                <%-- Receiver dropdown --%>
+            <s:bind path="receiver">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Receiver</label>
+                    <div class="col-sm-10">
+                       <form:select class="form-control" path="receiver">
+                           <c:forEach var="receiver" items="${receivers}">
+                                <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}"/>
+                           </c:forEach>
+                       </form:select>
+                       <form:errors path="receiver" />
+                    </div>
+                </div>
+             </s:bind>
+
+            <%-- price --%>
+            <s:bind path="price">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Price:</label>
+                    <div class="col-sm-10">
+                        <form:input class="form-control" path="price" id="price" type="text" placeholder="0.00$" />
+                        <form:errors path="price" />
+                    </div>
+                </div>
+            </s:bind>
+
+            <%-- Distance --%>
+            <s:bind path="distance">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Distance:</label>
+                    <div class="col-sm-10">
+                        <form:input class="form-control" path="distance" id="distance" type="text" placeholder="0.0 km" />
+                        <form:errors path="distance" />
+                    </div>
+                </div>
+            </s:bind>
+
+            <%-- Shipment created date --%>
+            <s:bind path="shipmentCreated">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label col-sm-2">Created</label>
+                    <div class="col-sm-10">
+                        <fmt:formatDate value="${shipmentForm.shipmentCreated}" var="createdDateFormated" pattern="yyyy/MM/dd HH:mm" type="both" />
+                        <form:input class="form-control" path="shipmentCreated" value="${createdDateFormated}" id="shipmentCreated"
+                                    type="text" placeholder="" readonly="true"/>
+                        <form:errors path="shipmentCreated" />
+                    </div>
+                </div>
+             </s:bind>
+
+            <%-- Shipment delivered date --%>
+            <c:choose>
+               <c:when test="${shipmentForm.shipmentState == 'DELIVERED'}">
+
+                    <s:bind path="shipmentDelivered">
+                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                            <label class="control-label col-sm-2">Delivered</label>
+                            <div class="col-sm-10">
+                                <fmt:formatDate value="${shipmentForm.shipmentDelivered}" var="deliveredDateFormated" pattern="yyyy/MM/dd HH:mm" type="both" />
+                                <form:input class="form-control" path="shipmentDelivered" value="${deliveredDateFormated}" id="shipmentDelivered"
+                                            type="text" placeholder="" readonly="true"/>
+                                <form:errors path="shipmentDelivered" />
+                            </div>
+                        </div>
+                    </s:bind>
+                </c:when>
+            </c:choose>
+
+            <%-- List of products --%>
+            <div class="products_container">
+                <h2>Producs:</h2>
+                <c:forEach var="item" items="${shipmentForm.productsList}">
+                    <div class="product_row">
+                        <table>
+                            <tr>
+                                <td>Name:</td>
+                                <td>${item.name}</td>
+                                <td>${item.weight}</td>
+                            </tr>
+
+                        </table>
+                    <div>
+                </c:forEach>
+                <%--
+                <table>
+                    <tr>
+                        <td>products</td>
+                        <td> <form:checkboxes path="productsList" items="${products}" /></td>
+                    </tr>
+                </table>
+                --%>
+            </div>
+        </form:form>
     </jsp:attribute>
 </my:pagetemplate>
