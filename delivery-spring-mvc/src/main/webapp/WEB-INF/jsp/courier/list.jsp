@@ -25,9 +25,9 @@
         <c:forEach items="${couriers}" var="courier">
             <tr>
                 <td><c:out value="${courier.id}"/></td>
-                <td><a href="${pageContext.request.contextPath}/customer/detail/${courier.id}"><c:out value="${customer.firstName}"/></a></td>
+                <td><a href="${pageContext.request.contextPath}/courier/detail/${courier.id}"><c:out value="${courier.firstName}"/></a></td>
                 <td><c:out value="${courier.lastName}"/></td>
-                <td><c:out value="${courier.emailAddress}"/></td>
+                <td><c:out value="${courier.email}"/></td>
             </tr>
         </c:forEach>
         </tbody>

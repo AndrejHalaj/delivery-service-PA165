@@ -96,6 +96,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         c3.setFirstName("Mugoris");
         c3.setLastName("Fekotul");
         
+        
         courierService.register(c, "heslo123");
         courierService.register(c1, "heslo1234");
         courierService.register(c2, "heslo1235");
@@ -121,6 +122,14 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         shipmentService.createShipment(s1);
         shipmentService.createShipment(s2);
         shipmentService.createShipment(s3);
+        
+        c.addShipment(s1);
+        c1.addShipment(s2);
+        c2.addShipment(s3);
+        
+        courierService.update(c);
+        courierService.update(c1);
+        courierService.update(c2);
     }
 
     private Shipment createShipment(String trackingId, double distance, BigDecimal price, Courier c,

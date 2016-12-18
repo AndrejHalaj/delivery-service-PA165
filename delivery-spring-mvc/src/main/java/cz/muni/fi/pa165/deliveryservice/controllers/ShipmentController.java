@@ -57,7 +57,7 @@ public class ShipmentController {
         return "shipment/list";
     }
 
-    @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.POST)
+    @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.GET)
     public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model){
         log.debug("ShipmentController::shipmentDetail() id=" + shipmentId);
         model.addAttribute("receivers", customerFacade.getAllCustomers());
