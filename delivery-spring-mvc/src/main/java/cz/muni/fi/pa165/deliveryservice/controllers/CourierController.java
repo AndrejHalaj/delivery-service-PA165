@@ -54,39 +54,39 @@ public class CourierController {
 
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String detailCourier(@PathVariable long id, Model model) {
-        model.addAttribute("userDetail", courierFacade.findById(id));
-        return "user/detail";
+        model.addAttribute("courierDetail", courierFacade.findById(id));
+        return "courier/detail";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid
-            @ModelAttribute("userCreate") CourierCreateDTO formBean, BindingResult bindingResult,
-            Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, HttpServletRequest request
-    ) {
-        if (bindingResult.hasErrors()) {
-            return "courier/new";
-        }
-        
-        long id;
-        
-        try {
-            id = courierFacade.registerCourier(formBean);
-        } catch (ConstraintViolationException e) {
-            model.addAttribute("alert_warning", "Account with this email is already registered.");
-            return "courier/new";
-        }
-        
-        redirectAttributes.addFlashAttribute("alert_success", "User has been created.");
-        request.getSession().setAttribute("authenticatedUser", courierFacade.findById(id));
-        
-        return "redirect:" + uriBuilder.path("/courier/detail/{id}").buildAndExpand(id).encode().toUriString();
-    }
-
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newCourier(Model model) {
-        model.addAttribute("userCreate", new CourierCreateDTO());
-        return "courier/new";
-    }
+//    @RequestMapping(value = "/create", method = RequestMethod.POST)
+//    public String create(@Valid
+//            @ModelAttribute("userCreate") CourierCreateDTO formBean, BindingResult bindingResult,
+//            Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, HttpServletRequest request
+//    ) {
+//        if (bindingResult.hasErrors()) {
+//            return "courier/new";
+//        }
+//        
+//        long id;
+//        
+//        try {
+//            id = courierFacade.registerCourier(formBean);
+//        } catch (ConstraintViolationException e) {
+//            model.addAttribute("alert_warning", "Account with this email is already registered.");
+//            return "courier/new";
+//        }
+//        
+//        redirectAttributes.addFlashAttribute("alert_success", "User has been created.");
+//        request.getSession().setAttribute("authenticatedUser", courierFacade.findById(id));
+//        
+//        return "redirect:" + uriBuilder.path("/courier/detail/{id}").buildAndExpand(id).encode().toUriString();
+//    }
+//
+//    @RequestMapping(value = "/new", method = RequestMethod.GET)
+//    public String newCourier(Model model) {
+//        model.addAttribute("userCreate", new CourierCreateDTO());
+//        return "courier/new";
+//    }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public final String getAllCouriers(Model model) {
