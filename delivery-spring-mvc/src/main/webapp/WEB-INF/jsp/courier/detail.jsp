@@ -47,8 +47,11 @@
                             <td><c:out value="${shipment.sender.firstName} ${shipment.sender.lastName}"/></td>
                             <td><c:out value="${shipment.receiver.firstName} ${shipment.receiver.lastName}"/></td>
                             <td><c:out value="${shipment.shipmentState}"/></td>
+
                             <td>
-                                <a href="${pageContext.request.contextPath}/shipment/detail/${shipment.id}" class="btn btn-success">Detail</a>
+                                <form method="post" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
+                                    <button class="btn btn-success" type="submit">Detail</button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>
