@@ -156,5 +156,20 @@ public class ShipmentDTO {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString(){
+		return "ShipmentDTO{"
+				+ " id=" + id
+				+ " trackingId=" + trackingId
+				+ " ; sender=" + (sender == null ? "null" : (sender.getFirstName() + " " + sender.getLastName()))
+				+ " ; receiver=" + (receiver == null ? "null" : (receiver.getFirstName() + " " + receiver.getLastName()))
+				+ " ; distance=" + distance
+				+ " ; price=" + price
+				+ " ; courier=" +(courier == null ? "null" : (courier.getFirstName() + " " + courier.getLastName()))
+				+ " ; shipmentState=" + shipmentState
+				+ " ; shipmentCreated=" + shipmentCreated.toString()
+				+ " ; shipmentDelivered=" + (shipmentState != ShipmentState.DELIVERED ? "NOT YET" : shipmentDelivered.toString())
+				+'}';
+	}
 }

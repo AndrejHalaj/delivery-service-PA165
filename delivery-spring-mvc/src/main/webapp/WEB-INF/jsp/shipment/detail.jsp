@@ -14,7 +14,9 @@
 
 <my:pagetemplate title="Shipments">
     <jsp:attribute name="body">
-        <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/update/update/${shipmentForm.id}" modelAttribute="shipmentForm">
+        <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/update/${shipmentForm.id}" modelAttribute="shipmentForm">
+
+            <form:hidden path="id" />
 
              <s:bind path="trackingId">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -39,32 +41,62 @@
                 </div>
             </s:bind>
 
-            <%-- Sender --%>
-            <s:bind path="sender">
+            <%-- Courier dropdown --%>
+            <s:bind path="courier">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="control-label col-sm-2">Receiver</label>
+                    <label class="control-label col-sm-2">Courier</label>
                     <div class="col-sm-10">
-                        <form:input class="form-control" path="sender.wholeName" id="sender" type="text" placeholder="Name"
-                        readonly="true" />
-                        <form:errors path="sender" />
+                       <form:select class="form-control" path="courier">
+                           <c:forEach var="courier" items="${couriers}">
+                               <c:choose>
+                                   <c:when test="${courier.id == shipmentForm.courier.id}">
+                                       <form:option value="${courier}" label="${courier.firstName} ${courier.lastName}"
+                                                    selected="selected" />
+                                   </c:when>
+                                   <c:otherwise>
+                                       <form:option value="${courier}" label="${courier.firstName} ${courier.lastName}" />
+                                   </c:otherwise>
+                               </c:choose>
+                           </c:forEach>
+                       </form:select>
+                        <form:errors path="courier" />
                     </div>
                 </div>
             </s:bind>
 
-                <%-- Receiver dropdown --%>
+            <%-- Sender --%>
+            <form:hidden path="sender"/>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <label class="control-label col-sm-2">Sender</label>
+                <div class="col-sm-10">
+                    <form:input class="form-control" path="sender.wholeName" id="sender" type="text" placeholder="Name"
+                    readonly="true" />
+                    <form:errors path="sender" />
+                </div>
+            </div>
+
+            <%-- Receiver dropdown --%>
             <s:bind path="receiver">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="control-label col-sm-2">Receiver</label>
                     <div class="col-sm-10">
                        <form:select class="form-control" path="receiver">
                            <c:forEach var="receiver" items="${receivers}">
-                                <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}"/>
+                               <c:choose>
+                                   <c:when test="${receiver.id == shipmentForm.receiver.id}">
+                                       <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}"
+                                                    selected="selected" />
+                                   </c:when>
+                                   <c:otherwise>
+                                       <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}" />
+                                   </c:otherwise>
+                               </c:choose>
                            </c:forEach>
                        </form:select>
                        <form:errors path="receiver" />
                     </div>
                 </div>
-             </s:bind>
+            </s:bind>
 
             <%-- price --%>
             <s:bind path="price">
@@ -119,29 +151,8 @@
                 </c:when>
             </c:choose>
 
-            <%-- List of products --%>
-            <div class="products_container">
-                <h2>Producs:</h2>
-                <c:forEach var="item" items="${shipmentForm.productsList}">
-                    <div class="product_row">
-                        <table>
-                            <tr>
-                                <td>Name:</td>
-                                <td>${item.name}</td>
-                                <td>${item.weight}</td>
-                            </tr>
+            <button type="submit" class="btn btn-default">Update</button>
 
-                        </table>
-                    <div>
-                </c:forEach>
-                <%--
-                <table>
-                    <tr>
-                        <td>products</td>
-                        <td> <form:checkboxes path="productsList" items="${products}" /></td>
-                    </tr>
-                </table>
-                --%>
             </div>
         </form:form>
     </jsp:attribute>

@@ -111,5 +111,20 @@ public class CustomerDetailDTO {
     public String getWholeName(){
         return firstName + " " + lastName;
     }
+
+    @Override
+    public String toString(){
+        return "CustomerDetailDTO{"
+                + "id=" + id
+                + "; firstName=" + firstName
+                + "; lastName=" + lastName
+                + "; houseNumber=" + houseNumber
+                + "; postalCode=" + postalCode
+                + "; city=" + city
+                + "; country=" + country
+                + "; phoneNumber=" + phoneNumber
+                + "; email=" + emailAddress
+                + '}';
+     }
     
 }

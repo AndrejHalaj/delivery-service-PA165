@@ -30,4 +30,6 @@ public interface CustomerFacade {
     Long registerCustomer(CustomerCreateDTO customerDto);
 
     Collection<CustomerDisplayDTO> getAllCustomers();
+
+    Collection<CustomerDetailDTO> getAllDetailedCustomers();
 }

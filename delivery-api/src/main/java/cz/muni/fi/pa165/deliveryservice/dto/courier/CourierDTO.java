@@ -112,10 +112,10 @@ public class CourierDTO {
     @Override
     public String toString() {
         return "CourierDTO{"
-                + "id= " + id
-                + "; firstName= " + firstName
-                + "; lastName= " + lastName
-                + "; email= " + email
+                + "id=" + id
+                + "; firstName=" + firstName
+                + "; lastName=" + lastName
+                + "; email=" + email
                 +'}';
     }
 }

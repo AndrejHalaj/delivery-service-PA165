@@ -53,6 +53,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
+    public Collection<CustomerDetailDTO>  getAllDetailedCustomers(){
+        return mapper.mapTo(service.getAllCustomers(), CustomerDetailDTO.class);
+    }
+
+    @Override
     public void updateCustomer(CustomerDetailDTO customerDto) {
         Customer customer = mapper.mapTo(CustomerDetailDTO.class, Customer.class);
         service.update(customer);

@@ -1,12 +1,16 @@
 package cz.muni.fi.pa165.deliveryservice.controllers;
 
+import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
+import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
 
+import cz.muni.fi.pa165.deliveryservice.formatters.CourierFormatter;
+import cz.muni.fi.pa165.deliveryservice.formatters.CustomerFormatter;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.deliveryservice.validators.ShipmentValidator;
 import org.omg.CORBA.Request;
@@ -14,6 +18,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Jamik on 14.12.2016.
@@ -44,10 +50,17 @@ public class ShipmentController {
     @Inject
     private ProductFacade productFacade;
 
+    @Inject
+    private CourierFacade courierFacade;
+
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        if(binder.getTarget() instanceof ShipmentCreateDTO || binder.getTarget() instanceof ShipmentDTO)
+        if(binder.getTarget() instanceof ShipmentCreateDTO || binder.getTarget() instanceof ShipmentDTO) {
             binder.addValidators(new ShipmentValidator());
+            binder.registerCustomEditor(CustomerDetailDTO.class, new CustomerFormatter());
+            binder.registerCustomEditor(CourierDTO.class, new CourierFormatter());
+        }
+
     }
 
     @RequestMapping(value= "/list", method= RequestMethod.GET)
@@ -60,8 +73,9 @@ public class ShipmentController {
     @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.POST)
     public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model){
         log.debug("ShipmentController::shipmentDetail() id=" + shipmentId);
-        model.addAttribute("receivers", customerFacade.getAllCustomers());
+        model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
         model.addAttribute("products", productFacade.findAll());
+        model.addAttribute("couriers", courierFacade.getAllCouriers());
         model.addAttribute("shipmentForm", shipmentFacade.findById(shipmentId));
 
         return "shipment/detail";
@@ -71,7 +85,7 @@ public class ShipmentController {
     public String newShipment(Model model, HttpServletRequest request) {
         model.addAttribute("shipmentForm", new ShipmentCreateDTO());
         //model.addAttribute("signedCustomer", request.getSession().getAttribute("authenticatedUser"));
-        model.addAttribute("customerList", customerFacade.getAllCustomers());
+        model.addAttribute("customerList", customerFacade.getAllDetailedCustomers());
         log.debug("ShipmentController::newShipment()");
         return "shipment/new";
     }
@@ -114,8 +128,13 @@ public class ShipmentController {
     public String update(@ModelAttribute("shipmentForm") ShipmentDTO formBean, BindingResult bindRes) {
 
         if(bindRes.hasErrors()){
+            List<ObjectError> errs= bindRes.getAllErrors();
+            for(ObjectError err : errs)
+                System.out.println("BindError: " + err.getDefaultMessage());
+
             log.debug("ShipmentController::update() has binding errors");
-            return "shipment/new";
+            log.debug("Broken form: " + formBean.toString());
+            return "shipment/detail";
         }
 
         log.debug("ShipmentController::update()");
