@@ -7,11 +7,21 @@ import javax.validation.constraints.NotNull;
  */
 public class CustomerAuthDTO {
 
+    private Long id;
+
     @NotNull
     private String emailAddress;
 
     @NotNull
     private String password;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEmailAddress() {
         return emailAddress;

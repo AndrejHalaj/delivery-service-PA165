@@ -33,7 +33,7 @@
         </table>
         <br/>
         <c:if test="${customerDetail.id == authenticatedUser.id}">
-            <a href="${pageContext.request.contextPath}/user/update/${customerDetail.id}"><button type="button" class="btn btn-primary btn-md">Edit details</button></a>
+            <a href="${pageContext.request.contextPath}/customer/update/${customerDetail.id}"><button type="button" class="btn btn-primary btn-md">Edit details</button></a>
         </c:if>
     </jsp:attribute>
 </my:pagetemplate>

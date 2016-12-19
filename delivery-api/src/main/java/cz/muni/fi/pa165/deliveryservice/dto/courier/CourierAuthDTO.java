@@ -8,6 +8,8 @@ import javax.validation.constraints.Size;
  */
 public class CourierAuthDTO {
 
+    private Long id;
+
     // TODO: some validation
     @NotNull
     private String email;
@@ -16,6 +18,14 @@ public class CourierAuthDTO {
     @NotNull
     @Size(min=6, max=25)
     private String password;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
