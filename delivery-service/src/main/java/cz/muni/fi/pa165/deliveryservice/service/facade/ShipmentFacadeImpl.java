@@ -61,6 +61,16 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
 	}
 
 	@Override
+	public void updateShipment(ShipmentDTO shipment) {
+		Shipment ship = shipmentService.findById(shipment.getId());
+		ship.setCourier(courierService.findById(shipment.getCourier().getId()));
+		ship.setReceiver(customerService.getCustomerById(shipment.getReceiver().getId()));
+		ship.setDistance(shipment.getDistance());
+		ship.setPrice(ship.getPrice());
+		shipmentService.updateShipment(ship);
+	}
+
+	@Override
 	public void deliverShipment(Long shipmentId) {
 		shipmentService.deliverShipment(shipmentService.findById(shipmentId));
 	}

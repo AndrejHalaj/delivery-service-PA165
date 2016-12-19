@@ -64,7 +64,7 @@
 
                         <%-- Detail button --%>
                         <form method="post" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
-                            <button class="btn btn-default" type="submit">Detail</button>
+                            <button class="btn btn-default" type="submit">Edit</button>
                         </form>
                     </div>
                 </div>

@@ -136,8 +136,8 @@ public class ShipmentController {
             log.debug("Broken form: " + formBean.toString());
             return "shipment/detail";
         }
-
         log.debug("ShipmentController::update()");
+        shipmentFacade.updateShipment(formBean);
         return "redirect:/shipment/list";
     }
 

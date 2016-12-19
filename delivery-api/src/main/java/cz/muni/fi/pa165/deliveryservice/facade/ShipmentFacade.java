@@ -14,7 +14,9 @@ public interface ShipmentFacade {
 	void createShipment(ShipmentCreateDTO shipmentDTO);
 
 	void updateShipmentCourier(ShipmentUpdateCourierDTO shipmentUpdateCourierDTO);
-    
+
+    void updateShipment(ShipmentDTO shipment);
+
     void deliverShipment(Long shipmentId);
     
     void cancelShipment(Long shipmentId);

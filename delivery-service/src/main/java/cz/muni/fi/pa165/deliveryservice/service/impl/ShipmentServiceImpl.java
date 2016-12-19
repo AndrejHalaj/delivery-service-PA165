@@ -44,6 +44,12 @@ public class ShipmentServiceImpl implements ShipmentService {
 	}
 
 	@Override
+	public void updateShipment(Shipment shipment) {
+		System.out.println("ShipmentServiceImpl::UpdateShipment()->" + shipment.toString());
+		shipmentDao.update(shipment);
+	}
+
+	@Override
 	public void deliverShipment(Shipment shipment) {
 		if (!shipment.getShipmentState().equals(ShipmentState.TRANSFERED)) 
 			throw new IllegalStateException("Invalid transition from " + shipment.getShipmentState() + " to " + ShipmentState.DELIVERED);

@@ -16,7 +16,9 @@ public interface ShipmentService {
 	void createShipment(Shipment shipment);
 
 	void updateShipmentCourier(Shipment shipment, Courier courier, String trackingId);
-    
+
+    void updateShipment(Shipment shipment);
+
     void deliverShipment(Shipment shipment);
     
     void cancelShipment(Shipment shipment);
