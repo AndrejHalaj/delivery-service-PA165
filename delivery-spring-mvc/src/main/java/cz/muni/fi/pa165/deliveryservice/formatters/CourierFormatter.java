@@ -25,6 +25,7 @@ public class CourierFormatter extends PropertyEditorSupport {
         if(text == null || text.isEmpty()) {
             System.out.println("CourierFormatter::setAsText null or empty text");
             setValue(null);
+            return;
         }
         String[] attr = text.split(";");
 

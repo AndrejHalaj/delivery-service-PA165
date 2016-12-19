@@ -110,4 +110,16 @@ public class ProductDTO {
 
         return true;
     }
+
+    @Override
+    public String toString(){
+        return "ProductDTO{"
+                + "id=" + id
+                + "; name=" + name
+                + "; description=" + description
+                + "; producer=" + producer
+                + "; weight=" + weight
+                + "; shipmentId=" + shipmentId
+                + '}';
+    }
 }

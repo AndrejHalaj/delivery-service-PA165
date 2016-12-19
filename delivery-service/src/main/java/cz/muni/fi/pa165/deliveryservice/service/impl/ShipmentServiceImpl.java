@@ -82,7 +82,10 @@ public class ShipmentServiceImpl implements ShipmentService {
 	private String generateTrackingId(Shipment shipment) {
 		String trackingId = shipment.getReceiver().getCity().substring(0, 2) +
 							shipment.getReceiver().getCity().substring(0,2) +
-							shipment.getReceiver().getHouseNumber().substring(0,3);
+							shipment.getReceiver().getHouseNumber().substring(0,3) +
+							shipment.getSender().getId() +
+							shipment.getReceiver().getId();
+
 		return trackingId;
 	}
 }

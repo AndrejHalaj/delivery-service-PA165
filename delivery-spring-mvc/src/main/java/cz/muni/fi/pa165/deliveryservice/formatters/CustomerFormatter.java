@@ -32,8 +32,11 @@ public class CustomerFormatter extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String text){
-        if(text == null || text.isEmpty())
+        if(text == null || text.isEmpty()) {
+            System.out.println("CustomerFormatter::setAsText() text is null or empty");
             setValue(null);
+            return;
+        }
 
         CustomerDetailDTO customer = new CustomerDetailDTO();
 

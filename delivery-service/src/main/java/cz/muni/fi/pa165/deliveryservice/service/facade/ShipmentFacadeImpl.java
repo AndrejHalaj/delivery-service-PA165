@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
@@ -50,7 +51,9 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
 		shipment.setPrice(shipmentDTO.getPrice());
 		shipment.setShipmentState(Shipment.ShipmentState.NEW);
 		shipment.setShipmentCreated(new Date());
-		shipmentDTO.getProductsList().forEach(p -> shipment.addProduct(productService.getProductById(p)));
+		//shipmentDTO.getProductsList().forEach(p -> shipment.addProduct(productService.getProductById(p)));
+		for (Long itr : shipmentDTO.getProductsList())
+			shipment.addProduct(productService.getProductById(itr));
 		shipmentService.createShipment(shipment);
 	}
 
@@ -67,6 +70,9 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
 		ship.setReceiver(customerService.getCustomerById(shipment.getReceiver().getId()));
 		ship.setDistance(shipment.getDistance());
 		ship.setPrice(ship.getPrice());
+		for(ProductDTO itr : shipment.getProductsList()){
+			ship.addProduct(productService.getProductById(itr.getId()));
+		}
 		shipmentService.updateShipment(ship);
 	}
 

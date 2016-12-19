@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.deliveryservice.controllers;
 
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
@@ -11,6 +12,7 @@ import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
 
 import cz.muni.fi.pa165.deliveryservice.formatters.CourierFormatter;
 import cz.muni.fi.pa165.deliveryservice.formatters.CustomerFormatter;
+import cz.muni.fi.pa165.deliveryservice.formatters.ProductFormatter;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.deliveryservice.validators.ShipmentValidator;
 import org.omg.CORBA.Request;
@@ -59,6 +61,7 @@ public class ShipmentController {
             binder.addValidators(new ShipmentValidator());
             binder.registerCustomEditor(CustomerDetailDTO.class, new CustomerFormatter());
             binder.registerCustomEditor(CourierDTO.class, new CourierFormatter());
+            binder.registerCustomEditor(ProductDTO.class, new ProductFormatter());
         }
 
     }
@@ -86,6 +89,7 @@ public class ShipmentController {
         model.addAttribute("shipmentForm", new ShipmentCreateDTO());
         //model.addAttribute("signedCustomer", request.getSession().getAttribute("authenticatedUser"));
         model.addAttribute("customerList", customerFacade.getAllDetailedCustomers());
+        model.addAttribute("products", productFacade.findAll());
         log.debug("ShipmentController::newShipment()");
         return "shipment/new";
     }
@@ -111,10 +115,17 @@ public class ShipmentController {
 
         if(bindRes.hasErrors()) {
             log.debug("ShipmentController::create() has binding erros");
+
+            for(ObjectError itr : bindRes.getAllErrors())
+                System.out.println("ShipmentController::create() ->" + itr.getDefaultMessage());
+
             return "shipment/new";
         }
 
-        log.debug("ShipmentController::create() senderId=" + formBean.getCustomerSenderId() + " ,receiver id=" + formBean.getCustomerReceiverId() + " , price = " + formBean.getPrice() + " , distance = " + formBean.getDistance());
+        for(Long itr : formBean.getProductsList())
+            log.debug("ShipmentController::create() product->"+itr);
+
+        log.debug("ShipmentController::create() senderId=" + formBean.getCustomerSenderId() + " ,receiver id=" + formBean.getCustomerReceiverId() + " , price = " + formBean.getPrice() + " , distance = " + formBean.getDistance() + " ,products="+ formBean.getProductsList().size());
         // create the shipment
         shipmentFacade.createShipment(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "Shipment was created.");
@@ -137,6 +148,10 @@ public class ShipmentController {
             return "shipment/detail";
         }
         log.debug("ShipmentController::update()");
+
+        for(ProductDTO itr : formBean.getProductsList())
+            System.out.println("ShipmentController::update() products->" + itr.getName());
+
         shipmentFacade.updateShipment(formBean);
         return "redirect:/shipment/list";
     }

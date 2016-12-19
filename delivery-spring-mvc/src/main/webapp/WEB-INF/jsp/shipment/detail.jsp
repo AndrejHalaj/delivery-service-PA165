@@ -151,6 +151,13 @@
                 </c:when>
             </c:choose>
 
+            <%-- Products list with checkboxes --%>
+            <h2>Products</h2>
+            <c:forEach var="product" items="${products}">
+                <form:checkbox path="productsList" class="form-control" value="${product}" label="${product.name}"
+                    checked="${shipmentForm.id==product.shipmentId ? 'checked' : ''}"/><br>
+            </c:forEach>
+            
             <button type="submit" class="btn btn-default">Update</button>
 
             </div>

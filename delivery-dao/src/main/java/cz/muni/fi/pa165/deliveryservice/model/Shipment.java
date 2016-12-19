@@ -170,10 +170,11 @@ public class Shipment {
         return "trackingId=" + trackingId
                 + " ,price=" + price
                 + " ,distance=" + distance
-                + " ,sender" + (sender == null ? "null" : sender.getFirstName())
+                + " ,sender=" + (sender == null ? "null" : sender.getFirstName())
                 + " ,receiver=" + (receiver == null ? "null" : receiver.getFirstName())
                 + " ,courier=" + (courier == null ? "null" : courier.getFirstName())
                 + " ,created=" + shipmentCreated.toString()
-                + " ,state=" + shipmentState ;
+                + " ,state=" + shipmentState
+                + " ,products" + productsList.size();
     }
 }
