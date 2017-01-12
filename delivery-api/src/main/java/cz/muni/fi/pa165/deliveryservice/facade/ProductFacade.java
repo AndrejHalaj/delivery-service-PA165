@@ -1,9 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.facade;
 
-import java.util.List;
-
-import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
+
+import java.util.List;
 
 /**
  * @author Andrej Halaj

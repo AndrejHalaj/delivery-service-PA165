@@ -5,10 +5,11 @@
  */
 package cz.muni.fi.pa165.deliveryservice.service;
 
-import java.util.Collection;
-import java.util.List;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  *

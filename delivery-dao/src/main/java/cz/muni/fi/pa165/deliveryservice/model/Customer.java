@@ -5,12 +5,11 @@
  */
 package cz.muni.fi.pa165.deliveryservice.model;
 
-import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.*;
 
 /**
  *

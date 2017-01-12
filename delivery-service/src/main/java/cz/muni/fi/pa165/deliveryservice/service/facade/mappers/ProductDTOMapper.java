@@ -1,11 +1,11 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade.mappers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.model.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDTOMapper {
 

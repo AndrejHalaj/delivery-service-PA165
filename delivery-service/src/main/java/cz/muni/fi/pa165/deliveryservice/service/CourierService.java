@@ -1,10 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.service;
 
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-
-import org.springframework.stereotype.Service;
 
 /**
  * Created by Jamik on 22.11.2016.

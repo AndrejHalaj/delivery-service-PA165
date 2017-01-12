@@ -1,24 +1,18 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import java.util.Date;
-
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentUpdateCourierDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
-import cz.muni.fi.pa165.deliveryservice.service.CourierService;
-import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
-import cz.muni.fi.pa165.deliveryservice.service.MappingService;
-import cz.muni.fi.pa165.deliveryservice.service.ProductService;
-import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
+import cz.muni.fi.pa165.deliveryservice.service.*;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Viktor Bako

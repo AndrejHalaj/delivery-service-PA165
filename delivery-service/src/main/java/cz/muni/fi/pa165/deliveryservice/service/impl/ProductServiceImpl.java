@@ -3,13 +3,11 @@ package cz.muni.fi.pa165.deliveryservice.service.impl;
 import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 import cz.muni.fi.pa165.deliveryservice.model.Product;
 import cz.muni.fi.pa165.deliveryservice.service.ProductService;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * @author Andrej Halaj

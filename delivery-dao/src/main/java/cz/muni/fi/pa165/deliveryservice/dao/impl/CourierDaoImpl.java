@@ -1,16 +1,14 @@
 package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
-import java.util.Collection;
+import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
+import cz.muni.fi.pa165.deliveryservice.model.Courier;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
-import cz.muni.fi.pa165.deliveryservice.model.Courier;
+import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -29,8 +27,8 @@ public class CourierDaoImpl implements CourierDao {
 	}
 
 	@Override
-	public void update(Courier courier) {
-		em.merge(courier);
+	public Courier update(Courier courier) {
+		return em.merge(courier);
 	}
 
 	@Override

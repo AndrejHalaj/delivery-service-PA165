@@ -8,12 +8,11 @@ import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
-
-import java.util.Collection;
-import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.Collection;
 
 /**
  *

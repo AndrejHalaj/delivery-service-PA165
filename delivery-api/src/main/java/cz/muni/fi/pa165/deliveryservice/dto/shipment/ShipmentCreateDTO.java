@@ -1,10 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.dto.shipment;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.validation.constraints.NotNull;
 
 /**
  * @author Viktor Bako

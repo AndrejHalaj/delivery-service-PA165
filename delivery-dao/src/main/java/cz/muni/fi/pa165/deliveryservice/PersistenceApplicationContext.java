@@ -1,9 +1,8 @@
 package cz.muni.fi.pa165.deliveryservice;
 
-import javax.sql.DataSource;
-
 import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
 import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
+import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
+import javax.sql.DataSource;
 
 /**
  *

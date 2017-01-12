@@ -2,8 +2,6 @@ package cz.muni.fi.pa165.deliveryservice.dto.product;
 
 import java.util.Objects;
 
-import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
-
 /**
  * @author Andrej Halaj
  */

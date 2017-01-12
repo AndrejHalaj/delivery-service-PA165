@@ -3,15 +3,15 @@ package cz.muni.fi.pa165.deliveryservice.service.impl;
 import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
-import java.math.BigInteger;
-import java.security.SecureRandom;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.inject.Inject;
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Service;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.Collection;
 
 /**
  *

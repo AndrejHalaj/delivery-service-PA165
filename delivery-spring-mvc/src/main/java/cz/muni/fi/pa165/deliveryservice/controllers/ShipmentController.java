@@ -9,13 +9,12 @@ import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
-
 import cz.muni.fi.pa165.deliveryservice.formatters.CourierFormatter;
 import cz.muni.fi.pa165.deliveryservice.formatters.CustomerFormatter;
 import cz.muni.fi.pa165.deliveryservice.formatters.ProductFormatter;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.deliveryservice.validators.ShipmentValidator;
-import org.omg.CORBA.Request;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +22,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-import org.apache.log4j.Logger;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.inject.Inject;

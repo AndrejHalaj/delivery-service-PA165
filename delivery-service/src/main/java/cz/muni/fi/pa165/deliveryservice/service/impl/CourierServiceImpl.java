@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.deliveryservice.service.impl;
 import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
-
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 

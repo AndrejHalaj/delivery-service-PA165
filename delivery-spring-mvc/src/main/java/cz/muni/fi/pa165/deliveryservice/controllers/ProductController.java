@@ -1,27 +1,22 @@
 package cz.muni.fi.pa165.deliveryservice.controllers;
 
-import javax.inject.Inject;
-import javax.validation.Valid;
-
+import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
+import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
+import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.deliveryservice.service.facade.mappers.ProductDTOMapper;
+import cz.muni.fi.pa165.deliveryservice.validators.ProductValidator;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
-import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
-import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
-import cz.muni.fi.pa165.deliveryservice.service.facade.mappers.ProductDTOMapper;
-import cz.muni.fi.pa165.deliveryservice.validators.ProductValidator;
+import javax.inject.Inject;
+import javax.validation.Valid;
 
 /**
  * @author Viktor Bako

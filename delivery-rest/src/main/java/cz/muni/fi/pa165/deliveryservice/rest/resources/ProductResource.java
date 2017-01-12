@@ -1,23 +1,17 @@
 package cz.muni.fi.pa165.deliveryservice.rest.resources;
 
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.validation.Valid;
-
-import org.springframework.dao.DataAccessException;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
 import cz.muni.fi.pa165.deliveryservice.rest.exceptions.ResourceAlreadyExistsException;
 import cz.muni.fi.pa165.deliveryservice.rest.exceptions.ResourceNotFoundException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import javax.inject.Inject;
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author Viktor Bako

@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.dao;
 
 import cz.muni.fi.pa165.deliveryservice.model.Product;
+
 import java.util.List;
 
 
@@ -20,7 +21,7 @@ public interface ProductDao {
 	 * 
 	 * @param product product that is to be updated
 	 */
-	void update(Product product);
+	Product update(Product product);
 	
 	/**
 	 * Deletes {@link Product} object.

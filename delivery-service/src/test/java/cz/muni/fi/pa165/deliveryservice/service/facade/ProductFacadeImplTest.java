@@ -13,7 +13,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
-
 import java.util.List;
 
 import static org.testng.AssertJUnit.assertEquals;

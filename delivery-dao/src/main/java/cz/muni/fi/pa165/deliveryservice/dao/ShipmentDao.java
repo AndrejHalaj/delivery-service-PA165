@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.deliveryservice.dao;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 
 import java.util.List;
-import javassist.NotFoundException;
 
 /**
  * Created by Jamik on 29.10.2016.

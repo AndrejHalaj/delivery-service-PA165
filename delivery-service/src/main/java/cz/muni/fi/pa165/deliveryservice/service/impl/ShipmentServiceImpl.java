@@ -1,17 +1,15 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
-
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment.ShipmentState;
 import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
+import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Viktor Bako

@@ -6,8 +6,9 @@
 package cz.muni.fi.pa165.deliveryservice.dao;
 
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
-import java.util.Collection;
 import javassist.NotFoundException;
+
+import java.util.Collection;
 
 /**
  *
@@ -35,7 +36,7 @@ public interface CustomerDao {
      * @param customer customer with updated values
      * @throws NotFoundException when customer is not found
      */
-    void update(Customer customer) throws NotFoundException;
+    Customer update(Customer customer) throws NotFoundException;
 
     /**
      *

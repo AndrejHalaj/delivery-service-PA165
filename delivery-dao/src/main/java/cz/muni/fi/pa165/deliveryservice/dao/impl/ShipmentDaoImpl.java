@@ -2,14 +2,13 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
-import java.util.Collections;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
-import javassist.NotFoundException;
 
 /**
  * Created by Jamik on 29.10.2016.

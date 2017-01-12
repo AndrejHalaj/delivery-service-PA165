@@ -1,8 +1,8 @@
 package cz.muni.fi.pa165.deliveryservice.dao;
 
-import java.util.Collection;
-
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
+
+import java.util.Collection;
 
 /**
  * @author Viktor Bako
@@ -21,7 +21,7 @@ public interface CourierDao {
 	 * 
 	 * @param courier courier entity with updated values
 	 */
-	void update(Courier courier);
+	Courier update(Courier courier);
 	
 	/**
 	 * Deletes courier entity.

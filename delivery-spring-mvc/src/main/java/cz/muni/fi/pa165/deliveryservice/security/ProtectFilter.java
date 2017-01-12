@@ -3,9 +3,9 @@ package cz.muni.fi.pa165.deliveryservice.security;
 /**
  * Created by Jamik on 16.12.2016.
  */
-import javax.servlet.annotation.WebFilter;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

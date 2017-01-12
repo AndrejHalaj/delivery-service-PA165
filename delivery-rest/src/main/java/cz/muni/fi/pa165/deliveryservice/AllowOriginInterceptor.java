@@ -1,8 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice;
 
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AllowOriginInterceptor extends HandlerInterceptorAdapter {
 

@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.dto.courier;
 
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
+
 import java.util.Set;
 
 /**

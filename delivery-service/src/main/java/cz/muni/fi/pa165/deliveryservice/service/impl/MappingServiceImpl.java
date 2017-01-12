@@ -1,15 +1,13 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import javax.inject.Inject;
-
+import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 
-import cz.muni.fi.pa165.deliveryservice.service.MappingService;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  *

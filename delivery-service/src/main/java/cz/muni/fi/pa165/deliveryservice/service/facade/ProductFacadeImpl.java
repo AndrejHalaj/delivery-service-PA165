@@ -7,7 +7,6 @@ import cz.muni.fi.pa165.deliveryservice.model.Product;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import cz.muni.fi.pa165.deliveryservice.service.ProductService;
 import cz.muni.fi.pa165.deliveryservice.service.facade.mappers.ProductDTOMapper;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

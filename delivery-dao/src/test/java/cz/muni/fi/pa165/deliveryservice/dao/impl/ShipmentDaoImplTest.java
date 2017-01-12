@@ -3,15 +3,10 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
 import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
 import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
-import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
-import cz.muni.fi.pa165.deliveryservice.model.Product;
 import cz.muni.fi.pa165.deliveryservice.model.Shipment;
-import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,6 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -95,7 +94,6 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testCreate_nullEntity() {
         shipDao.create(null);
-        Assert.fail("IllegalArgumentException should have been thrown");
     }
 
     @Test
@@ -106,7 +104,6 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testFindById_nullEntity() throws NotFoundException {
         shipDao.findById(null);
-        Assert.fail("IllegalArgumentException should have been thrown");
     }
 
     @Test
@@ -123,7 +120,6 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testDelete_nullEntity() {
         shipDao.delete(null);
-        Assert.fail("IllegalArgumentException should have been thrown");
     }
     
     @Test
@@ -137,14 +133,12 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testUpdate_nullEntity() throws NotFoundException {
 		shipDao.update(null);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testUpdate_entityNotFound() {
 		shipDao.delete(ship);
 		shipDao.update(ship);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test

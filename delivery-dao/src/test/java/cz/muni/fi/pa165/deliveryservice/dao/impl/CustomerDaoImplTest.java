@@ -1,19 +1,18 @@
 package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import org.testng.Assert;
+import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
+import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
+import cz.muni.fi.pa165.deliveryservice.model.Customer;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-
-import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
-import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
-import cz.muni.fi.pa165.deliveryservice.model.Customer;
-import javassist.NotFoundException;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  * @author Viktor Bako
@@ -57,7 +56,6 @@ public class CustomerDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testCreate_nullEntity() {
 		customerDao.create(null);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test
@@ -68,7 +66,6 @@ public class CustomerDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testFindById_nullEntity() throws NotFoundException {
 		customerDao.findById(null);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test
@@ -85,7 +82,6 @@ public class CustomerDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testDelete_nullEntity() {
 		customerDao.delete(null);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test
@@ -99,7 +95,6 @@ public class CustomerDaoImplTest extends AbstractTestNGSpringContextTests {
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testUpdate_nullEntity() throws NotFoundException {
 		customerDao.update(null);
-		Assert.fail("IllegalArgumentException should have been thrown");
 	}
 	
 	@Test

@@ -7,14 +7,14 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
-import java.util.Collection;
-import java.util.Collections;
 import javassist.NotFoundException;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -38,8 +38,8 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
-    public void update(Customer customer) throws NotFoundException {        
-        em.merge(customer);
+    public Customer update(Customer customer) throws NotFoundException {
+        return em.merge(customer);
     }
 
     @Override

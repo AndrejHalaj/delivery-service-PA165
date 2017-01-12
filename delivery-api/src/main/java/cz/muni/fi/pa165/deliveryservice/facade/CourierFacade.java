@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.deliveryservice.facade;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierAuthDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
-import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 
 import java.util.List;
 

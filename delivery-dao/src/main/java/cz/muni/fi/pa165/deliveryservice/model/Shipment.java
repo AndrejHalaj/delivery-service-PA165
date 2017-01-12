@@ -2,7 +2,10 @@ package cz.muni.fi.pa165.deliveryservice.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Jamik on 29.10.2016.

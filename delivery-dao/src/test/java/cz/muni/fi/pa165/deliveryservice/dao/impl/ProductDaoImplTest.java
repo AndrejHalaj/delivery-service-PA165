@@ -1,10 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.persistence.NoResultException;
-
+import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
+import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
+import cz.muni.fi.pa165.deliveryservice.model.Product;
+import javassist.NotFoundException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -14,10 +13,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
-import cz.muni.fi.pa165.deliveryservice.model.Product;
-import javassist.NotFoundException;
-import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
+import javax.inject.Inject;
+import java.util.List;
 
 /**
  *
@@ -106,10 +103,10 @@ public class ProductDaoImplTest extends AbstractTestNGSpringContextTests {
 		productDao.update(product);
 	}
 
-    @Test(expectedExceptions=NoResultException.class)
+    @Test
     public void testDelete() {
         productDao.delete(product);
 
-        productDao.findById(product.getId());
+        Assert.assertNull(productDao.findById(product.getId()));
     }
 }

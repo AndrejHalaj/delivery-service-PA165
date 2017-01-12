@@ -1,9 +1,11 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
-import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertEquals;
-import javax.inject.Inject;
-
+import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
+import cz.muni.fi.pa165.deliveryservice.model.Courier;
+import cz.muni.fi.pa165.deliveryservice.model.Shipment;
+import cz.muni.fi.pa165.deliveryservice.model.Shipment.ShipmentState;
+import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
+import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,12 +16,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
-import cz.muni.fi.pa165.deliveryservice.model.Courier;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment.ShipmentState;
-import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
-import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
+import javax.inject.Inject;
+
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class ShipmentServiceImplTest extends AbstractTestNGSpringContextTests {

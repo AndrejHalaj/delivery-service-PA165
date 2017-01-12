@@ -5,8 +5,8 @@
  */
 package cz.muni.fi.pa165.deliveryservice.model;
 
-import java.util.Objects;
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * @author Andrej Halaj

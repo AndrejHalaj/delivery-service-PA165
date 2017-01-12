@@ -1,15 +1,13 @@
 package cz.muni.fi.pa165.deliveryservice.dto.shipment;
 
+import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.validation.constraints.NotNull;
-
-import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
-import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
-import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 
 /**
  * @author Viktor Bako

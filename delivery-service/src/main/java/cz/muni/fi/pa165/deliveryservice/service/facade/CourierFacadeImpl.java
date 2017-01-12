@@ -7,13 +7,11 @@ import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import javax.inject.Inject;
 
 /**
  * Created by Jamik on 22.11.2016.
