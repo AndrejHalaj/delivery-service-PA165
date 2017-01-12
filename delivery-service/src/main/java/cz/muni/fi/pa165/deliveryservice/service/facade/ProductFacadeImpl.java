@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.deliveryservice.service.facade;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
-import cz.muni.fi.pa165.deliveryservice.model.Product;
+import cz.muni.fi.pa165.deliveryservice.entity.Product;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import cz.muni.fi.pa165.deliveryservice.service.ProductService;
 import cz.muni.fi.pa165.deliveryservice.service.facade.mappers.ProductDTOMapper;

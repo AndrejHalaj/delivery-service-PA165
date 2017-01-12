@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.deliveryservice.service.facade.mappers;
 
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductManipulationDTO;
-import cz.muni.fi.pa165.deliveryservice.model.Product;
+import cz.muni.fi.pa165.deliveryservice.entity.Product;
 
 import java.util.ArrayList;
 import java.util.List;

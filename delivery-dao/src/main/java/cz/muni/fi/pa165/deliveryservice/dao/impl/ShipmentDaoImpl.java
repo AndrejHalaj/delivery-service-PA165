@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment;
+import cz.muni.fi.pa165.deliveryservice.entity.Shipment;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

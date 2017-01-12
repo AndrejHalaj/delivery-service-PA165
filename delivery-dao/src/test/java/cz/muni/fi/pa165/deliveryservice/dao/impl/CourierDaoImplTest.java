@@ -2,7 +2,7 @@ package cz.muni.fi.pa165.deliveryservice.dao.impl;
 
 import cz.muni.fi.pa165.deliveryservice.PersistenceApplicationContext;
 import cz.muni.fi.pa165.deliveryservice.dao.CourierDao;
-import cz.muni.fi.pa165.deliveryservice.model.Courier;
+import cz.muni.fi.pa165.deliveryservice.entity.Courier;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;

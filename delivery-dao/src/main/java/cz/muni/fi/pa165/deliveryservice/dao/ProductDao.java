@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.deliveryservice.dao;
 
-import cz.muni.fi.pa165.deliveryservice.model.Product;
+import cz.muni.fi.pa165.deliveryservice.entity.Product;
 
 import java.util.List;
 

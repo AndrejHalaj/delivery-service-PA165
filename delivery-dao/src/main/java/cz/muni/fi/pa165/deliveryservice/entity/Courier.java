@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.deliveryservice.model;
+package cz.muni.fi.pa165.deliveryservice.entity;
 
 import javax.persistence.*;
 import java.util.Collections;

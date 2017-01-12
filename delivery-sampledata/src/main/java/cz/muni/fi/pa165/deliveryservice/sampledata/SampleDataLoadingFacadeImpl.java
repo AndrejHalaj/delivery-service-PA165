@@ -1,10 +1,10 @@
 package cz.muni.fi.pa165.deliveryservice.sampledata;
 
-import cz.muni.fi.pa165.deliveryservice.model.Courier;
-import cz.muni.fi.pa165.deliveryservice.model.Customer;
-import cz.muni.fi.pa165.deliveryservice.model.Product;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment.ShipmentState;
+import cz.muni.fi.pa165.deliveryservice.entity.Courier;
+import cz.muni.fi.pa165.deliveryservice.entity.Customer;
+import cz.muni.fi.pa165.deliveryservice.entity.Product;
+import cz.muni.fi.pa165.deliveryservice.entity.Shipment;
+import cz.muni.fi.pa165.deliveryservice.entity.Shipment.ShipmentState;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.ProductService;

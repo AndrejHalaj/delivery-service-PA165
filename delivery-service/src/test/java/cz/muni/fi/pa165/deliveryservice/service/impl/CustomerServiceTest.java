@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
-import cz.muni.fi.pa165.deliveryservice.model.Customer;
+import cz.muni.fi.pa165.deliveryservice.entity.Customer;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import javassist.NotFoundException;

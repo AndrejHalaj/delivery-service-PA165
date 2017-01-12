@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
-import cz.muni.fi.pa165.deliveryservice.model.Product;
+import cz.muni.fi.pa165.deliveryservice.entity.Product;
 import cz.muni.fi.pa165.deliveryservice.service.ProductService;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import org.hibernate.service.spi.ServiceException;

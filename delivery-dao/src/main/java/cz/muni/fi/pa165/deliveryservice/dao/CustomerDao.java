@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa165.deliveryservice.dao;
 
-import cz.muni.fi.pa165.deliveryservice.model.Customer;
+import cz.muni.fi.pa165.deliveryservice.entity.Customer;
 import javassist.NotFoundException;
 
 import java.util.Collection;

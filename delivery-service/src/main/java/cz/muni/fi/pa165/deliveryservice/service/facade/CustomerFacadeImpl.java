@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
-import cz.muni.fi.pa165.deliveryservice.model.Customer;
+import cz.muni.fi.pa165.deliveryservice.entity.Customer;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import org.springframework.stereotype.Service;

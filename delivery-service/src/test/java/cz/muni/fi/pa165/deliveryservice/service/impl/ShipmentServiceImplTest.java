@@ -1,9 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
-import cz.muni.fi.pa165.deliveryservice.model.Courier;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment.ShipmentState;
+import cz.muni.fi.pa165.deliveryservice.entity.Courier;
+import cz.muni.fi.pa165.deliveryservice.entity.Shipment;
+import cz.muni.fi.pa165.deliveryservice.entity.Shipment.ShipmentState;
 import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import org.hibernate.service.spi.ServiceException;

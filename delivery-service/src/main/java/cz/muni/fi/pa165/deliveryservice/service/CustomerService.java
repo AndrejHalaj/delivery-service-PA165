@@ -5,7 +5,7 @@
  */
 package cz.muni.fi.pa165.deliveryservice.service;
 
-import cz.muni.fi.pa165.deliveryservice.model.Customer;
+import cz.muni.fi.pa165.deliveryservice.entity.Customer;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

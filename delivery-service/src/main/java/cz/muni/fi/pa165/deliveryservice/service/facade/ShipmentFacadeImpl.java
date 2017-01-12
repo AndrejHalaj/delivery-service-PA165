@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentUpdateCourierDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
-import cz.muni.fi.pa165.deliveryservice.model.Shipment;
+import cz.muni.fi.pa165.deliveryservice.entity.Shipment;
 import cz.muni.fi.pa165.deliveryservice.service.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
