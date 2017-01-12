@@ -26,6 +26,16 @@ public class User {
 
     String passwordHash;
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+    
+    
+    
     public String getPasswordHash() {
         return passwordHash;
     }

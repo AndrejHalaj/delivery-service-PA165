@@ -5,14 +5,17 @@ import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.courier.CourierDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Courier;
+import cz.muni.fi.pa165.deliveryservice.model.User;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
+import cz.muni.fi.pa165.deliveryservice.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Created by Jamik on 22.11.2016.
@@ -23,6 +26,9 @@ public class CourierFacadeImpl implements CourierFacade {
 
     private final CourierService courierService;
     private final MappingService mappingService;
+    
+    @Inject
+    private UserService userService;
 
     @Autowired
     public CourierFacadeImpl(CourierService courierService, MappingService mappingService) {
@@ -42,7 +48,16 @@ public class CourierFacadeImpl implements CourierFacade {
         c.setFirstName(courier.getFirstName());
         c.setLastName(courier.getLastName());
         c.setEmail(courier.getEmail());
+        
         courierService.register(c, courier.getPassword());
+        
+        User user = new User();
+        user.setEmailAddress(courier.getEmail());
+        user.setUserId(c.getId());
+        user.setIsCourier(true);
+        
+        userService.register(user, courier.getPassword());
+        
         return c.getId();
     }
 
