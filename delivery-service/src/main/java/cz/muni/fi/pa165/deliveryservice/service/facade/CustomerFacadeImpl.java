@@ -53,11 +53,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
     }
 
     @Override
-    public Collection<CustomerDetailDTO>  getAllDetailedCustomers(){
-        return mapper.mapTo(service.getAllCustomers(), CustomerDetailDTO.class);
-    }
-
-    @Override
     public void updateCustomer(CustomerDetailDTO customerDto) {
         Customer customer = mapper.mapTo(CustomerDetailDTO.class, Customer.class);
         service.update(customer);
@@ -86,5 +81,10 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Override
     public void deleteCustomer(Long id) {
         service.delete(service.getCustomerById(id));
+    }
+
+    @Override
+    public Collection<CustomerDetailDTO> getAllDetailedCustomers() {
+        return mapper.mapTo(service.getAllCustomers(), CustomerDetailDTO.class);
     }
 }

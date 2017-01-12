@@ -11,18 +11,18 @@ import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentUpdateCourierDTO;
  */
 public interface ShipmentFacade {
 
-	void createShipment(ShipmentCreateDTO shipmentDTO);
+    void createShipment(ShipmentCreateDTO shipmentDTO);
 
-	void updateShipmentCourier(ShipmentUpdateCourierDTO shipmentUpdateCourierDTO);
+    void updateShipmentCourier(ShipmentUpdateCourierDTO shipmentUpdateCourierDTO);
 
     void updateShipment(ShipmentDTO shipment);
 
     void deliverShipment(Long shipmentId);
-    
+
     void cancelShipment(Long shipmentId);
 
     ShipmentDTO findById(Long id);
 
     List<ShipmentDTO> findAll();
-	
+
 }

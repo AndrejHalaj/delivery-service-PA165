@@ -26,76 +26,76 @@ import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
 @Service
 @Transactional
 public class ShipmentFacadeImpl implements ShipmentFacade {
-	
-	@Inject
-	private ShipmentService shipmentService;
-	
-	@Inject
-	private CourierService courierService;
-	
-	@Inject
-	private CustomerService customerService;
-	
-	@Inject
-	private ProductService productService;
-	
-	@Inject
-	private MappingService mappingService;
 
-	@Override
-	public void createShipment(ShipmentCreateDTO shipmentDTO) {
-		Shipment shipment = new Shipment();
-		shipment.setSender(customerService.getCustomerById(shipmentDTO.getCustomerSenderId()));
-		shipment.setReceiver(customerService.getCustomerById(shipmentDTO.getCustomerReceiverId()));
-		shipment.setDistance(shipmentDTO.getDistance());
-		shipment.setPrice(shipmentDTO.getPrice());
-		shipment.setShipmentState(Shipment.ShipmentState.NEW);
-		shipment.setShipmentCreated(new Date());
-		//shipmentDTO.getProductsList().forEach(p -> shipment.addProduct(productService.getProductById(p)));
-		for (Long itr : shipmentDTO.getProductsList())
-			shipment.addProduct(productService.getProductById(itr));
-		shipmentService.createShipment(shipment);
-	}
+    @Inject
+    private ShipmentService shipmentService;
 
-	@Override
-	public void updateShipmentCourier(ShipmentUpdateCourierDTO shipmentUpdateCourierDTO) {
-		shipmentService.updateShipmentCourier(shipmentService.findById(shipmentUpdateCourierDTO.getShipmentId()), courierService.findById(shipmentUpdateCourierDTO.getCourierId())
-				, shipmentUpdateCourierDTO.getTrackingId());
-	}
+    @Inject
+    private CourierService courierService;
 
-	@Override
-	public void updateShipment(ShipmentDTO shipment) {
-		Shipment ship = shipmentService.findById(shipment.getId());
-		ship.setCourier(courierService.findById(shipment.getCourier().getId()));
-		ship.setReceiver(customerService.getCustomerById(shipment.getReceiver().getId()));
-		ship.setDistance(shipment.getDistance());
-		ship.setPrice(ship.getPrice());
-		for(ProductDTO itr : shipment.getProductsList()){
-			ship.addProduct(productService.getProductById(itr.getId()));
-		}
-		shipmentService.updateShipment(ship);
-	}
+    @Inject
+    private CustomerService customerService;
 
-	@Override
-	public void deliverShipment(Long shipmentId) {
-		shipmentService.deliverShipment(shipmentService.findById(shipmentId));
-	}
+    @Inject
+    private ProductService productService;
 
-	@Override
-	public void cancelShipment(Long shipmentId) {
-		shipmentService.cancelShipment(shipmentService.findById(shipmentId));
-	}
+    @Inject
+    private MappingService mappingService;
 
-	@Override
-	public ShipmentDTO findById(Long id) {
-		Shipment shipment = shipmentService.findById(id);
-		return mappingService.mapTo(shipment, ShipmentDTO.class);
-	}
+    @Override
+    public void createShipment(ShipmentCreateDTO shipmentDTO) {
+        Shipment shipment = new Shipment();
+        shipment.setSender(customerService.getCustomerById(shipmentDTO.getCustomerSenderId()));
+        shipment.setReceiver(customerService.getCustomerById(shipmentDTO.getCustomerReceiverId()));
+        shipment.setDistance(shipmentDTO.getDistance());
+        shipment.setPrice(shipmentDTO.getPrice());
+        shipment.setShipmentState(Shipment.ShipmentState.NEW);
+        shipment.setShipmentCreated(new Date());
+        //shipmentDTO.getProductsList().forEach(p -> shipment.addProduct(productService.getProductById(p)));
+        for (Long itr : shipmentDTO.getProductsList()) {
+            shipment.addProduct(productService.getProductById(itr));
+        }
+        shipmentService.createShipment(shipment);
+    }
 
-	@Override
-	public List<ShipmentDTO> findAll() {
+    @Override
+    public void updateShipmentCourier(ShipmentUpdateCourierDTO shipmentUpdateCourierDTO) {
+        shipmentService.updateShipmentCourier(shipmentService.findById(shipmentUpdateCourierDTO.getShipmentId()), courierService.findById(shipmentUpdateCourierDTO.getCourierId()), shipmentUpdateCourierDTO.getTrackingId());
+    }
 
-		return mappingService.mapTo(shipmentService.findAll(), ShipmentDTO.class);
-	}
+    @Override
+    public void deliverShipment(Long shipmentId) {
+        shipmentService.deliverShipment(shipmentService.findById(shipmentId));
+    }
+
+    @Override
+    public void cancelShipment(Long shipmentId) {
+        shipmentService.cancelShipment(shipmentService.findById(shipmentId));
+    }
+
+    @Override
+    public ShipmentDTO findById(Long id) {
+        Shipment shipment = shipmentService.findById(id);
+        return mappingService.mapTo(shipment, ShipmentDTO.class);
+    }
+
+    @Override
+    public List<ShipmentDTO> findAll() {
+
+        return mappingService.mapTo(shipmentService.findAll(), ShipmentDTO.class);
+    }
+
+    @Override
+    public void updateShipment(ShipmentDTO shipment) {
+        Shipment ship = shipmentService.findById(shipment.getId());
+        ship.setCourier(courierService.findById(shipment.getCourier().getId()));
+        ship.setReceiver(customerService.getCustomerById(shipment.getReceiver().getId()));
+        ship.setDistance(shipment.getDistance());
+        ship.setPrice(ship.getPrice());
+        for (ProductDTO itr : shipment.getProductsList()) {
+            ship.addProduct(productService.getProductById(itr.getId()));
+        }
+        shipmentService.updateShipment(ship);
+    }
 
 }

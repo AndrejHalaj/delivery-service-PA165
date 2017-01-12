@@ -13,18 +13,18 @@ import cz.muni.fi.pa165.deliveryservice.model.Shipment;
 @Service
 public interface ShipmentService {
 
-	void createShipment(Shipment shipment);
+    void createShipment(Shipment shipment);
 
-	void updateShipmentCourier(Shipment shipment, Courier courier, String trackingId);
+    void updateShipmentCourier(Shipment shipment, Courier courier, String trackingId);
 
     void updateShipment(Shipment shipment);
 
     void deliverShipment(Shipment shipment);
-    
+
     void cancelShipment(Shipment shipment);
 
     Shipment findById(Long id);
 
     List<Shipment> findAll();
-	
+
 }
