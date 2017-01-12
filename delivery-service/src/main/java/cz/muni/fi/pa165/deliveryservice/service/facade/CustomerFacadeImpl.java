@@ -6,10 +6,8 @@ import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.model.Customer;
-import cz.muni.fi.pa165.deliveryservice.model.User;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
-import cz.muni.fi.pa165.deliveryservice.service.UserService;
 
 import java.util.Collection;
 import javax.inject.Inject;
@@ -31,8 +29,8 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Inject
     private CustomerService service;
     
-    @Inject
-    private UserService userService;
+//    @Inject
+//    private UserService userService;
     
     @Override
     public Long registerCustomer(CustomerCreateDTO customerDto) {
@@ -49,11 +47,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
         
         service.register(customer, customerDto.getPassword());
         
-        User user = new User();
-        user.setUserId(customer.getId());
-        user.setEmailAddress(customer.getEmailAddress());
-        
-        userService.register(user, customerDto.getPassword());
+//        User user = new User();
+//        user.setUserId(customer.getId());
+//        user.setEmailAddress(customer.getEmailAddress());
+//        
+//        userService.register(user, customerDto.getPassword());
         
         return customer.getId();
     }
@@ -78,7 +76,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Override
     public CustomerDetailDTO findCustomerById(Long id) {
         Customer customer = service.getCustomerById(id);
-        System.err.println("");
         return (customer == null) ? null : mapper.mapTo(customer, CustomerDetailDTO.class);
     }
 
