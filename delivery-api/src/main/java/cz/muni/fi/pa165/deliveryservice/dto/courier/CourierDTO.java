@@ -47,6 +47,8 @@ public class CourierDTO {
         this.lastName = lastName;
     }
 
+    public String getWholeName(){ return firstName + " " + lastName;}
+
     public String getEmail() {
         return email;
     }

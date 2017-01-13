@@ -70,12 +70,13 @@ public class ShipmentController {
         return "shipment/list";
     }
 
-    @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.POST)
+    @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.GET)
     public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model){
         log.debug("ShipmentController::shipmentDetail() id=" + shipmentId);
         model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
         model.addAttribute("products", productFacade.findAll());
         model.addAttribute("couriers", courierFacade.getAllCouriers());
+        model.addAttribute("detailOnly", "true");
         model.addAttribute("shipmentForm", shipmentFacade.findById(shipmentId));
 
         return "shipment/detail";
@@ -93,10 +94,14 @@ public class ShipmentController {
 
     @RequestMapping(value="update/{shipmentId}", method = RequestMethod.GET)
     public String updateShipment(@PathVariable("shipmentId") long shipmentId, Model model) {
+        model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
+        model.addAttribute("products", productFacade.findAll());
+        model.addAttribute("couriers", courierFacade.getAllCouriers());
+        model.addAttribute("detailOnly", "false");
         model.addAttribute("shipmentForm", shipmentFacade.findById(shipmentId));
 
         log.debug("ShipmentController::updateShipment()");
-        return "shipment/new";
+        return "shipment/detail";
     }
 
     @RequestMapping(value="/create", method= RequestMethod.POST)

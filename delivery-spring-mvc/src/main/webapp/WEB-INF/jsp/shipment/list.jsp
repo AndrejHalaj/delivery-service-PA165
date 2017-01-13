@@ -26,7 +26,7 @@
             <div class="shipments_container">
                 <c:forEach var="shipment" items="${shipments}">
                 <div class="shipment_item">
-                    <h1 class="shipment_tracking_id">${shipment.trackingId} </h1>
+                    <h1 class="shipment_tracking_id"><a href="${pageContext.request.contextPath}/shipment/detail/${shipment.id}" >${shipment.trackingId} </a></h1>
                     <div class="shipment_base_info">
                         <table>
                             <tr>
@@ -62,8 +62,8 @@
                             </c:when>
                         </c:choose>
 
-                        <%-- Detail button --%>
-                        <form method="post" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
+                        <%-- Edit button --%>
+                        <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
                             <button class="btn btn-default" type="submit">Edit</button>
                         </form>
                     </div>

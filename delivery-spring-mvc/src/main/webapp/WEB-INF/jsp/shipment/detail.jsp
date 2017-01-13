@@ -14,7 +14,7 @@
 
 <my:pagetemplate title="Shipments">
     <jsp:attribute name="body">
-        <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/update/${shipmentForm.id}" modelAttribute="shipmentForm">
+        <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/${detailOnly=='true' ? 'detail' : 'update'}/${shipmentForm.id}" modelAttribute="shipmentForm">
 
             <form:hidden path="id" />
 
@@ -46,19 +46,30 @@
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="control-label col-sm-2">Courier</label>
                     <div class="col-sm-10">
-                       <form:select class="form-control" path="courier">
-                           <c:forEach var="courier" items="${couriers}">
-                               <c:choose>
-                                   <c:when test="${courier.id == shipmentForm.courier.id}">
-                                       <form:option value="${courier}" label="${courier.firstName} ${courier.lastName}"
-                                                    selected="selected" />
-                                   </c:when>
-                                   <c:otherwise>
-                                       <form:option value="${courier}" label="${courier.firstName} ${courier.lastName}" />
-                                   </c:otherwise>
-                               </c:choose>
-                           </c:forEach>
-                       </form:select>
+                        <c:choose>
+                            <%-- select box --%>
+                            <c:when test="${detailOnly=='false'}">
+                               <form:select class="form-control" path="courier">
+                                   <c:forEach var="courier" items="${couriers}">
+                                       <c:choose>
+                                           <c:when test="${courier.id == shipmentForm.courier.id}">
+                                               <form:option value="${courier}" label="${courier.firstName} ${courier.lastName}"
+                                                            selected="selected" />
+                                           </c:when>
+                                           <c:otherwise>
+                                               <form:option value="${courier}" label="${courier.firstName} ${courier.lastName}" />
+                                           </c:otherwise>
+                                       </c:choose>
+                                   </c:forEach>
+                               </form:select>
+                            </c:when>
+                            <%-- just a line --%>
+                            <c:otherwise>
+                                <form:input class="form-control" path="courier.wholeName" id="courier" type="text"
+                                            placeholder="courier" readonly="true" />
+                            </c:otherwise>
+
+                        </c:choose>
                         <form:errors path="courier" />
                     </div>
                 </div>
@@ -80,20 +91,30 @@
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="control-label col-sm-2">Receiver</label>
                     <div class="col-sm-10">
-                       <form:select class="form-control" path="receiver">
-                           <c:forEach var="receiver" items="${receivers}">
-                               <c:choose>
-                                   <c:when test="${receiver.id == shipmentForm.receiver.id}">
-                                       <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}"
-                                                    selected="selected" />
-                                   </c:when>
-                                   <c:otherwise>
-                                       <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}" />
-                                   </c:otherwise>
-                               </c:choose>
-                           </c:forEach>
-                       </form:select>
-                       <form:errors path="receiver" />
+                       <c:choose>
+                            <%-- dropdown in edit mode --%>
+                            <c:when test="${detailOnly=='false'}">
+                                <form:select class="form-control" path="receiver">
+                                   <c:forEach var="receiver" items="${receivers}">
+                                       <c:choose>
+                                           <c:when test="${receiver.id == shipmentForm.receiver.id}">
+                                               <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}"
+                                                            selected="selected" />
+                                           </c:when>
+                                           <c:otherwise>
+                                               <form:option value="${receiver}" label="${receiver.firstName} ${receiver.lastName}" />
+                                           </c:otherwise>
+                                       </c:choose>
+                                   </c:forEach>
+                                </form:select>
+                            </c:when>
+                            <%-- otherwise just a simple line --%>
+                            <c:otherwise>
+                                <form:input class="form-control" path="receiver.wholeName" id="receiver" type="text" placeholder="Name"
+                                            readonly="true"/>
+                            </c:otherwise>
+                        </c:choose>
+                        <form:errors path="receiver" />
                     </div>
                 </div>
             </s:bind>
@@ -103,7 +124,8 @@
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="control-label col-sm-2">Price:</label>
                     <div class="col-sm-10">
-                        <form:input class="form-control" path="price" id="price" type="text" placeholder="0.00$" />
+                        <form:input class="form-control" path="price" id="price" type="text" placeholder="0.00$"
+                                    readOnly="${detailOnly=='true' ? 'true' : 'false'}"/>
                         <form:errors path="price" />
                     </div>
                 </div>
@@ -114,7 +136,8 @@
                 <div class="form-group ${status.error ? 'has-error' : ''}">
                     <label class="control-label col-sm-2">Distance:</label>
                     <div class="col-sm-10">
-                        <form:input class="form-control" path="distance" id="distance" type="text" placeholder="0.0 km" />
+                        <form:input class="form-control" path="distance" id="distance" type="text" placeholder="0.0 km"
+                                    readOnly="${detailOnly=='true' ? 'true' : 'false'}"/>
                         <form:errors path="distance" />
                     </div>
                 </div>
@@ -157,9 +180,16 @@
                 <form:checkbox path="productsList" class="form-control" value="${product}" label="${product.name}"
                     checked="${shipmentForm.id==product.shipmentId ? 'checked' : ''}"/><br>
             </c:forEach>
-            
-            <button type="submit" class="btn btn-default">Update</button>
 
+            <%-- Update button only visible on detail view --%>
+            <c:choose>
+                <c:when test="${detailOnly=='false'}">
+                    <form:button type="submit" class="btn btn-default">Update</form:button>
+                </c:when>
+                <c:otherwise>
+                    <form:button type="submit" formmethod="get" formaction="" class="btn btn-default">Back</form:button>
+                </c:otherwise>
+            </c:choose>
             </div>
         </form:form>
     </jsp:attribute>
