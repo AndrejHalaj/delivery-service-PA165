@@ -14,7 +14,7 @@
 
 <my:pagetemplate title="Shipments">
     <jsp:attribute name="body">
-        <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/${detailOnly=='true' ? 'detail' : 'update'}/${shipmentForm.id}" modelAttribute="shipmentForm">
+        <form:form class="form-horizontal" modelAttribute="shipmentForm">
 
             <form:hidden path="id" />
 
@@ -47,7 +47,7 @@
                     <label class="control-label col-sm-2">Courier</label>
                     <div class="col-sm-10">
                         <c:choose>
-                            <%-- select box --%>
+                            <%-- select box while in edit mode --%>
                             <c:when test="${detailOnly=='false'}">
                                <form:select class="form-control" path="courier">
                                    <c:forEach var="courier" items="${couriers}">
@@ -63,7 +63,7 @@
                                    </c:forEach>
                                </form:select>
                             </c:when>
-                            <%-- just a line --%>
+                            <%-- just a line in display mode --%>
                             <c:otherwise>
                                 <form:input class="form-control" path="courier.wholeName" id="courier" type="text"
                                             placeholder="courier" readonly="true" />
@@ -181,16 +181,13 @@
                     checked="${shipmentForm.id==product.shipmentId ? 'checked' : ''}"/><br>
             </c:forEach>
 
-            <%-- Update button only visible on detail view --%>
-            <c:choose>
-                <c:when test="${detailOnly=='false'}">
-                    <form:button type="submit" class="btn btn-default">Update</form:button>
-                </c:when>
-                <c:otherwise>
-                    <form:button type="submit" formmethod="get" formaction="" class="btn btn-default">Back</form:button>
-                </c:otherwise>
-            </c:choose>
-            </div>
+            <%-- Update button only visible on edit view --%>
+            <c:if test="${detailOnly=='false'}">
+                <form:button type="submit" formethod="post" formaction="${pageContext.request.contextPath}/shipment/update/${shipmentForm.id}" class="btn btn-default">Update</form:button>
+            </c:if>
+            <%-- Back button --%>
+            <form:button type="submit" formmethod="get" formaction="${pageContext.request.contextPath}/shipment/list" class="btn btn-default">Back</form:button>
+
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>

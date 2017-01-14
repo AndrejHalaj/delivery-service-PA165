@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
+import cz.muni.fi.pa165.deliveryservice.dao.ProductDao;
 import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import cz.muni.fi.pa165.deliveryservice.entity.Courier;
+import cz.muni.fi.pa165.deliveryservice.entity.Product;
 import cz.muni.fi.pa165.deliveryservice.entity.Shipment;
 import cz.muni.fi.pa165.deliveryservice.entity.Shipment.ShipmentState;
 import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
@@ -19,6 +21,9 @@ public class ShipmentServiceImpl implements ShipmentService {
 
 	@Inject
 	private ShipmentDao shipmentDao;
+
+	@Inject
+	private ProductDao productDao;
 
 	@Override
 	public void createShipment(Shipment shipment) {
@@ -74,6 +79,21 @@ public class ShipmentServiceImpl implements ShipmentService {
 	@Override
 	public List<Shipment> findAll() {
 		return shipmentDao.findAll();
+	}
+
+	@Override
+	public void addProduct(Shipment s, Product p) {
+		s.addProduct(p);
+		p.setShipment(s);
+		productDao.update(p);
+	}
+
+	@Override
+	public void removeProduct(Shipment s, Product p) {
+		System.out.println("remove prod " + p.getName() + " from " + s.getId());
+		s.removeProduct(p);
+		p.setShipment(null);
+
 	}
 
 	// TODO: think of something working

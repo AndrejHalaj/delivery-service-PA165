@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.service;
 
 import cz.muni.fi.pa165.deliveryservice.entity.Courier;
+import cz.muni.fi.pa165.deliveryservice.entity.Product;
 import cz.muni.fi.pa165.deliveryservice.entity.Shipment;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public interface ShipmentService {
     void deliverShipment(Shipment shipment);
 
     void cancelShipment(Shipment shipment);
+
+    void addProduct(Shipment s, Product p);
+
+    void removeProduct(Shipment s, Product p);
 
     Shipment findById(Long id);
 

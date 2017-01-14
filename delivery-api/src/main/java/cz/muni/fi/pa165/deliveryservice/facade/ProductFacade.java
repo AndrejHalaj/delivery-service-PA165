@@ -17,5 +17,7 @@ public interface ProductFacade {
 
     ProductDTO findById(Long id);
 
+	List<ProductDTO> getByShipmentIdOrUnassigned(Long shipmentId);
+
     List<ProductDTO> findAll();
 }

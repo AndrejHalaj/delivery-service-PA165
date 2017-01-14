@@ -138,13 +138,14 @@ public class Shipment {
     }
 
     public void addProduct(Product p) {
-        p.setShipment(this);
         productsList.add(p);
     }
 
     public void removeProduct(Product p) {
-        p.setShipment(null);
+        System.out.println("remove product name=" + p.getName());
         productsList.remove(p);
+        System.out.println("remove product -done");
+
     }
 
     @Override

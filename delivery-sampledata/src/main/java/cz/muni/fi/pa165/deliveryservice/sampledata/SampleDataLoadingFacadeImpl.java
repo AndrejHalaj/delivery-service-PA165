@@ -111,18 +111,19 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         Shipment s3 = createShipment("C12345", 15,
                 BigDecimal.valueOf(8850), c2, users.get(3), users.get(0), ShipmentState.NEW);
 
-        s1.addProduct(products.get(0));
-        s1.addProduct(products.get(1));
 
-        s2.addProduct(products.get(2));
-        s2.addProduct(products.get(3));
+        shipmentService.addProduct(s1, products.get(0));
+        shipmentService.addProduct(s1, products.get(1));
 
-        s3.addProduct(products.get(3));
+        shipmentService.addProduct(s2, products.get(2));
+        shipmentService.addProduct(s2, products.get(3));
+
+        shipmentService.addProduct(s3, products.get(3));
 
         shipmentService.createShipment(s1);
         shipmentService.createShipment(s2);
         shipmentService.createShipment(s3);
-        
+
         c.addShipment(s1);
         c1.addShipment(s2);
         c2.addShipment(s3);

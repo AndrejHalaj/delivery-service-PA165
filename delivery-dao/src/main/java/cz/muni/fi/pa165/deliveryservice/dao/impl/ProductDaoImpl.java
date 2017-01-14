@@ -42,8 +42,15 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public List<Product> findByShipmentIdOrUnassigned(Long shipId) {
+        return Collections.unmodifiableList(em.createQuery("select p from Product p WHERE p.shipment.id = :shipmentId OR p.shipment.id = null", Product.class)
+                .setParameter("shipmentId", shipId).getResultList());
+    }
+
+    @Override
     public List<Product> findAll() {
         return Collections.unmodifiableList(em.createQuery("select p from Product p", Product.class).getResultList());
     }
+
 
 }

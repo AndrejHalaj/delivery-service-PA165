@@ -56,6 +56,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getByShipmentIdOrUnassigned(Long shipmentId){
+        try{
+            return productDao.findByShipmentIdOrUnassigned(shipmentId);
+        } catch(Exception ex) {
+            throw new DataAccessException("Can not receive list of products. Reason: " + ex.getMessage()) {};
+        }
+
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         try {
             return productDao.findAll();

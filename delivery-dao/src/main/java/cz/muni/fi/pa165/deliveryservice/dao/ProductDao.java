@@ -44,4 +44,11 @@ public interface ProductDao {
 	 * @return List of all products
 	 */
 	List<Product> findAll();
+
+	/**
+	 *  Get all products that are not unassigned to any shipment
+	 *
+	 * @return List of products that are not assigned to any shipment
+	 */
+	List<Product> findByShipmentIdOrUnassigned(Long shipId);
 }

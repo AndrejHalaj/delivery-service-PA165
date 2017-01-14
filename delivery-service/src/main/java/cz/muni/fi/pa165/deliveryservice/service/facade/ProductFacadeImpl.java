@@ -42,6 +42,11 @@ public class ProductFacadeImpl implements ProductFacade {
     }
 
     @Override
+    public List<ProductDTO> getByShipmentIdOrUnassigned(Long shipmentId) {
+        return ProductDTOMapper.productListToProductDTOList(productService.getByShipmentIdOrUnassigned(shipmentId));
+    }
+
+    @Override
     public List<ProductDTO> findAll() {
         return ProductDTOMapper.productListToProductDTOList(productService.getAllProducts());
     }

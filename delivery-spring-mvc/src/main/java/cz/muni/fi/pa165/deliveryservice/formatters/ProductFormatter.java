@@ -40,7 +40,8 @@ public class ProductFormatter extends PropertyEditorSupport{
         product.setDescription(attrs[ATTR_DESC].substring(IDX_START_DESC, attrs[ATTR_DESC].length()));
         product.setProducer(attrs[ATTR_PROD].substring(IDX_START_PROD, attrs[ATTR_PROD].length()));
         product.setWeight(Double.parseDouble(attrs[ATTR_WEIGHT].substring(IDX_START_WEIGHT, attrs[ATTR_WEIGHT].length())));
-        product.setShipmentId(Long.parseLong(attrs[ATTR_SHIP_ID].substring(IDX_START_SHIP_ID, attrs[ATTR_SHIP_ID].length()-1)));
+        String shipmentId = attrs[ATTR_SHIP_ID].substring(IDX_START_SHIP_ID, attrs[ATTR_SHIP_ID].length()-1);
+        product.setShipmentId(shipmentId.compareTo("null") == 0 ? null : Long.parseLong(shipmentId));
 
         System.out.println("ProductFormatter::setAsText()-->" + product.toString());
         setValue(product);

@@ -73,9 +73,9 @@ public class ShipmentController {
     @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.GET)
     public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model){
         log.debug("ShipmentController::shipmentDetail() id=" + shipmentId);
-        model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
-        model.addAttribute("products", productFacade.findAll());
-        model.addAttribute("couriers", courierFacade.getAllCouriers());
+        //model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
+        //model.addAttribute("products", productFacade.findAll());
+        //model.addAttribute("couriers", courierFacade.getAllCouriers());
         model.addAttribute("detailOnly", "true");
         model.addAttribute("shipmentForm", shipmentFacade.findById(shipmentId));
 
@@ -95,7 +95,7 @@ public class ShipmentController {
     @RequestMapping(value="update/{shipmentId}", method = RequestMethod.GET)
     public String updateShipment(@PathVariable("shipmentId") long shipmentId, Model model) {
         model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
-        model.addAttribute("products", productFacade.findAll());
+        model.addAttribute("products", productFacade.getByShipmentIdOrUnassigned(shipmentId));
         model.addAttribute("couriers", courierFacade.getAllCouriers());
         model.addAttribute("detailOnly", "false");
         model.addAttribute("shipmentForm", shipmentFacade.findById(shipmentId));
