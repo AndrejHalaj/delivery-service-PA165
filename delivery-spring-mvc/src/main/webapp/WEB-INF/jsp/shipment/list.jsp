@@ -17,9 +17,9 @@
 
             <%-- Add buttonm, ... --%>
             <div class="shipment_control">
-                <form method="get" action="${pageContext.request.contextPath}/shipment/new">
-                    <button class="btn btn-primary" type="submit">Create</button>
-                </form>
+                <a href="${pageContext.request.contextPath}/shipment/new" class="btn btn-primary btn-lg" style="float:right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
+                </a>
             </div>
 
             <%-- Shipments list. --%>
@@ -28,45 +28,50 @@
                 <div class="shipment_item">
                     <h1 class="shipment_tracking_id"><a href="${pageContext.request.contextPath}/shipment/detail/${shipment.id}" >${shipment.trackingId} </a></h1>
                     <div class="shipment_base_info">
-                        <table>
+                        <table class="shipment_base_info_tbl">
                             <tr>
-                                <td>Courier: </td>
+                                <td class="tbl_first_col">Courier: </td>
                                 <td>${shipment.courier.firstName} ${shipment.courier.lastName}</td>
                             </tr>
                             <tr>
-                                <td>Sender: </td>
+                                <td class="tbl_first_col">Sender: </td>
                                 <td>${shipment.sender.firstName} ${shipment.sender.lastName}</td>
                             </tr>
                             <tr>
-                                <td>Status: </td>
+                                <td class="tbl_first_col">Status: </td>
                                 <td>${shipment.shipmentState}</td>
                             </tr>
                         </table>
-                    </div>
 
-                    <%-- Control buttons for each shipment --%>
-                    <div class="shipment_control_buttons">
+                        <%-- Control buttons for each shipment --%>
+                        <div class="shipment_control_buttons">
                         <c:choose>
+
+
                             <%-- Deliver button only shows for TRANSFERED shipments --%>
                             <c:when test="${shipment.shipmentState == 'TRANSFERED'}">
                                 <form method="post" action="${pageContext.request.contextPath}/shipment/deliver/${shipment.id}">
-                                    <button class="btn btn-default" type="submit">Deliver</button>
+                                    <button class="btn btn-success" type="submit">Deliver</button>
                                 </form>
                             </c:when>
 
                             <%-- Cancel button only shows for NEW shipmentst --%>
                             <c:when test="${shipment.shipmentState == 'NEW'}">
+                                <%-- Cancel --%>
                                 <form method="post" action="${pageContext.request.contextPath}/shipment/cancel/${shipment.id}">
-                                    <button class="btn btn-default" type="submit">Cancel</button>
+                                    <button class="btn btn-danger" type="submit">Cancel</button>
                                 </form>
                             </c:when>
                         </c:choose>
 
-                        <%-- Edit button --%>
-                        <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
-                            <button class="btn btn-default" type="submit">Edit</button>
-                        </form>
+                                <%-- Edit button --%>
+                            <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
+                                <button class="btn btn-primary" type="submit">Edit</button>
+                            </form>
+                        </div>
                     </div>
+
+
                 </div>
                 </c:forEach>
             </div>

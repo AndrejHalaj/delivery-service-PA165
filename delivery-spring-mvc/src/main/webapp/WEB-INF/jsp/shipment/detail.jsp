@@ -20,7 +20,7 @@
 
              <s:bind path="trackingId">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="control-label col-sm-2">Tracking ID</label>
+                    <label class="control-label col-sm-2">Tracking ID:</label>
                     <div class="col-sm-10">
                         <form:input class="form-control" path="trackingId" id="trackingId" type="text"
                                     placeholder="Tracking ID" readonly="true"/>
@@ -32,7 +32,7 @@
             <%-- Shipment state --%>
             <s:bind path="shipmentState">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="control-label col-sm-2">State</label>
+                    <label class="control-label col-sm-2">State:</label>
                     <div class="col-sm-10">
                         <form:input class="form-control" path="shipmentState" id="shipmentState" type="text"
                                     placeholder="Shipment state" readonly="true"/>
@@ -44,7 +44,7 @@
             <%-- Courier dropdown --%>
             <s:bind path="courier">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="control-label col-sm-2">Courier</label>
+                    <label class="control-label col-sm-2">Courier:</label>
                     <div class="col-sm-10">
                         <c:choose>
                             <%-- select box while in edit mode --%>
@@ -78,7 +78,7 @@
             <%-- Sender --%>
             <form:hidden path="sender"/>
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="control-label col-sm-2">Sender</label>
+                <label class="control-label col-sm-2">Sender:</label>
                 <div class="col-sm-10">
                     <form:input class="form-control" path="sender.wholeName" id="sender" type="text" placeholder="Name"
                     readonly="true" />
@@ -89,7 +89,7 @@
             <%-- Receiver dropdown --%>
             <s:bind path="receiver">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="control-label col-sm-2">Receiver</label>
+                    <label class="control-label col-sm-2">Receiver:</label>
                     <div class="col-sm-10">
                        <c:choose>
                             <%-- dropdown in edit mode --%>
@@ -146,7 +146,7 @@
             <%-- Shipment created date --%>
             <s:bind path="shipmentCreated">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="control-label col-sm-2">Created</label>
+                    <label class="control-label col-sm-2">Created:</label>
                     <div class="col-sm-10">
                         <fmt:formatDate value="${shipmentForm.shipmentCreated}" var="createdDateFormated" pattern="yyyy/MM/dd HH:mm" type="both" />
                         <form:input class="form-control" path="shipmentCreated" value="${createdDateFormated}" id="shipmentCreated"
@@ -175,19 +175,20 @@
             </c:choose>
 
             <%-- Products list with checkboxes --%>
-            <h2>Products</h2>
+            <h3>Products</h3>
             <c:forEach var="product" items="${products}">
                 <form:checkbox path="productsList" class="form-control" value="${product}" label="${product.name}"
                     checked="${shipmentForm.id==product.shipmentId ? 'checked' : ''}"/><br>
             </c:forEach>
 
-            <%-- Update button only visible on edit view --%>
-            <c:if test="${detailOnly=='false'}">
-                <form:button type="submit" formethod="post" formaction="${pageContext.request.contextPath}/shipment/update/${shipmentForm.id}" class="btn btn-default">Update</form:button>
-            </c:if>
-            <%-- Back button --%>
-            <form:button type="submit" formmethod="get" formaction="${pageContext.request.contextPath}/shipment/list" class="btn btn-default">Back</form:button>
-
+            <div class="ship_detail_ctrl_btns">
+                <%-- Update button only visible on edit view --%>
+                <c:if test="${detailOnly=='false'}">
+                    <form:button type="submit" formethod="post" formaction="${pageContext.request.contextPath}/shipment/update/${shipmentForm.id}" class="btn btn-success">Update</form:button>
+                </c:if>
+                <%-- Back button --%>
+                <form:button type="submit" formmethod="get" formaction="${pageContext.request.contextPath}/shipment/list" class="btn btn-primary">Back</form:button>
+            </div>
         </form:form>
     </jsp:attribute>
 </my:pagetemplate>

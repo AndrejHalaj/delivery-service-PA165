@@ -93,7 +93,6 @@ public class ShipmentServiceImpl implements ShipmentService {
 		System.out.println("remove prod " + p.getName() + " from " + s.getId());
 		s.removeProduct(p);
 		p.setShipment(null);
-
 	}
 
 	// TODO: think of something working

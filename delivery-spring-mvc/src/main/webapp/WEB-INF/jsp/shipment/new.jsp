@@ -16,7 +16,8 @@
     <jsp:attribute name="body">
         <form:form class="form-horizontal" method="post"  action="${pageContext.request.contextPath}/shipment/create" modelAttribute="shipmentForm">
 
-             <div class="form-group ${status.error ? 'has-error' : ''}">
+            <%-- receiver --%>
+            <div class="form-group ${status.error ? 'has-error' : ''}">
 
                 <label class="control-label col-sm-2">Receiver:</label>
                 <div class="col-sm-10">
@@ -50,7 +51,11 @@
                 </div>
             </s:bind>
 
-
+            <%-- Products list with checkboxes --%>
+            <h2>Products</h2>
+            <c:forEach var="product" items="${products}">
+                <form:checkbox path="productsList" class="form-control" value="${product.id}" label="${product.name}"/><br>
+            </c:forEach>
 
             <%-- Create button --%>
             <button class="btn btn-default" type="submit">Create</button>

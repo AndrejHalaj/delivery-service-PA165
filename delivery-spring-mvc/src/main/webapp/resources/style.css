@@ -1,0 +1,55 @@
+.container {
+    padding-bottom: 2em;
+}
+
+.shipments_container {
+    padding-top : 2em;
+}
+
+.shipment_item{
+    border-radius : 15px;
+    background : #313131;
+    color : mintcream;
+    padding-left : 1em;
+    padding-bottom : 1em;
+
+    margin-top : 1em;
+    margin-bottom : 1em;
+    padding-right : 1em;
+}
+
+.shipment_tracking_id{
+
+}
+
+.shipment_base_info {
+
+    display : inline;
+}
+
+.shipment_base_info_tbl {
+    width : 70%;
+
+}
+
+.tbl_first_col {
+    width : 15%;
+}
+
+.shipment_control{
+    padding-bottom : 1em;
+}
+
+.shipment_control_buttons {
+    float : right;
+    margin-top : -70px;
+
+
+}
+
+.ship_detail_ctrl_btns {
+    padding-top : 2em;
+    padding-bottom : 1em;
+    float : right;
+}
+

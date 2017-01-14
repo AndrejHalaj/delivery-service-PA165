@@ -49,7 +49,8 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
         shipment.setShipmentCreated(new Date());
         //shipmentDTO.getProductsList().forEach(p -> shipment.addProduct(productService.getProductById(p)));
         for (Long itr : shipmentDTO.getProductsList()) {
-            shipment.addProduct(productService.getProductById(itr));
+            //shipment.addProduct(productService.getProductById(itr));
+            shipmentService.addProduct(shipment, productService.getProductById(itr));
         }
         shipmentService.createShipment(shipment);
     }

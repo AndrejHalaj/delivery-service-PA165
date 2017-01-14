@@ -49,7 +49,7 @@
                             <td><c:out value="${shipment.shipmentState}"/></td>
 
                             <td>
-                                <form method="post" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
+                                <form method="get" action="${pageContext.request.contextPath}/shipment/detail/${shipment.id}">
                                     <button class="btn btn-success" type="submit">Detail</button>
                                 </form>
                             </td>

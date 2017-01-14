@@ -31,7 +31,7 @@ public class ProductFormatter extends PropertyEditorSupport{
             setValue(null);
             return;
         }
-
+        System.out.println("ProductFormater() text=" + text);
         String[] attrs = text.split(";");
 
         ProductDTO product = new ProductDTO();

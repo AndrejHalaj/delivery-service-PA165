@@ -7,6 +7,6 @@
 
 <my:pagetemplate title="All users">
 <jsp:attribute name="body">
-    <p>Hello World!</p>
+    <p>Delivery service</p>
 </jsp:attribute>
 </my:pagetemplate>

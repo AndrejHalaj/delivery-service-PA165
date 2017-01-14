@@ -87,7 +87,7 @@ public class ShipmentController {
         model.addAttribute("shipmentForm", new ShipmentCreateDTO());
         //model.addAttribute("signedCustomer", request.getSession().getAttribute("authenticatedUser"));
         model.addAttribute("customerList", customerFacade.getAllDetailedCustomers());
-        model.addAttribute("products", productFacade.findAll());
+        model.addAttribute("products", productFacade.getByShipmentIdOrUnassigned((-1L)));
         log.debug("ShipmentController::newShipment()");
         return "shipment/new";
     }

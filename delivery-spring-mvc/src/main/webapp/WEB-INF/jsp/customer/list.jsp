@@ -6,7 +6,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<my:pagetemplate title="All users">
+<my:pagetemplate title="Users">
 <jsp:attribute name="body">
 
   <div class="event_container animated fadeIn">

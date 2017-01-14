@@ -22,7 +22,6 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"  crossorigin="anonymous">
-        <link href="${pageContext.request.contextPath}/resources/animate.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath}/resources/style.css" rel="stylesheet">
         <jsp:invoke fragment="head"/>
     </head>
@@ -36,9 +35,9 @@
                 <div>
                     <ul class="nav navbar-nav">
                         <li><a href="${pageContext.request.contextPath}/shipment/list">Shipments</a></li>
-                        <li><a href="${pageContext.request.contextPath}/customer/list">All customers</a></li>
-                        <li><a href="${pageContext.request.contextPath}/courier/list">Couriers</a></li>
                         <li><a href="${pageContext.request.contextPath}/product/list">Products</a></li>
+                        <li><a href="${pageContext.request.contextPath}/courier/list">Couriers</a></li>
+                        <li><a href="${pageContext.request.contextPath}/customer/list">Customers</a></li>
                     </ul>
                     <c:if test="${empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">
@@ -99,14 +98,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/jquery.datetimepicker.css" />
-        <script src="${pageContext.request.contextPath}/resources/jquery.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/jquery.datetimepicker.full.min.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/functions.js"></script>
 
-        <script>
-            jQuery("#startTime").datetimepicker();
-            jQuery("#endTime").datetimepicker();
-        </script>
     </body>
 </html>
