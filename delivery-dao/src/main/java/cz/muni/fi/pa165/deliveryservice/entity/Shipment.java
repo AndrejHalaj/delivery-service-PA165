@@ -1,6 +1,10 @@
 package cz.muni.fi.pa165.deliveryservice.entity;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
@@ -35,6 +39,7 @@ public class Shipment {
 
     // list of products
     @OneToMany(mappedBy = "shipment")
+    @Cascade(CascadeType.ALL)
     private Set<Product> productsList = new HashSet<Product>();
 
     @Column(unique = true)

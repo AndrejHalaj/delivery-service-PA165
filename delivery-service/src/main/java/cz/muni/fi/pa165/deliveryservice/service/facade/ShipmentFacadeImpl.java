@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -47,9 +48,7 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
         shipment.setPrice(shipmentDTO.getPrice());
         shipment.setShipmentState(Shipment.ShipmentState.NEW);
         shipment.setShipmentCreated(new Date());
-        //shipmentDTO.getProductsList().forEach(p -> shipment.addProduct(productService.getProductById(p)));
         for (Long itr : shipmentDTO.getProductsList()) {
-            //shipment.addProduct(productService.getProductById(itr));
             shipmentService.addProduct(shipment, productService.getProductById(itr));
         }
         shipmentService.createShipment(shipment);
@@ -90,24 +89,17 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
         ship.setDistance(shipment.getDistance());
         ship.setPrice(ship.getPrice());
 
-        System.out.println("ShipmaneFacadeIml::updateShipment() shipProds=" + ship.getProductsList().size());
-
-        // TODO: remove products
-        /*
-        // clear the list
+        // remove original
         for (Product p : ship.getProductsList()) {
-            shipmentService.removeProduct(ship, productService.getProductById(p.getId()));
+            Product prod= productService.getProductById(p.getId());
+            prod.setShipment(null);
         }
-        */
 
         // set newly updated list of products
         for (ProductDTO itr : shipment.getProductsList()) {
             shipmentService.addProduct(ship, productService.getProductById(itr.getId()));
-            System.out.println("ShipmentFacadeImpl::updateShipment() add prod=" + itr.getName());
         }
-
-
-        System.out.println("ShipmentFacadeImpl::updateShipment() prodSize="+ship.getProductsList().size());
+        // pass the update request to service layer
         shipmentService.updateShipment(ship);
     }
 

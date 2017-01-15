@@ -124,5 +124,18 @@ public class Product {
 
         return true;
     }
+
+    @Override
+    public String toString(){
+        return "Product={" +
+                "id=" + id
+                +"; name=" + name
+                +"; description=" + description
+                +"; producer=" + producer
+                +"; weight="+ weight
+                +"; shipment=" + (shipment == null ? "null" : shipment.getId())+
+                "}";
+
+    }
     
 }

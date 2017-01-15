@@ -91,7 +91,7 @@ public class ShipmentServiceImpl implements ShipmentService {
 	@Override
 	public void removeProduct(Shipment s, Product p) {
 		System.out.println("remove prod " + p.getName() + " from " + s.getId());
-		s.removeProduct(p);
+		//s.removeProduct(p);
 		p.setShipment(null);
 	}
 

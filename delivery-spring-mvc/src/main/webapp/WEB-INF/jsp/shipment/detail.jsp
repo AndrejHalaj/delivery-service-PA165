@@ -176,10 +176,34 @@
 
             <%-- Products list with checkboxes --%>
             <h3>Products</h3>
-            <c:forEach var="product" items="${products}">
-                <form:checkbox path="productsList" class="form-control" value="${product}" label="${product.name}"
-                    checked="${shipmentForm.id==product.shipmentId ? 'checked' : ''}"/><br>
-            </c:forEach>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="40">Id</th>
+                    <th>Name</th>
+                    <th>Producer</th>
+                    <th>Weight</th>
+                    <th width="60"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${detailOnly=='false' ? products : shipmentForm.productsList}" var="product">
+                    <tr>
+                        <td><c:out value="${product.id}"/></td>
+                        <td><a href="${pageContext.request.contextPath}/product/detail/${product.id}"><c:out value="${product.name}"/></a></td>
+                        <td><c:out value="${product.producer}"/></td>
+                        <td><c:out value="${product.weight}"/> kg</td>
+                        <%-- checkbox only in edit mode --%>
+                        <c:if test="${detailOnly=='false'}">
+                        <td>
+                            <form:checkbox path="productsList" class="form-control" value="${product}"
+                                           checked="${shipmentForm.id==product.shipmentId ? 'checked' : ''}"/><br>
+                        </td>
+                        </c:if>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
 
             <div class="ship_detail_ctrl_btns">
                 <%-- Update button only visible on edit view --%>

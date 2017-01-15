@@ -23,13 +23,11 @@
 }
 
 .shipment_base_info {
-
     display : inline;
 }
 
 .shipment_base_info_tbl {
     width : 70%;
-
 }
 
 .tbl_first_col {
@@ -43,8 +41,6 @@
 .shipment_control_buttons {
     float : right;
     margin-top : -70px;
-
-
 }
 
 .ship_detail_ctrl_btns {
