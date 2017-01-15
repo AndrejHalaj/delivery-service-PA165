@@ -52,10 +52,32 @@
             </s:bind>
 
             <%-- Products list with checkboxes --%>
-            <h2>Products</h2>
-            <c:forEach var="product" items="${products}">
-                <form:checkbox path="productsList" class="form-control" value="${product.id}" label="${product.name}"/><br>
-            </c:forEach>
+            <h3>Products</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="40">Id</th>
+                    <th>Name</th>
+                    <th>Producer</th>
+                    <th>Weight</th>
+                    <th width="60"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${products}" var="product">
+                    <tr>
+                        <td><c:out value="${product.id}"/></td>
+                        <td><a href="${pageContext.request.contextPath}/product/detail/${product.id}"><c:out value="${product.name}"/></a></td>
+                        <td><c:out value="${product.producer}"/></td>
+                        <td><c:out value="${product.weight}"/> kg</td>
+                        <%-- checkbox --%>
+                        <td>
+                            <form:checkbox path="productsList" class="form-control" value="${product.id}" /><br>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
 
             <%-- Create button --%>
             <button class="btn btn-default" type="submit">Create</button>

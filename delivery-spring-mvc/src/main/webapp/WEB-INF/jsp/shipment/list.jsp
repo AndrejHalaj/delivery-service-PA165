@@ -46,28 +46,29 @@
                         <%-- Control buttons for each shipment --%>
                         <div class="shipment_control_buttons">
                         <c:choose>
-
-
                             <%-- Deliver button only shows for TRANSFERED shipments --%>
                             <c:when test="${shipment.shipmentState == 'TRANSFERED'}">
                                 <form method="post" action="${pageContext.request.contextPath}/shipment/deliver/${shipment.id}">
                                     <button class="btn btn-success" type="submit">Deliver</button>
                                 </form>
+                                <%-- Edit button - only for shipments with state NEW/TRANSFERED --%>
+                                <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
+                                    <button class="btn btn-primary" type="submit">Edit</button>
+                                </form>
                             </c:when>
 
-                            <%-- Cancel button only shows for NEW shipmentst --%>
+                            <%-- Control buttons --%>
                             <c:when test="${shipment.shipmentState == 'NEW'}">
-                                <%-- Cancel --%>
+                                <%-- Cancel button only shows for NEW shipmentst --%>
                                 <form method="post" action="${pageContext.request.contextPath}/shipment/cancel/${shipment.id}">
                                     <button class="btn btn-danger" type="submit">Cancel</button>
                                 </form>
+                                <%-- Edit button - only for shipments with state NEW/TRANSFERED --%>
+                                <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
+                                    <button class="btn btn-primary" type="submit">Edit</button>
+                                </form>
                             </c:when>
                         </c:choose>
-
-                                <%-- Edit button --%>
-                            <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
-                                <button class="btn btn-primary" type="submit">Edit</button>
-                            </form>
                         </div>
                     </div>
 
