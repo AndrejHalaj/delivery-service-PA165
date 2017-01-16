@@ -41,15 +41,6 @@ public class CourierDaoImpl implements CourierDao {
 		return em.find(Courier.class, id);
 	}
 
-	@Override
-	public Courier findByEmail(String email) {
-		try {
-			return em.createQuery("SELECT c FROM Courier c WHERE c.email = :email", Courier.class).setParameter("email", email).getSingleResult();
-		} catch (NoResultException ex) {
-			return null;
-		}
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Courier> findAll() {

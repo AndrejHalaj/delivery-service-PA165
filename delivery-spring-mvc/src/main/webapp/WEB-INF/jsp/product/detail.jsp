@@ -6,11 +6,15 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fomr" uri="http://www.springframework.org/tags/form" %>
 
 <my:pagetemplate title="Product detail">
     <jsp:attribute name="body">
-    
+
     	<form:form class="form-horizontal" role="form" method="post" modelAttribute="product"  action="${pageContext.request.contextPath}/product/detail/${product.id}/update">
+            <form:hidden path="id" />
+            <form:hidden path="shipment" />
+
             <div class="form-group">
                 <label class="control-label col-sm-2" for="name">Name:</label>
                 <div class="col-sm-10">
@@ -43,11 +47,16 @@
                 </div>
             </div>
 
+            <c:if test="${loggedUser.isCourier==false}">
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Update</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </div>
+            </c:if>
+            <c:if test="${loggedUser.isCourier==true}">
+                    <form:button type="submit" formmethod="get" formaction="${pageContext.request.contextPath}/products/list" class="btn btn-primary">Back</form:button>
+            </c:if>
         </form:form>
     	
     </jsp:attribute>

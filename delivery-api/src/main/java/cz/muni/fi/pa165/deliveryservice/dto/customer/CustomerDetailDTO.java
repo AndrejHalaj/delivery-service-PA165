@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.dto.customer;
 
+import cz.muni.fi.pa165.deliveryservice.dto.user.UserDTO;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -35,6 +37,9 @@ public class CustomerDetailDTO {
     
     @NotNull
     private String emailAddress;
+
+    @NotNull
+    private UserDTO userAccount;
 
     public Long getId() {
         return id;
@@ -110,6 +115,14 @@ public class CustomerDetailDTO {
 
     public String getWholeName(){
         return firstName + " " + lastName;
+    }
+
+    public UserDTO getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserDTO userAccount) {
+        this.userAccount = userAccount;
     }
 
     @Override

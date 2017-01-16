@@ -65,6 +65,11 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
     }
 
     @Override
+    public void transferShipment(Long shipmentId) {
+        shipmentService.transferShipment(shipmentService.findById(shipmentId));
+    }
+
+    @Override
     public void cancelShipment(Long shipmentId) {
         shipmentService.cancelShipment(shipmentService.findById(shipmentId));
     }
@@ -75,9 +80,13 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
         return mappingService.mapTo(shipment, ShipmentDTO.class);
     }
 
+    public List<ShipmentDTO> findByCourier(Long id) {
+        System.out.println("findBycourier: id=" + id);
+        return mappingService.mapTo(shipmentService.findByCourier(id), ShipmentDTO.class);
+    }
+
     @Override
     public List<ShipmentDTO> findAll() {
-
         return mappingService.mapTo(shipmentService.findAll(), ShipmentDTO.class);
     }
 

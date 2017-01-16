@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.dto.customer;
 
+import cz.muni.fi.pa165.deliveryservice.dto.user.UserDTO;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -18,10 +20,10 @@ public class CustomerDisplayDTO {
     @NotNull
     @Size(min = 3, max = 50)
     private String lastName;
-    
+
     @NotNull
-    private String emailAddress;
-    
+    private UserDTO userAccount;
+
     @NotNull
     private String city;
 
@@ -49,14 +51,6 @@ public class CustomerDisplayDTO {
         this.lastName = lastName;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
     public String getCity() {
         return city;
     }
@@ -64,6 +58,12 @@ public class CustomerDisplayDTO {
     public void setCity(String city) {
         this.city = city;
     }
-    
-    
+
+    public UserDTO getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserDTO userAccount) {
+        this.userAccount = userAccount;
+    }
 }

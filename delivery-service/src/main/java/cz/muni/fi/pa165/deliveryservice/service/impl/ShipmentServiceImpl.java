@@ -63,6 +63,15 @@ public class ShipmentServiceImpl implements ShipmentService {
 	}
 
 	@Override
+	public void transferShipment(Shipment shipment) {
+		if (!shipment.getShipmentState().equals(ShipmentState.NEW))
+			throw new IllegalStateException("Invalid transition from " + shipment.getShipmentState() + " to " + ShipmentState.DELIVERED);
+
+		shipment.setShipmentState(ShipmentState.TRANSFERED);
+		shipmentDao.update(shipment);
+	}
+
+	@Override
 	public void cancelShipment(Shipment shipment) {
 		if (shipment.getShipmentState().equals(ShipmentState.CANCELED)) 
 			throw new IllegalStateException("Invalid transition from " + shipment.getShipmentState() + " to " + ShipmentState.CANCELED);
@@ -76,6 +85,10 @@ public class ShipmentServiceImpl implements ShipmentService {
 		return shipmentDao.findById(id);
 	}
 
+	public List<Shipment> findByCourier(Long id){
+		return shipmentDao.findByCourier(id);
+	}
+
 	@Override
 	public List<Shipment> findAll() {
 		return shipmentDao.findAll();
@@ -85,7 +98,7 @@ public class ShipmentServiceImpl implements ShipmentService {
 	public void addProduct(Shipment s, Product p) {
 		s.addProduct(p);
 		p.setShipment(s);
-		productDao.update(p);
+		//productDao.update(p);
 	}
 
 	@Override

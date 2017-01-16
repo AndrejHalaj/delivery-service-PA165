@@ -50,7 +50,7 @@ public class CustomerFacadeTest extends AbstractTestNGSpringContextTests {
         customer = new Customer();
         customer.setCity("City2");
         customer.setCountry("Country2");
-        customer.setEmailAddress("mail2@mail.sk");
+        //customer.setEmailAddress("mail2@mail.sk");
         customer.setFirstName("First2");
         customer.setLastName("Last2");
         customer.setHouseNumber("11");
@@ -90,18 +90,7 @@ public class CustomerFacadeTest extends AbstractTestNGSpringContextTests {
         customerFacade.registerCustomer(customerCreate);
 
         assertEquals(customerCreate.getPhoneNumber(), getCustomer().getPhoneNumber());
-        assertEquals(customerCreate.getEmailAddress(), getCustomer().getEmailAddress());
-    }
-
-    @Test
-    public void testFindByEmail() {
-        customerFacade.registerCustomer(customerCreate);
-        String mail = "mail2@mail.sk";
-        String phone = "0000 000 001";
-
-        when(customerService.getCustomerByEmail(mail)).thenReturn(customer);
-
-        Assert.assertEquals(customerFacade.findCustomerByEmail(mail).getPhoneNumber(), phone);
+        assertEquals(customerCreate.getEmailAddress(), getCustomer().getUserAccount().getEmailAddress());
     }
 
     @Test
@@ -119,6 +108,7 @@ public class CustomerFacadeTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testGetAllCouriers() {
+        customerFacade.registerCustomer(customerCreate);
         Assert.assertEquals(customerFacade.getAllCustomers().size(), 1);
     }
 }

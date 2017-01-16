@@ -27,7 +27,7 @@
                 <td><c:out value="${courier.id}"/></td>
                 <td><a href="${pageContext.request.contextPath}/courier/detail/${courier.id}"><c:out value="${courier.firstName}"/></a></td>
                 <td><c:out value="${courier.lastName}"/></td>
-                <td><c:out value="${courier.email}"/></td>
+                <td><c:out value="${courier.userAcc.emailAddress}"/></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -19,13 +19,13 @@ import java.util.Collection;
 public interface CustomerFacade {
     CustomerDetailDTO findCustomerById(Long id);
     
-    CustomerDetailDTO findCustomerByEmail(String email);
+    //CustomerDetailDTO findCustomerByEmail(String email);
 
     void updateCustomer(CustomerDetailDTO customerDto);
     
     void deleteCustomer(Long id);
 
-    boolean authenticate(CustomerAuthDTO customerDto);
+    //boolean authenticate(CustomerAuthDTO customerDto);
 
     Long registerCustomer(CustomerCreateDTO customerDto);
 

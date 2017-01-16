@@ -79,7 +79,7 @@ public class ProductFacadeImplTest extends AbstractTestNGSpringContextTests {
         productUpdater.setProducer(PRODUCT_PRODUCER);
         productUpdater.setWeight(PRODUCT_WEIGHT2);
         productUpdater.setDescription(PRODUCT_DESCRIPTION2);
-
+        System.out.println("+productUpdater"+productUpdater.getId());
         productFacade.update(productUpdater);
 
         List<ProductDTO> products = productFacade.findAll();

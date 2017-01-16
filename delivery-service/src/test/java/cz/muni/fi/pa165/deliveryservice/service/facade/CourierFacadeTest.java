@@ -41,8 +41,6 @@ public class CourierFacadeTest extends AbstractTransactionalTestNGSpringContextT
     private CourierCreateDTO courier1;
     private CourierCreateDTO courier2;
 
-    private Courier cour1;
-
     @BeforeClass
     public void setupTest() throws ServiceException {
         MockitoAnnotations.initMocks(this);
@@ -61,12 +59,6 @@ public class CourierFacadeTest extends AbstractTransactionalTestNGSpringContextT
         courier2.setLastName("Seagal");
         courier2.setEmail("Steven@gmail.com");
         courier2.setPassword("donteventry");
-
-        cour1 = new Courier();
-        cour1.setFirstName("Chuck");
-        cour1.setLastName("Norris");
-        cour1.setEmail("Chuck@gmail.com");
-        cour1.setPassword("roundkick");
     }
 
     @Test
@@ -79,20 +71,9 @@ public class CourierFacadeTest extends AbstractTransactionalTestNGSpringContextT
 
     @Test
     public void testFindById() {
-
-    }
-
-    @Test
-    public void testFindByEmail() {
-
         courierFacade.registerCourier(courier1);
-        courierFacade.registerCourier(courier2);
 
-        when(courierService.findByEmail(cour1.getEmail())).thenReturn(cour1);
-
-        CourierDTO found = courierFacade.findByEmail(cour1.getEmail());
-        Assert.assertEquals(found.getFirstName(), cour1.getFirstName());
-        Assert.assertEquals(found.getLastName(), cour1.getLastName());
+        Assert.assertEquals(courierFacade.findById(1L).getFirstName(), courier1.getFirstName());
     }
 
     @Test
@@ -101,18 +82,6 @@ public class CourierFacadeTest extends AbstractTransactionalTestNGSpringContextT
         courierFacade.registerCourier(courier2);
 
         Assert.assertEquals(courierFacade.getAllCouriers().size(), 2);
-    }
-
-
-    @Test
-    public void testAuthenticate() {
-        courierFacade.registerCourier(courier1);
-
-        CourierAuthDTO c = new CourierAuthDTO();
-        c.setEmail(courier1.getEmail());
-        c.setPassword(courier1.getPassword());
-
-        Assert.assertTrue(courierFacade.authenticate(c));
     }
 
     @Test

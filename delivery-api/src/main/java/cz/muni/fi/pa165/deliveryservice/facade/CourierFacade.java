@@ -13,13 +13,13 @@ public interface CourierFacade {
 
     CourierDTO findById(Long id);
 
-    CourierDTO findByEmail(String email);
+    //CourierDTO findByEmail(String email);
 
     List<CourierDTO> getAllCouriers();
 
     long registerCourier(CourierCreateDTO courier);
 
-    boolean authenticate(CourierAuthDTO courier);
+    //boolean authenticate(CourierAuthDTO courier);
 
     void updateCourier(CourierDTO courier);
 

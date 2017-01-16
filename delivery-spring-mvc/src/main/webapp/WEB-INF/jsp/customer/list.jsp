@@ -26,7 +26,7 @@
                 <td><c:out value="${customer.id}"/></td>
                 <td><a href="${pageContext.request.contextPath}/customer/detail/${customer.id}"><c:out value="${customer.firstName}"/></a></td>
                 <td><c:out value="${customer.lastName}"/></td>
-                <td><c:out value="${customer.emailAddress}"/></td>
+                <td><c:out value="${customer.userAccount.emailAddress}"/></td>
                 <td><c:out value="${customer.city}"/></td>
             </tr>
         </c:forEach>

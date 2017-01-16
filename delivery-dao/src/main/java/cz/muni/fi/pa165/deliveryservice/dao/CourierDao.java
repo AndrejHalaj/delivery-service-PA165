@@ -39,14 +39,6 @@ public interface CourierDao {
 	Courier findById(Long id);
 
 	/**
-	 * Find courier entity with given email
-	 *
-	 * @param email of the courier entity that want to be retrieved
-	 * @return courier entity with given email
-	 */
-	Courier findByEmail(String email);
-
-	/**
 	 * Finds all courier entities.
 	 * 
 	 * @return all courier entities

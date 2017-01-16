@@ -5,6 +5,8 @@ import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.product.ProductDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.user.UserDTO;
+import cz.muni.fi.pa165.deliveryservice.entity.Useraccount;
 import cz.muni.fi.pa165.deliveryservice.facade.CourierFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.facade.ProductFacade;
@@ -64,15 +66,21 @@ public class ShipmentController {
     }
 
     @RequestMapping(value= "/list", method= RequestMethod.GET)
-    public String shipmentList(Model model) {
-        log.debug("ShipmentController::shipmentList() size:" + shipmentFacade.findAll().size());
-        model.addAttribute("shipments", shipmentFacade.findAll());
+    public String shipmentList(Model model, HttpServletRequest request) {
+        UserDTO usr = (UserDTO) request.getSession().getAttribute("authenticatedUser");
+        model.addAttribute("loggedUser", usr);
+
+        if(usr.isIsCourier()) // only assigned to the courier
+            model.addAttribute("shipments", shipmentFacade.findByCourier(usr.getUserId()));
+        else
+            model.addAttribute("shipments", shipmentFacade.findAll());
         return "shipment/list";
     }
 
     @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.GET)
-    public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model){
+    public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model, HttpServletRequest request){
         log.debug("ShipmentController::shipmentDetail() id=" + shipmentId);
+        model.addAttribute("loggedUser", request.getSession().getAttribute("authenticatedUser"));
         //model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
         //model.addAttribute("products", productFacade.findAll());
         //model.addAttribute("couriers", courierFacade.getAllCouriers());
@@ -108,12 +116,13 @@ public class ShipmentController {
     public String create(@Valid @ModelAttribute("shipmentForm") ShipmentCreateDTO formBean, BindingResult bindRes, HttpServletRequest request,
                          RedirectAttributes redirectAttributes) {
 
-        CustomerDetailDTO loggedUsr = (CustomerDetailDTO) request.getSession().getAttribute("authenticatedUser");
+        UserDTO loggedUsr = (UserDTO) request.getSession().getAttribute("authenticatedUser");
         if(loggedUsr == null) {
             log.debug("ShipmentController::create() something is wrong, you dont seem to be signed!");
             return "shipment/new";
         }
-        formBean.setCustomerSenderId(loggedUsr.getId());
+        log.debug("ShipmentController::create() user= " + loggedUsr.getEmailAddress() + ", userId=" +loggedUsr.getUserId());
+        formBean.setCustomerSenderId(loggedUsr.getUserId());
 
         if(bindRes.hasErrors()) {
             log.debug("ShipmentController::create() has binding erros");
@@ -174,6 +183,16 @@ public class ShipmentController {
         log.debug("ShipmentController::cancelShipment() " + shipmentId );
 
         shipmentFacade.cancelShipment(shipmentId);
+
+        return "redirect:/shipment/list";
+    }
+
+    @RequestMapping(value="/transfer/{shipmentId}")
+    public String transferShipment(@PathVariable("shipmentId") long shipmentId, RedirectAttributes redirectAttributes) {
+
+        log.debug("ShipmentController::transferShipment(): id=" + shipmentId);
+
+        shipmentFacade.transferShipment(shipmentId);
 
         return "redirect:/shipment/list";
     }

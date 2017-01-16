@@ -46,7 +46,7 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         customer = new Customer();
         customer.setCity("City");
         customer.setCountry("Country");
-        customer.setEmailAddress("mail@mail.sk");
+        //customer.setEmailAddress("mail@mail.sk");
         customer.setFirstName("First");
         customer.setLastName("Last");
         customer.setHouseNumber("10");
@@ -56,27 +56,12 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         customer2 = new Customer();
         customer2.setCity("City2");
         customer2.setCountry("Country2");
-        customer2.setEmailAddress("mail2@mail.sk");
+        //customer2.setEmailAddress("mail2@mail.sk");
         customer2.setFirstName("First2");
         customer2.setLastName("Last2");
         customer2.setHouseNumber("11");
         customer2.setPhoneNumber("0000 000 001");
         customer2.setPostalCode("0001");
-    }
-
-    @Test
-    public void authenticateCustomer() {
-        customerService.register(customer, "123456");
-
-        Assert.assertTrue(customerService.authenticate(customer, "123456"));
-        Assert.assertFalse(customerService.authenticate(customer, "654321"));
-    }
-
-    @Test
-    public void findByEmail() {
-        when(customerDao.findByEmail("mail@mail.sk")).thenReturn(customer);
-
-        Assert.assertEquals(customerService.getCustomerByEmail("mail@mail.sk"), customer);
     }
 
     @Test

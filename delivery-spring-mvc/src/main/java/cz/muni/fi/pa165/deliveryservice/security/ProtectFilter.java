@@ -31,7 +31,7 @@ public class ProtectFilter implements Filter {
 
     private void response401(HttpServletResponse response, HttpServletRequest request) throws IOException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.sendRedirect(request.getContextPath()+"/customer/login_page");
+        response.sendRedirect(request.getContextPath()+"/user/login_page");
     }
 
     @Override

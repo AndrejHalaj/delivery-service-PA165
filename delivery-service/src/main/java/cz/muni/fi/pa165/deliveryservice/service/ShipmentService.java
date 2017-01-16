@@ -19,6 +19,8 @@ public interface ShipmentService {
 
     void updateShipment(Shipment shipment);
 
+    void transferShipment(Shipment shipment);
+
     void deliverShipment(Shipment shipment);
 
     void cancelShipment(Shipment shipment);
@@ -28,6 +30,8 @@ public interface ShipmentService {
     void removeProduct(Shipment s, Product p);
 
     Shipment findById(Long id);
+
+    List<Shipment> findByCourier(Long id);
 
     List<Shipment> findAll();
 

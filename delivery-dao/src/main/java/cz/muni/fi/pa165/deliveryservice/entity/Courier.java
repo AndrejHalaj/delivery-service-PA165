@@ -15,17 +15,14 @@ public class Courier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    private Useraccount userAcc;
+
     @Column(nullable = false)
     private String firstName;
 
     @Column(nullable = false)
     private String lastName;
-
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
 
     @OneToMany(mappedBy = "courier")
     private Set<Shipment> shipmentsList = new HashSet<Shipment>();
@@ -38,6 +35,14 @@ public class Courier {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Useraccount getUserAcc() {
+        return userAcc;
+    }
+
+    public void setUserAcc(Useraccount userAcc) {
+        this.userAcc = userAcc;
     }
 
     public String getFirstName() {
@@ -56,21 +61,6 @@ public class Courier {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Set<Shipment> getShipmentsList() {
         return Collections.unmodifiableSet(shipmentsList);
@@ -92,7 +82,7 @@ public class Courier {
         int result = 1;
         result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((userAcc == null) ? 0 : userAcc.getEmailAddress().hashCode());
         return result;
     }
 
@@ -122,11 +112,11 @@ public class Courier {
         } else if (!lastName.equals(other.getLastName())) {
             return false;
         }
-        if(email == null) {
-            if (other.getEmail() != null){
+        if(userAcc.getEmailAddress() == null) {
+            if (other.getUserAcc().getEmailAddress() != null){
                 return false;
             }
-        } else if(!email.equals(other.getEmail())) {
+        } else if(!userAcc.getEmailAddress().equals(other.getUserAcc().getEmailAddress())) {
             return false;
         }
 

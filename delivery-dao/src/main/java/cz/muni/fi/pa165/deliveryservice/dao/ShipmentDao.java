@@ -40,6 +40,14 @@ public interface ShipmentDao {
     Shipment findById(Long id);
 
     /**
+     * Get list of shipments assigned to courier with courierId
+     *
+     * @param courierId
+     * @return List of shipemnts assigned to courier with courierId
+     */
+    List<Shipment> findByCourier(Long courierId);
+
+    /**
      * Get list of all shipments
      *
      * @return List of all Shipments

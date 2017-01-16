@@ -12,7 +12,7 @@
 <my:pagetemplate title="Login">
     <jsp:attribute name="body">
 
-        <form:form class="form-horizontal" role="form" method="post" modelAttribute="authenticateUser"  action="${pageContext.request.contextPath}/customer/login"
+        <form:form class="form-horizontal" role="form" method="post" modelAttribute="authenticateUser"  action="${pageContext.request.contextPath}/user/login"
               >
             <div class="form-group">
                 <label class="control-label col-sm-2" for="emailAddressInput">Email:</label>

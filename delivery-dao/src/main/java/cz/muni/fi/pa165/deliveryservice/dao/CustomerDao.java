@@ -51,12 +51,4 @@ public interface CustomerDao {
      * @return collection of all customers
      */
     Collection<Customer> findAll();
-
-    /**
-     * Find customer with given email
-     *
-     * @param email of the customer
-     * @return customer with given email
-     */
-    Customer findByEmail(String email);
 }

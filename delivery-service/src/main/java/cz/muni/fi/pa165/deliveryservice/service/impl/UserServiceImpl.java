@@ -1,37 +1,32 @@
 package cz.muni.fi.pa165.deliveryservice.service.impl;
 
-import cz.muni.fi.pa165.deliveryservice.dao.CustomerDao;
-import cz.muni.fi.pa165.deliveryservice.entity.Customer;
-import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Service;
-
+import cz.muni.fi.pa165.deliveryservice.dao.UserDao;
+import cz.muni.fi.pa165.deliveryservice.entity.Useraccount;
+import cz.muni.fi.pa165.deliveryservice.service.UserService;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.inject.Inject;
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.Collection;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Kristian Mateka
  */
 @Service
-public class CustomerServiceImpl implements CustomerService {
+public class UserServiceImpl implements UserService {
 
     @Inject
-    private CustomerDao customerDao;
+    private UserDao userDao;
 
     @Override
-    public void create(Customer customer) {
+    public void register(Useraccount user, String password) {
+        user.setPasswordHash(createHash(password));
+
         try {
-            customerDao.create(customer);
-            if(customer.getUserAccount() != null){
-                customer.getUserAccount().setUserId(customer.getId());
-
-            }
-
+            userDao.create(user);
         } catch (Exception ex) {
             throw new DataAccessException("Exception while creating: " + ex.getMessage()) {
             };
@@ -39,30 +34,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void update(Customer customer) {
-
+    public Useraccount getUserById(Long id) {
         try {
-            customerDao.update(customer);
-        } catch (Exception ex) {
-            throw new DataAccessException("Exception while updating: " + ex.getMessage()) {
-            };
-        }
-    }
-
-    @Override
-    public void delete(Customer customer) {
-        try {
-            customerDao.delete(customer);
-        } catch (Exception ex) {
-            throw new DataAccessException("Exception while deleting: " + ex.getMessage()) {
-            };
-        }
-    }
-
-    @Override
-    public Collection<Customer> getAllCustomers() {
-        try {
-            return customerDao.findAll();
+            return userDao.findById(id);
         } catch (Exception ex) {
             throw new DataAccessException("Exception while geting: " + ex.getMessage()) {
             };
@@ -70,25 +44,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerById(Long id) {
-        try {
-            return customerDao.findById(id);
-        } catch (Exception ex) {
-            throw new DataAccessException("Exception while geting: " + ex.getMessage()) {
-            };
-        }
-    }
-
-
-    /*
-
-    @Override
-    public boolean authenticate(Customer customer, String password) {
-        if (customer == null) {
+    public boolean authenticate(Useraccount user, String password) {
+        if (user == null) {
             return false;
         }
         try {
-            return validatePassword(password, customer.getPasswordHash());
+            return validatePassword(password, user.getPasswordHash());
         } catch (Exception ex) {
             throw new DataAccessException("Exception while authenticating: " + ex.getMessage()) {
             };
@@ -132,7 +93,7 @@ public class CustomerServiceImpl implements CustomerService {
         byte[] testHash = pbkdf2(password.toCharArray(), salt, iterations, hash.length);
         return slowEquals(hash, testHash);
     }
-    */
+
     /**
      * Compares two byte arrays in length-constant time. This comparison method
      * is used so that password hashes cannot be extracted from an on-line
@@ -142,7 +103,6 @@ public class CustomerServiceImpl implements CustomerService {
      * @param b the second byte array
      * @return true if both byte arrays are the same, false if not
      */
-    /*
     private static boolean slowEquals(byte[] a, byte[] b) {
         int diff = a.length ^ b.length;
         for (int i = 0; i < a.length && i < b.length; i++) {
@@ -165,5 +125,14 @@ public class CustomerServiceImpl implements CustomerService {
         int paddingLength = (array.length * 2) - hex.length();
         return paddingLength > 0 ? String.format("%0" + paddingLength + "d", 0) + hex : hex;
     }
-    */
+
+    @Override
+    public Useraccount getUserByEmail(String email) {
+                try {
+            return userDao.findByEmail(email);
+        } catch (Exception ex) {
+            throw new DataAccessException("Exception while geting: " + ex.getMessage()) {
+            };
+        }
+    }
 }

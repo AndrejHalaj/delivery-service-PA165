@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td><strong>Email:</strong></td>
-                <td><a href="mailto:<c:out value='${customerDetail.emailAddress}'/>"><c:out value="${customerDetail.emailAddress}"/></a></td>
+                <td><a href="mailto:<c:out value='${customerDetail.userAccount.emailAddress}'/>"><c:out value="${customerDetail.userAccount.emailAddress}"/></a></td>
             </tr>
             <tr>
                 <td><strong>Phone number:</strong></td>

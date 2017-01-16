@@ -10,11 +10,13 @@
 <jsp:attribute name="body">
 
   <div class="event_container animated fadeIn">
-  
+
+    <c:if test="${loggedUser.isCourier==false}">
   	<a href="${pageContext.request.contextPath}/product/new" class="btn btn-primary" style="float:right">
   		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add product
     </a>
-  
+    </c:if>
+
     <table class="table">
         <thead>
         <tr>
@@ -33,6 +35,7 @@
                 <td><a href="${pageContext.request.contextPath}/product/detail/${product.id}"><c:out value="${product.name}"/></a></td>
                 <td><c:out value="${product.producer}"/></td>
                 <td><c:out value="${product.weight}"/> kg</td>
+                <c:if test="${loggedUser.isCourier==false}">
                 <td>
                     <a href="${pageContext.request.contextPath}/product/detail/${product.id}" class="btn btn-success">Edit</a>
                 </td>
@@ -41,6 +44,7 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>

@@ -16,11 +16,13 @@
     <jsp:attribute name="body">
 
             <%-- Add buttonm, ... --%>
+            <c:if test="${loggedUser.isCourier==false}">
             <div class="shipment_control">
                 <a href="${pageContext.request.contextPath}/shipment/new" class="btn btn-primary btn-lg" style="float:right">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
                 </a>
             </div>
+            </c:if>
 
             <%-- Shipments list. --%>
             <div class="shipments_container">
@@ -51,22 +53,34 @@
                                 <form method="post" action="${pageContext.request.contextPath}/shipment/deliver/${shipment.id}">
                                     <button class="btn btn-success" type="submit">Deliver</button>
                                 </form>
+                                <c:if test="${loggedUser.isCourier==false}">
                                 <%-- Edit button - only for shipments with state NEW/TRANSFERED --%>
                                 <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
                                     <button class="btn btn-primary" type="submit">Edit</button>
                                 </form>
+                                </c:if>
                             </c:when>
 
                             <%-- Control buttons --%>
                             <c:when test="${shipment.shipmentState == 'NEW'}">
                                 <%-- Cancel button only shows for NEW shipmentst --%>
-                                <form method="post" action="${pageContext.request.contextPath}/shipment/cancel/${shipment.id}">
-                                    <button class="btn btn-danger" type="submit">Cancel</button>
-                                </form>
-                                <%-- Edit button - only for shipments with state NEW/TRANSFERED --%>
-                                <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
-                                    <button class="btn btn-primary" type="submit">Edit</button>
-                                </form>
+                                <c:if test="${loggedUser.isCourier==true}">
+
+                                    <form method="post" action="${pageContext.request.contextPath}/shipment/transfer/${shipment.id}">
+                                        <button class="btn btn-success" type="submit">Transfer</button>
+                                    </form>
+
+                                    <form method="post" action="${pageContext.request.contextPath}/shipment/cancel/${shipment.id}">
+                                        <button class="btn btn-danger" type="submit">Cancel</button>
+                                    </form>
+                                </c:if>
+
+                                <c:if test="${loggedUser.isCourier==false}">
+                                    <%-- Edit button - only for shipments with state NEW/TRANSFERED --%>
+                                    <form method="get" action="${pageContext.request.contextPath}/shipment/update/${shipment.id}">
+                                        <button class="btn btn-primary" type="submit">Edit</button>
+                                    </form>
+                                </c:if>
                             </c:when>
                         </c:choose>
                         </div>

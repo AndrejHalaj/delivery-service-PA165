@@ -34,14 +34,14 @@ public class CourierDaoImplTest extends AbstractTestNGSpringContextTests {
         courier1 = new Courier();
         courier1.setFirstName("Sylvester");
         courier1.setLastName("Stallone");
-        courier1.setEmail("Rocky@gmail.com");
-        courier1.setPassword("goForward");
+        //courier1.setEmail("Rocky@gmail.com");
+        //courier1.setPassword("goForward");
 
         courier2 = new Courier();
         courier2.setFirstName("Jason");
         courier2.setLastName("Statham");
-        courier2.setEmail("Jason@gmail.com");
-        courier2.setPassword("NeverGiveUp");
+        //courier2.setEmail("Jason@gmail.com");
+        //courier2.setPassword("NeverGiveUp");
 
         courierDao.create(courier1);
         courierDao.create(courier2);
@@ -55,11 +55,6 @@ public class CourierDaoImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindByIdFailure() throws NotFoundException{
         Assert.assertEquals(courierDao.findById(courier2.getId() + 4), null);
-    }
-
-    @Test
-    public void testFindByEmail() throws ChangeSetPersister.NotFoundException {
-        Assert.assertEquals(courierDao.findByEmail(courier1.getEmail()), courier1);
     }
 
     @Test

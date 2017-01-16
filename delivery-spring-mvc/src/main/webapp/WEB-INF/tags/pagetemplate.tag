@@ -41,14 +41,14 @@
                     </ul>
                     <c:if test="${empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="${pageContext.request.contextPath}/customer/new"><span class="glyphicon glyphicon-user"></span>Customer Sign Up</a></li>
-                            <li><a href="${pageContext.request.contextPath}/customer/login_page"><span class="glyphicon glyphicon-log-in"></span>Customer Login</a></li>
+                            <li><a href="${pageContext.request.contextPath}/customer/new"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                            <li><a href="${pageContext.request.contextPath}/user/login_page"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
                         </ul>
                     </c:if>
                     <c:if test="${not empty authenticatedUser}">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="${pageContext.request.contextPath}/customer/detail/${authenticatedUser.id}"><span class="glyphicon glyphicon-user"></span>"${authenticatedUser.emailAddress}"</a></li>
-                            <li><a href="${pageContext.request.contextPath}/customer/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+                            <li><a href="${pageContext.request.contextPath}/user/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
                         </ul>
                     </c:if>
 
@@ -60,13 +60,13 @@
             <!-- page title -->
             <c:if test="${not empty title and title != 'Sporting Events Manager'}">
                 <div class="page-header">
-                    <c:if test="${title != 'Events' and title != 'Competition results' and title != 'Competition'
-                        and title != 'All users'}">
+                    <c:if test="${title != 'Shipments' and title != 'Products' and title != 'Couriers'
+                        and title != 'Customers'}">
                             <h1><c:out value="${title}"/></h1>
                     </c:if>
-                    <c:if test="${title == 'Events' or title == 'Competition results' or title == 'Competition'
-                        or title == 'All users'}">
-                            <h1 style=" color: white;"><c:out value="${title}"/></h1>
+                    <c:if test="${title == 'Shipments' or title == 'Products' or title == 'Couriers'
+                        or title == 'Customers'}">
+                            <h1 style=" color: black;"><c:out value="${title}"/></h1>
                     </c:if>
                 </div>
             </c:if>

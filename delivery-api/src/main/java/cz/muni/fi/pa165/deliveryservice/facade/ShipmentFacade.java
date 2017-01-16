@@ -17,11 +17,15 @@ public interface ShipmentFacade {
 
     void updateShipment(ShipmentDTO shipment);
 
+    void transferShipment(Long shipmentId);
+
     void deliverShipment(Long shipmentId);
 
     void cancelShipment(Long shipmentId);
 
     ShipmentDTO findById(Long id);
+
+    List<ShipmentDTO> findByCourier(Long id);
 
     List<ShipmentDTO> findAll();
 

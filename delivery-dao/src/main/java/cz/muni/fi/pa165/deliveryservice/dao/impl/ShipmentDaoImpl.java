@@ -41,6 +41,10 @@ public class ShipmentDaoImpl implements ShipmentDao {
         return entityManager.find(Shipment.class, id);
     }
         
+    public List<Shipment> findByCourier(Long courierId){
+        return Collections.unmodifiableList(entityManager.createQuery("SELECT s FROM Shipment s WHERE s.courier.id = :courierId", Shipment.class)
+                .setParameter("courierId", courierId).getResultList());
+    }
 
     @Override
     public List<Shipment> findAll() {

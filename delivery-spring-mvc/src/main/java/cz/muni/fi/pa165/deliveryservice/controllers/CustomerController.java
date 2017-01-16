@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.deliveryservice.controllers;
 
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerAuthDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
+import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.deliveryservice.validators.CustomerValidator;
@@ -46,6 +47,8 @@ public class CustomerController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
+        //CustomerDisplayDTO c = customerFacade.getAllCustomers().;
+        //System.out.println("custm-email: " + (c.getUserAcc() == 0 ? "null" : c.getUserAcc().getEmailAddress() ));
         model.addAttribute("customers", customerFacade.getAllCustomers());
         return "customer/list";
     }
@@ -81,37 +84,5 @@ public class CustomerController {
         //report success
         redirectAttributes.addFlashAttribute("alert_success", "Customer with ID " + id + " has been created");
         return "redirect:" + uriBuilder.path("/customer/list").toUriString();
-    }
-
-    @RequestMapping(value = "/login_page", method = RequestMethod.GET)
-    public String logingGet(Model model) {
-        model.addAttribute("authenticateUser", new CustomerAuthDTO());
-        return "customer/login_page";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(@Valid @ModelAttribute("authenticateUser") CustomerAuthDTO formBean, BindingResult bindingResult,
-                            Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder, HttpServletRequest request) {
-        //in case of validation error forward back to the the form
-        if (bindingResult.hasErrors()) {
-            return "customer/login_page";
-        }
-
-        if (!customerFacade.authenticate(formBean)) {
-            model.addAttribute("alert_warning", "You couldn't be logged in - wrong email or password.");
-            return "customer/login_page";
-        }
-
-        //report success
-        redirectAttributes.addFlashAttribute("alert_success", "You have been logged in as " + formBean.getEmailAddress() + ".");
-        request.getSession().setAttribute("authenticatedUser", customerFacade.findCustomerByEmail(formBean.getEmailAddress()));
-        return "redirect:/";
-    }
-
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(Model model, HttpServletRequest request) {
-        request.getSession().removeAttribute("authenticatedUser");
-        model.addAttribute("alert_success", "You have been logged out.");
-        return "/home";
     }
 }

@@ -17,7 +17,7 @@ import java.util.Collection;
 @Service
 public interface CustomerService {
     
-    void register(Customer customer, String password);
+    void create(Customer customer);
     
     void update(Customer customer);
     
@@ -27,7 +27,7 @@ public interface CustomerService {
     
     Customer getCustomerById(Long id);
     
-    Customer getCustomerByEmail(String email);
+    //Customer getCustomerByEmail(String email);
     
-    boolean authenticate(Customer customer, String password);
+   // boolean authenticate(Customer customer, String password);
 }

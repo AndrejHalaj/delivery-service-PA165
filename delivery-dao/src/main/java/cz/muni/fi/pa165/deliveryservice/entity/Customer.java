@@ -43,26 +43,16 @@ public class Customer {
     
     @Column(nullable = false, unique = true)
     private String phoneNumber;
-    
-    @Column(nullable = false, unique = true)
-    private String emailAddress;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    private Useraccount userAccount;
 
     @OneToMany(mappedBy = "sender")
     private Set<Shipment> shipmentSenderList = new HashSet<>();
 
     @OneToMany(mappedBy = "receiver")
     private Set<Shipment> shipmentReceiverList = new HashSet<>();
-    
-    String passwordHash;
 
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-    
     public Customer() {
     }
 
@@ -130,12 +120,12 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public Useraccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setUserAccount(Useraccount userAccount) {
+        this.userAccount = userAccount;
     }
 
     public Set<Shipment> getShipmentSenderList() {
@@ -166,7 +156,7 @@ public class Customer {
     public int hashCode() {
         int hash = 7;
         hash = 89 * hash + Objects.hashCode(this.phoneNumber);
-        hash = 89 * hash + Objects.hashCode(this.emailAddress);
+        hash = 89 * hash + Objects.hashCode(this.userAccount.getEmailAddress());
         return hash;
     }
 
@@ -182,9 +172,9 @@ public class Customer {
             return false;
         }
         final Customer other = (Customer) obj;
-        if (!Objects.equals(this.phoneNumber, other.phoneNumber)) {
+        if (!Objects.equals(this.phoneNumber, other.getPhoneNumber())) {
             return false;
         }
-        return Objects.equals(this.emailAddress, other.emailAddress);
+        return Objects.equals(this.userAccount.getEmailAddress(), other.getUserAccount().getEmailAddress());
     }
 }

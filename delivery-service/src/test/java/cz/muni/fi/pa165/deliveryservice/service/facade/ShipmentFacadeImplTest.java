@@ -7,15 +7,13 @@ import cz.muni.fi.pa165.deliveryservice.dao.ShipmentDao;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.shipment.ShipmentUpdateCourierDTO;
+import cz.muni.fi.pa165.deliveryservice.entity.*;
 import cz.muni.fi.pa165.deliveryservice.facade.ShipmentFacade;
-import cz.muni.fi.pa165.deliveryservice.entity.Courier;
-import cz.muni.fi.pa165.deliveryservice.entity.Customer;
-import cz.muni.fi.pa165.deliveryservice.entity.Product;
-import cz.muni.fi.pa165.deliveryservice.entity.Shipment;
 import cz.muni.fi.pa165.deliveryservice.entity.Shipment.ShipmentState;
 import cz.muni.fi.pa165.deliveryservice.service.CourierService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
 import cz.muni.fi.pa165.deliveryservice.service.ShipmentService;
+import cz.muni.fi.pa165.deliveryservice.service.UserService;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
@@ -50,10 +48,13 @@ public class ShipmentFacadeImplTest extends AbstractTestNGSpringContextTests {
 	
 	@Mock
     private CourierService courierService;
-	
+
+	@Mock
+	private UserService userService;
+
 	@Mock
     private MappingService mappingService;
-	
+
 	@Inject
     @InjectMocks
     private ShipmentFacade shipmentFacade;
@@ -81,9 +82,7 @@ public class ShipmentFacadeImplTest extends AbstractTestNGSpringContextTests {
     public void prepareObjects() {
     	sender = getCustomer("0000000000", "sender@mail.sk");
     	receiver = getCustomer("0000000001", "receiver@mail.sk");
-    	customerDao.create(sender);
-    	customerDao.create(receiver);
-    	
+
     	product = new Product();
     	product.setName("Product Name");
     	product.setProducer("Producer");
@@ -93,10 +92,17 @@ public class ShipmentFacadeImplTest extends AbstractTestNGSpringContextTests {
     	courier = new Courier();
     	courier.setFirstName("Name1");
     	courier.setLastName("Surname1");
-    	courier.setEmail("mail1@mail.sk");
-    	courier.setPassword("abcdef");
-    	courierDao.create(courier);
-    	
+    	//courier.setEmail();
+    	//courier.setPassword();
+
+		Useraccount u = new Useraccount();
+		u.setEmailAddress("mail1@mail.sk");
+		userService.register(u, "abcdef");
+		courier.setUserAcc(u);
+
+		courierDao.create(courier);
+		u.setUserId(courier.getId());
+
     	newShipment = getShipment(ShipmentState.NEW);
         
         transferedShipment = getShipment(ShipmentState.TRANSFERED);
@@ -189,7 +195,17 @@ public class ShipmentFacadeImplTest extends AbstractTestNGSpringContextTests {
 		customer.setCity("Nitra");
 		customer.setCountry("Slovakia");
 		customer.setPhoneNumber(phoneNumber);
-		customer.setEmailAddress(email);
+		//customer.setEmailAddress(email);
+
+		Useraccount useraccount = new Useraccount();
+		useraccount.setEmailAddress(email);
+		userService.register(useraccount, "passwd01");
+
+		customer.setUserAccount(useraccount);
+		useraccount.setUserId(customer.getId());
+
+		customerDao.create(customer);
+
 		return customer;
 	}
 	

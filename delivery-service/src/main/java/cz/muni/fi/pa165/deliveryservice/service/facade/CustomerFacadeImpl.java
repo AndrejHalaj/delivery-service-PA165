@@ -1,18 +1,20 @@
 package cz.muni.fi.pa165.deliveryservice.service.facade;
 
-import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerAuthDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDetailDTO;
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
+import cz.muni.fi.pa165.deliveryservice.entity.Useraccount;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.entity.Customer;
 import cz.muni.fi.pa165.deliveryservice.service.CustomerService;
 import cz.muni.fi.pa165.deliveryservice.service.MappingService;
+import cz.muni.fi.pa165.deliveryservice.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  *
@@ -27,9 +29,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
     
     @Inject
     private CustomerService service;
-    
-//    @Inject
-//    private UserService userService;
+
+
+
+    @Inject
+    private UserService userService;
     
     @Override
     public Long registerCustomer(CustomerCreateDTO customerDto) {
@@ -37,21 +41,22 @@ public class CustomerFacadeImpl implements CustomerFacade {
         
         customer.setCity(customerDto.getCity());
         customer.setCountry(customerDto.getCountry());
-        customer.setEmailAddress(customerDto.getEmailAddress());
         customer.setFirstName(customerDto.getFirstName());
         customer.setLastName(customerDto.getLastName());
         customer.setHouseNumber(customerDto.getHouseNumber());
         customer.setPhoneNumber(customerDto.getPhoneNumber());
         customer.setPostalCode(customerDto.getPostalCode());
         
-        service.register(customer, customerDto.getPassword());
-        
-//        User user = new User();
-//        user.setUserId(customer.getId());
-//        user.setEmailAddress(customer.getEmailAddress());
-//        
-//        userService.register(user, customerDto.getPassword());
-        
+        Useraccount user = new Useraccount();
+        user.setUserId(customer.getId());
+        user.setEmailAddress(customerDto.getEmailAddress());
+        user.setIsCourier(false);
+        userService.register(user, customerDto.getPassword());
+
+        customer.setUserAccount(user);
+        service.create(customer);
+        user.setUserId(customer.getId());
+
         return customer.getId();
     }
 
@@ -66,11 +71,13 @@ public class CustomerFacadeImpl implements CustomerFacade {
         service.update(customer);
     }
 
+    /*
     @Override
     public boolean authenticate(CustomerAuthDTO customerDto) {
         Customer c = service.getCustomerByEmail(customerDto.getEmailAddress());
         return service.authenticate(c, customerDto.getPassword());
     }
+    */
 
     @Override
     public CustomerDetailDTO findCustomerById(Long id) {
@@ -78,12 +85,14 @@ public class CustomerFacadeImpl implements CustomerFacade {
         return (customer == null) ? null : mapper.mapTo(customer, CustomerDetailDTO.class);
     }
 
+    /*
     @Override
     public CustomerDetailDTO findCustomerByEmail(String email) {
         Customer customer = service.getCustomerByEmail(email);
         
         return mapper.mapTo(customer, CustomerDetailDTO.class);
     }
+    */
 
     @Override
     public void deleteCustomer(Long id) {
