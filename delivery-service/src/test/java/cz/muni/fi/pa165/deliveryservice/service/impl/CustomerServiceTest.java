@@ -46,7 +46,6 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         customer = new Customer();
         customer.setCity("City");
         customer.setCountry("Country");
-        //customer.setEmailAddress("mail@mail.sk");
         customer.setFirstName("First");
         customer.setLastName("Last");
         customer.setHouseNumber("10");
@@ -56,7 +55,6 @@ public class CustomerServiceTest extends AbstractTestNGSpringContextTests {
         customer2 = new Customer();
         customer2.setCity("City2");
         customer2.setCountry("Country2");
-        //customer2.setEmailAddress("mail2@mail.sk");
         customer2.setFirstName("First2");
         customer2.setLastName("Last2");
         customer2.setHouseNumber("11");

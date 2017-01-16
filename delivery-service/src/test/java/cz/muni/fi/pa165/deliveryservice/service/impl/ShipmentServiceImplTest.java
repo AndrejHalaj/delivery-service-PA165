@@ -45,12 +45,10 @@ public class ShipmentServiceImplTest extends AbstractTestNGSpringContextTests {
     	courier1 = new Courier();
     	courier1.setFirstName("Name1");
     	courier1.setLastName("Surname1");
-    	//courier1.setEmail("mail1@mail.sk");
     	
     	courier2 = new Courier();
     	courier2.setFirstName("Name2");
     	courier2.setLastName("Surname2");
-    	//courier2.setEmail("mail2@mail.sk");
     	
     	newShipment = new Shipment();
         newShipment.setShipmentState(ShipmentState.NEW);

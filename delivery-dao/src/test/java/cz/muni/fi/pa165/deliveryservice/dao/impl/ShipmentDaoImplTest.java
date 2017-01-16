@@ -51,7 +51,7 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         sender = new Customer();
         sender.setCity("City");
         sender.setCountry("Country");
-        //sender.setEmailAddress("mail@mail.sk");
+
         sender.setFirstName("First");
         sender.setLastName("Last");
         sender.setHouseNumber("10");
@@ -61,7 +61,7 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         reciever = new Customer();
         reciever.setCity("City2");
         reciever.setCountry("Country2");
-        //reciever.setEmailAddress("mail2@mail.sk");
+
         reciever.setFirstName("First2");
         reciever.setLastName("Last2");
         reciever.setHouseNumber("11");
@@ -71,8 +71,6 @@ public class ShipmentDaoImplTest extends AbstractTestNGSpringContextTests {
         courier = new Courier();
         courier.setFirstName("Sylvester");
         courier.setLastName("Stallone");
-        //courier.setEmail("Rocky@gmail.com");
-        //courier.setPassword("goForward");
         
         ship = new Shipment();
         ship.setCourier(courier);

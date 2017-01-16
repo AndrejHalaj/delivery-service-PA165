@@ -59,8 +59,6 @@ public class UserController {
         redirectAttributes.addFlashAttribute("alert_success", "You have been logged in as " + formBean.getEmailAddress() + ".");
         UserDTO u = userFacade.findByEmail(formBean.getEmailAddress());
 
-        System.out.println("authUser id " + u.getId() + ", userId= " + u.getUserId());
-
         request.getSession().setAttribute("authenticatedUser", userFacade.findByEmail(formBean.getEmailAddress()));
         return "redirect:/";
     }

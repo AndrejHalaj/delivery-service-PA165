@@ -195,7 +195,6 @@ public class ShipmentFacadeImplTest extends AbstractTestNGSpringContextTests {
 		customer.setCity("Nitra");
 		customer.setCountry("Slovakia");
 		customer.setPhoneNumber(phoneNumber);
-		//customer.setEmailAddress(email);
 
 		Useraccount useraccount = new Useraccount();
 		useraccount.setEmailAddress(email);

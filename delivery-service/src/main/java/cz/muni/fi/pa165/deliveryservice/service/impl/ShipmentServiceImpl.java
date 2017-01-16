@@ -98,13 +98,11 @@ public class ShipmentServiceImpl implements ShipmentService {
 	public void addProduct(Shipment s, Product p) {
 		s.addProduct(p);
 		p.setShipment(s);
-		//productDao.update(p);
 	}
 
 	@Override
 	public void removeProduct(Shipment s, Product p) {
 		System.out.println("remove prod " + p.getName() + " from " + s.getId());
-		//s.removeProduct(p);
 		p.setShipment(null);
 	}
 

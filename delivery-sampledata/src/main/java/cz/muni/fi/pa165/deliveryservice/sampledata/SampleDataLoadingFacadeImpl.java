@@ -89,22 +89,18 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         users.add(createUser("mail3@omg.com", "heslo126",true));
 
         c = new Courier();
-        //c.setEmail("mail@omg.com");
         c.setFirstName("Kolitan");
         c.setLastName("Lemokres");
         
         c1 = new Courier();
-        //c1.setEmail("mail1@omg.com");
         c1.setFirstName("Palotan");
         c1.setLastName("Webatis");
         
         c2 = new Courier();
-        //c2.setEmail("mail2@omg.com");
         c2.setFirstName("Gurekod");
         c2.setLastName("Revarus");
         
         c3 = new Courier();
-       // c3.setEmail("mail3@omg.com");
         c3.setFirstName("Mugoris");
         c3.setLastName("Fekotul");
         
@@ -117,9 +113,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         courierService.create(c1);
         courierService.create(c2);
         courierService.create(c3);
-
-
-
     }
 
     private void loadShipments(){
@@ -190,7 +183,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         u.setEmailAddress(email);
         u.setIsCourier(isCourier);
         userService.register(u, password);
-        System.out.println("registration id=" + u.getId());
         return u;
     }
 

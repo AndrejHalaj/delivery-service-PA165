@@ -1,8 +1,7 @@
 package cz.muni.fi.pa165.deliveryservice.controllers;
 
-import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerAuthDTO;
+
 import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerCreateDTO;
-import cz.muni.fi.pa165.deliveryservice.dto.customer.CustomerDisplayDTO;
 import cz.muni.fi.pa165.deliveryservice.facade.CustomerFacade;
 import cz.muni.fi.pa165.deliveryservice.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.deliveryservice.validators.CustomerValidator;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -47,8 +45,6 @@ public class CustomerController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        //CustomerDisplayDTO c = customerFacade.getAllCustomers().;
-        //System.out.println("custm-email: " + (c.getUserAcc() == 0 ? "null" : c.getUserAcc().getEmailAddress() ));
         model.addAttribute("customers", customerFacade.getAllCustomers());
         return "customer/list";
     }
@@ -71,11 +67,9 @@ public class CustomerController {
         //in case of validation error forward back to the the form
         if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
-                //log.trace("ObjectError: {}", ge);
             }
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
-                //log.trace("FieldError: {}", fe);
             }
             return "customer/new";
         }

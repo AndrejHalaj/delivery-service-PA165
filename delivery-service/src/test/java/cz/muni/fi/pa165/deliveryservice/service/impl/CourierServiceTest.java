@@ -50,48 +50,24 @@ public class CourierServiceTest extends AbstractTestNGSpringContextTests {
         courier1 = new Courier();
         courier1.setFirstName("Chuck");
         courier1.setLastName("Norris");
-        //courier1.setEmail("ChucCk@gmail.com");
-        //courier1.setPassword("roundkick");
 
         courier2 = new Courier();
         courier2.setFirstName("Steven");
         courier2.setLastName("Seagal");
-        //courier2.setEmail("Steven@gmail.com");
-        //courier2.setPassword("donteventry");
 
         courier3 = new Courier();
         courier3.setFirstName("Van");
         courier3.setLastName("Damme");
-        //courier3.setEmail("Damme@gmail.com");
-        //courier3.setPassword("lbaaaaahhahaa");
     }
 
     @Test
     public void testCreate() {
-        //courier1.setPassword("roundkick");
-        //courier2.setPassword("donteventry");
         courierService.create(courier1);
         courierService.create(courier2);
         // verify that registration method was
         verify(courierDAO).create(courier1);
         verify(courierDAO).create(courier2);
     }
-
-    /*
-    @Test(expectedExceptions = DataAccessException.class)
-    public void testShouldFail() {
-        Courier c = new Courier();
-        c.setFirstName("Chuck");
-        c.setLastName("Norris");
-        c.setEmail("Chuck@gmail.com");
-        c.setPassword(""); // empty password should not be accepted
-
-        courierService.register(c, c.getPassword());
-
-        // DAO layer - create should not be called at all this time
-        verify(courierDAO, times(0)).create(c);
-    }
-    */
 
     @Test
     public void testDelete() {

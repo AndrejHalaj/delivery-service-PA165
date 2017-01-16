@@ -79,11 +79,7 @@ public class ShipmentController {
 
     @RequestMapping(value="/detail/{shipmentId}", method = RequestMethod.GET)
     public String shipmentDetail(@PathVariable("shipmentId") long  shipmentId, Model model, HttpServletRequest request){
-        log.debug("ShipmentController::shipmentDetail() id=" + shipmentId);
         model.addAttribute("loggedUser", request.getSession().getAttribute("authenticatedUser"));
-        //model.addAttribute("receivers", customerFacade.getAllDetailedCustomers());
-        //model.addAttribute("products", productFacade.findAll());
-        //model.addAttribute("couriers", courierFacade.getAllCouriers());
         model.addAttribute("detailOnly", "true");
         model.addAttribute("shipmentForm", shipmentFacade.findById(shipmentId));
 
@@ -93,7 +89,6 @@ public class ShipmentController {
     @RequestMapping(value="/new", method = RequestMethod.GET)
     public String newShipment(Model model, HttpServletRequest request) {
         model.addAttribute("shipmentForm", new ShipmentCreateDTO());
-        //model.addAttribute("signedCustomer", request.getSession().getAttribute("authenticatedUser"));
         model.addAttribute("customerList", customerFacade.getAllDetailedCustomers());
         model.addAttribute("products", productFacade.getByShipmentIdOrUnassigned((-1L)));
         log.debug("ShipmentController::newShipment()");
@@ -121,7 +116,6 @@ public class ShipmentController {
             log.debug("ShipmentController::create() something is wrong, you dont seem to be signed!");
             return "shipment/new";
         }
-        log.debug("ShipmentController::create() user= " + loggedUsr.getEmailAddress() + ", userId=" +loggedUsr.getUserId());
         formBean.setCustomerSenderId(loggedUsr.getUserId());
 
         if(bindRes.hasErrors()) {
@@ -133,10 +127,6 @@ public class ShipmentController {
             return "shipment/new";
         }
 
-        for(Long itr : formBean.getProductsList())
-            log.debug("ShipmentController::create() product->"+itr);
-
-        log.debug("ShipmentController::create() senderId=" + formBean.getCustomerSenderId() + " ,receiver id=" + formBean.getCustomerReceiverId() + " , price = " + formBean.getPrice() + " , distance = " + formBean.getDistance() + " ,products="+ formBean.getProductsList().size());
         // create the shipment
         shipmentFacade.createShipment(formBean);
         redirectAttributes.addFlashAttribute("alert_success", "Shipment was created.");
@@ -154,8 +144,6 @@ public class ShipmentController {
             for(ObjectError err : errs)
                 System.out.println("BindError: " + err.getDefaultMessage());
 
-            log.debug("ShipmentController::update() has binding errors");
-            log.debug("Broken form: " + formBean.toString());
             return "shipment/detail";
         }
         log.debug("ShipmentController::update()");
@@ -169,31 +157,19 @@ public class ShipmentController {
 
     @RequestMapping(value="/deliver/{shipmentId}")
     public String deliverShipment(@PathVariable("shipmentId") long shipmentId, RedirectAttributes redirectAttributes) {
-
-        log.debug("ShipmentController::completeShipment(): id=" + shipmentId);
-
         shipmentFacade.deliverShipment(shipmentId);
-
         return "redirect:/shipment/list";
     }
 
     @RequestMapping(value="/cancel/{shipmentId}", method=RequestMethod.POST)
     public String cancelShipment(@PathVariable("shipmentId") long shipmentId, RedirectAttributes redirAttributes) {
-
-        log.debug("ShipmentController::cancelShipment() " + shipmentId );
-
         shipmentFacade.cancelShipment(shipmentId);
-
         return "redirect:/shipment/list";
     }
 
     @RequestMapping(value="/transfer/{shipmentId}")
     public String transferShipment(@PathVariable("shipmentId") long shipmentId, RedirectAttributes redirectAttributes) {
-
-        log.debug("ShipmentController::transferShipment(): id=" + shipmentId);
-
         shipmentFacade.transferShipment(shipmentId);
-
         return "redirect:/shipment/list";
     }
 }

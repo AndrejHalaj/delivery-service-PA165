@@ -30,8 +30,6 @@ public class CustomerFacadeImpl implements CustomerFacade {
     @Inject
     private CustomerService service;
 
-
-
     @Inject
     private UserService userService;
     
@@ -71,28 +69,11 @@ public class CustomerFacadeImpl implements CustomerFacade {
         service.update(customer);
     }
 
-    /*
-    @Override
-    public boolean authenticate(CustomerAuthDTO customerDto) {
-        Customer c = service.getCustomerByEmail(customerDto.getEmailAddress());
-        return service.authenticate(c, customerDto.getPassword());
-    }
-    */
-
     @Override
     public CustomerDetailDTO findCustomerById(Long id) {
         Customer customer = service.getCustomerById(id);
         return (customer == null) ? null : mapper.mapTo(customer, CustomerDetailDTO.class);
     }
-
-    /*
-    @Override
-    public CustomerDetailDTO findCustomerByEmail(String email) {
-        Customer customer = service.getCustomerByEmail(email);
-        
-        return mapper.mapTo(customer, CustomerDetailDTO.class);
-    }
-    */
 
     @Override
     public void deleteCustomer(Long id) {

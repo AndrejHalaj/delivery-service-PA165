@@ -13,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Viktor Bako
@@ -81,7 +79,6 @@ public class ShipmentFacadeImpl implements ShipmentFacade {
     }
 
     public List<ShipmentDTO> findByCourier(Long id) {
-        System.out.println("findBycourier: id=" + id);
         return mappingService.mapTo(shipmentService.findByCourier(id), ShipmentDTO.class);
     }
 

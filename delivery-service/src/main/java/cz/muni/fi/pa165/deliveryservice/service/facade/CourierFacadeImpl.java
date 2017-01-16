@@ -65,14 +65,6 @@ public class CourierFacadeImpl implements CourierFacade {
         return mappingService.mapTo(courierService.getAll(), CourierDTO.class);
     }
 
-    /*
-    @Override
-    public boolean authenticate(CourierAuthDTO courier) {
-        Courier c = courierService.findByEmail(courier.getEmail());
-        return courierService.authenticate(c, courier.getPassword());
-    }
-    */
-
     @Override
     public void updateCourier(CourierDTO courier) {
         Courier c = new Courier();
